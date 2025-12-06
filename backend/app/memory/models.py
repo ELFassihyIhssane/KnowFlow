@@ -3,7 +3,7 @@ from datetime import datetime
 from sqlalchemy import Column, Integer, String, Text, DateTime, UniqueConstraint
 from sqlalchemy.dialects.postgresql import JSONB
 
-from ..core.db import Base
+from app.core.db import Base   # ⬅ mets l'import absolu, plus propre
 
 
 class Document(Base):
@@ -13,13 +13,16 @@ class Document(Base):
     )
 
     id = Column(Integer, primary_key=True, index=True)
-    url = Column(String, unique=True, nullable=True)   # used for dedup
+    url = Column(String, unique=True, nullable=True)
     source = Column(String, index=True)
     content_type = Column(String, index=True)
     title = Column(String, index=True)
     abstract = Column(Text, nullable=True)
     pdf_url = Column(String, nullable=True)
-    authors = Column(JSONB, nullable=True)             # list of strings
+    authors = Column(JSONB, nullable=True)
     year = Column(Integer, nullable=True)
-    raw_text = Column(Text, nullable=True)
+
+    raw_text = Column(Text, nullable=True)      # texte brut du PDF (sale)
+    clean_text = Column(Text, nullable=True)    # texte nettoyé pour la vectorisation
+
     created_at = Column(DateTime, default=datetime.utcnow)
