@@ -1,28 +1,30 @@
 from langgraph.graph import StateGraph, END
-from .state import OrchestratorState
-from . import nodes
+from app.orchestrator.state import OrchestratorState
+from app.orchestrator import nodes
+
 
 def build_orchestrator_graph():
     graph = StateGraph(OrchestratorState)
 
-    # 1) Nœuds
+    # ---------- Nodes ----------
     graph.add_node("intent", nodes.intent_node)
     graph.add_node("retrieval", nodes.retrieval_node)
-    graph.add_node("router", nodes.router_node)
     graph.add_node("summarizer", nodes.summarizer_node)
     graph.add_node("concepts", nodes.concepts_node)
     graph.add_node("insight", nodes.insight_node)
     graph.add_node("evaluator", nodes.evaluator_node)
 
-    # 2) Start -> Intent -> Retrieval -> Router
+    # ✅ Nouveau node "vide" (pas de logique), juste pour brancher du routing
+    graph.add_node("post_summary_router", lambda state: state)
+
+    # ---------- Start ----------
     graph.set_entry_point("intent")
     graph.add_edge("intent", "retrieval")
-    graph.add_edge("retrieval", "router")
 
-    # 3) Router -> pipelines conditionnelles
+    # ---------- Routing après retrieval ----------
     graph.add_conditional_edges(
-        "router",
-        lambda state: nodes.router_node(state)["next"],
+        "retrieval",
+        nodes.route_selector,
         {
             "summarizer": "summarizer",
             "concepts": "concepts",
@@ -30,8 +32,18 @@ def build_orchestrator_graph():
         },
     )
 
-    # 4) Chaque pipeline va vers l'Evaluator, puis END
-    graph.add_edge("summarizer", "evaluator")
+    # ---------- Après summarizer : décider si on passe par Insight ----------
+    graph.add_edge("summarizer", "post_summary_router")
+    graph.add_conditional_edges(
+        "post_summary_router",
+        nodes.post_summary_selector,
+        {
+            "insight": "insight",
+            "evaluator": "evaluator",
+        },
+    )
+
+    # ---------- Fin pipeline ----------
     graph.add_edge("concepts", "evaluator")
     graph.add_edge("insight", "evaluator")
     graph.add_edge("evaluator", END)

@@ -10,3 +10,10 @@ sentence-transformers
 qdrant-client
 pdfminer.six
 python-dotenv
+google-generativeai
+networkx
+spacy
+rapidfuzz
+numpy
+scipy
+scikit-learn

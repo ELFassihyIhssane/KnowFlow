@@ -5,5 +5,11 @@ _graph = build_orchestrator_graph()
 
 def run_query(question: str) -> OrchestratorState:
     state = OrchestratorState(question=question)
-    final_state = _graph.invoke(state)
-    return final_state
+
+    result = _graph.invoke(state)
+
+    # LangGraph peut renvoyer un dict => on reconstruit l'état
+    if isinstance(result, dict):
+        return OrchestratorState(**result)
+
+    return result

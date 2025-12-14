@@ -1,0 +1,274 @@
+{
+  "nodes": [
+    {
+      "id": "the multi-agent reinforcement learning training phase",
+      "label": "the multi-agent reinforcement learning training phase",
+      "type": "concept"
+    },
+    {
+      "id": "different priors task scenario testing environment",
+      "label": "Different Priors\n\nTask Scenario\n\nTesting Environment",
+      "type": "concept"
+    },
+    {
+      "id": "training demonstrate signifi unication messages",
+      "label": "training demonstrate signifi\n\nunication messages",
+      "type": "concept"
+    },
+    {
+      "id": "communication-constrained priors communication",
+      "label": "Communication-Constrained Priors\n\nCommunication",
+      "type": "concept"
+    },
+    {
+      "id": "a generalized communication-constrained model",
+      "label": "a generalized communication-constrained model",
+      "type": "concept"
+    },
+    {
+      "id": "different communication-constrained scenarios",
+      "label": "different communication-constrained scenarios",
+      "type": "concept"
+    },
+    {
+      "id": "several communication-constrained benchmarks",
+      "label": "several communication-constrained benchmarks",
+      "type": "concept"
+    },
+    {
+      "id": "existing multi-agent reinforcement learning",
+      "label": "Existing multi-agent reinforcement learning",
+      "type": "concept"
+    },
+    {
+      "id": "complex and dynamic real-world environments",
+      "label": "complex and dynamic real-world environments",
+      "type": "concept"
+    },
+    {
+      "id": "communication-constrained priors modeling",
+      "label": "Communication-Constrained Priors Modeling",
+      "type": "concept"
+    },
+    {
+      "id": "a communication-constrained marl approach",
+      "label": "a communication-constrained MARL approach",
+      "type": "concept"
+    },
+    {
+      "id": "specifically influence model performance",
+      "label": "specifically influence model performance",
+      "type": "concept"
+    },
+    {
+      "id": "communication-constrained environments",
+      "label": "communication-constrained environments",
+      "type": "concept"
+    },
+    {
+      "id": "a binary communication link parameter",
+      "label": "a binary communication link parameter",
+      "type": "concept"
+    },
+    {
+      "id": "a dual mutual information estimatior",
+      "label": "a dual mutual information estimatior",
+      "type": "concept"
+    },
+    {
+      "id": "the proposed algorithms performance",
+      "label": "the proposed algorithm’s performance",
+      "type": "concept"
+    },
+    {
+      "id": "multi-agent reinforcement learning",
+      "label": "Multi-Agent Reinforcement Learning",
+      "type": "concept"
+    },
+    {
+      "id": "a communication-constrained m ors",
+      "label": "a communication-constrained m\n\nors",
+      "type": "concept"
+    },
+    {
+      "id": "diverse communication environments",
+      "label": "diverse communication environments",
+      "type": "concept"
+    },
+    {
+      "id": "the specific evaluation contents",
+      "label": "The specific evaluation contents",
+      "type": "concept"
+    },
+    {
+      "id": "communication-constrained priors",
+      "label": "communication-constrained priors",
+      "type": "concept"
+    },
+    {
+      "id": "communication-constrained marl",
+      "label": "communication-constrained MARL",
+      "type": "concept"
+    },
+    {
+      "id": "different communication priors",
+      "label": "different communication priors",
+      "type": "concept"
+    },
+    {
+      "id": "different real-world scenarios",
+      "label": "different real-world scenarios",
+      "type": "concept"
+    },
+    {
+      "id": "how different prior strategies",
+      "label": "how different prior strategies",
+      "type": "concept"
+    },
+    {
+      "id": "the algorithms effectiveness",
+      "label": "the algorithm’s effectiveness",
+      "type": "concept"
+    },
+    {
+      "id": "distributed decision-making",
+      "label": "distributed decision-making",
+      "type": "concept"
+    },
+    {
+      "id": "lossy and lossless messages",
+      "label": "lossy and lossless messages",
+      "type": "concept"
+    },
+    {
+      "id": "multi-agent policy learning",
+      "label": "multi-agent policy learning",
+      "type": "concept"
+    },
+    {
+      "id": "constrainted communication",
+      "label": "constrainted communication",
+      "type": "concept"
+    },
+    {
+      "id": "a dual mutual information",
+      "label": "a dual mutual information",
+      "type": "concept"
+    },
+    {
+      "id": "most real-world scenarios",
+      "label": "most real-world scenarios",
+      "type": "concept"
+    },
+    {
+      "id": "their limited scalability",
+      "label": "their limited scalability",
+      "type": "concept"
+    },
+    {
+      "id": "communication constraint priors",
+      "label": "communication constraint priors",
+      "type": "concept"
+    }
+  ],
+  "edges": [
+    {
+      "source": "the multi-agent reinforcement learning training phase",
+      "target": "communication-constrained environments",
+      "key": "0",
+      "relation": "related_to",
+      "weight": 1.0
+    },
+    {
+      "source": "communication-constrained priors communication",
+      "target": "multi-agent policy learning",
+      "key": "0",
+      "relation": "related_to",
+      "weight": 1.0
+    },
+    {
+      "source": "a generalized communication-constrained model",
+      "target": "different communication-constrained scenarios",
+      "key": "0",
+      "relation": "related_to",
+      "weight": 1.0
+    },
+    {
+      "source": "a generalized communication-constrained model",
+      "target": "lossy and lossless messages",
+      "key": "0",
+      "relation": "related_to",
+      "weight": 1.0
+    },
+    {
+      "source": "existing multi-agent reinforcement learning",
+      "target": "their limited scalability",
+      "key": "0",
+      "relation": "limitation_of",
+      "weight": 1.0
+    },
+    {
+      "source": "existing multi-agent reinforcement learning",
+      "target": "complex and dynamic real-world environments",
+      "key": "0",
+      "relation": "related_to",
+      "weight": 1.0
+    },
+    {
+      "source": "communication-constrained priors modeling",
+      "target": "communication-constrained marl",
+      "key": "0",
+      "relation": "related_to",
+      "weight": 1.0
+    },
+    {
+      "source": "a communication-constrained marl approach",
+      "target": "diverse communication environments",
+      "key": "0",
+      "relation": "related_to",
+      "weight": 1.0
+    },
+    {
+      "source": "a dual mutual information estimatior",
+      "target": "distributed decision-making",
+      "key": "0",
+      "relation": "related_to",
+      "weight": 1.0
+    },
+    {
+      "source": "different real-world scenarios",
+      "target": "multi-agent policy learning",
+      "key": "0",
+      "relation": "related_to",
+      "weight": 1.0
+    },
+    {
+      "source": "the algorithms effectiveness",
+      "target": "several communication-constrained benchmarks",
+      "key": "0",
+      "relation": "related_to",
+      "weight": 1.0
+    },
+    {
+      "source": "constrainted communication",
+      "target": "multi-agent policy learning",
+      "key": "0",
+      "relation": "related_to",
+      "weight": 1.0
+    },
+    {
+      "source": "a dual mutual information",
+      "target": "distributed decision-making",
+      "key": "0",
+      "relation": "related_to",
+      "weight": 1.0
+    },
+    {
+      "source": "communication constraint priors",
+      "target": "training demonstrate signifi unication messages",
+      "key": "0",
+      "relation": "related_to",
+      "weight": 1.0
+    }
+  ]
+}
