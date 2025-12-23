@@ -21,13 +21,45 @@ class SummarizerAgent:
         sub_tasks: Optional[List[str]] = None,
         language_hint: str = "en",
     ) -> SummarizerResult:
-        if not passages:
-            return SummarizerResult(
-                answer="Je n'ai trouvé aucun passage pertinent pour répondre.",
-                highlights=[],
-                citations=[],
-            )
 
+        #No passages => fallback LLM answer
+        if not passages:
+            fallback_prompt = f"""
+You are a helpful assistant.
+
+The user asked:
+\"\"\"{question}\"\"\"
+
+You do NOT have any retrieved evidence passages from the paper database.
+- Provide a helpful general explanation based on general knowledge.
+- DO NOT claim the papers said something.
+- Be explicit that this is a general answer without citations.
+- Keep it simple and beginner-friendly.
+Return JSON only.
+
+JSON format:
+{{
+  "answer": "your answer",
+  "highlights": ["...", "..."],
+  "citations": []
+}}
+""".strip()
+
+            raw = call_llm(fallback_prompt, temperature=0.4)
+            data = self._parse_json_safe(raw)
+
+            # Add an explicit indicator in the answer
+            answer = str(data.get("answer", "")).strip()
+            warning = "Note: No relevant passages were retrieved, so this is a general explanation (no paper citations)."
+            if warning.lower() not in answer.lower():
+                answer = f"{warning}\n\n{answer}"
+
+            data["answer"] = answer
+            data["highlights"] = self._clip_list(data.get("highlights", []), max_items=8)
+            data["citations"] = []
+            return SummarizerResult(**data)
+
+        # 2) Passages exist => summarize WITH evidence + simplify language
         prompt = build_summarizer_prompt(
             question=question,
             intent=intent,
@@ -41,7 +73,17 @@ class SummarizerAgent:
 
         # Normalisation légère
         data["highlights"] = self._clip_list(data.get("highlights", []), max_items=8)
-        data["citations"] = self._normalize_citations(data.get("citations", []), max_index=len(passages) - 1)
+        max_passages_in_prompt = 8
+        max_index = min(len(passages), max_passages_in_prompt) - 1
+        data["citations"] = self._normalize_citations(data.get("citations", []), max_index=max_index)
+
+
+        # 3) If passages exist but model returned no citations => be transparent
+        if passages and not data["citations"]:
+            answer = str(data.get("answer", "")).strip()
+            note = "Note: The retrieved passages did not contain a direct answer; response may be partial."
+            if note.lower() not in answer.lower():
+                data["answer"] = f"{note}\n\n{answer}"
 
         return SummarizerResult(**data)
 
@@ -59,7 +101,7 @@ class SummarizerAgent:
             except Exception:
                 pass
 
-        # fallback safe
+
         return {"answer": text.strip()[:2000], "highlights": [], "citations": []}
 
     def _clip_list(self, items, max_items: int):

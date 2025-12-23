@@ -18,4 +18,5 @@ def query_endpoint(body: QueryRequest):
         "answer": final_state.final_answer,
         "passages": final_state.retrieved_passages,
         "evaluation": final_state.evaluation,
+        "insight": final_state.insight,
     }

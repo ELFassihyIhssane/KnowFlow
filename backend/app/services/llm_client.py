@@ -46,7 +46,7 @@ def call_llm(prompt: str, temperature: float = 0.1, timeout_s: int = 20) -> str:
             generation_config={
                 "temperature": temperature,
                 "top_p": 0.9,
-                "max_output_tokens": 1024,
+                "max_output_tokens": 2048,
             },
             # évite Postman "Sending request..." infiniment
             request_options={"timeout": timeout_s},

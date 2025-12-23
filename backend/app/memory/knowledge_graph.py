@@ -1,16 +1,17 @@
+# app/memory/knowledge_graph.py
 from __future__ import annotations
 
 import json
 import os
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional
 
 import networkx as nx
 
 
 class KnowledgeGraphStore:
     """
-    Stockage local du Knowledge Graph (NetworkX).
-    Persistance simple en JSON (fichier).
+    Local Knowledge Graph store (NetworkX MultiDiGraph).
+    Simple JSON persistence.
     """
 
     def __init__(self, path: str = "data/knowledge_graph.json"):
@@ -27,7 +28,6 @@ class KnowledgeGraphStore:
                 data = json.load(f)
             self._from_dict(data)
         except Exception:
-            # si fichier cassé, on repart clean
             self.graph = nx.MultiDiGraph()
 
     def save(self) -> None:
@@ -58,9 +58,18 @@ class KnowledgeGraphStore:
         for e in data.get("edges", []):
             u = e.get("source")
             v = e.get("target")
-            attrs = {k: v for k, v in e.items() if k not in ("source", "target", "key")}
+            k = e.get("key")  # may be None in older files
+            attrs = {kk: vv for kk, vv in e.items() if kk not in ("source", "target", "key")}
+
             if u and v:
-                self.graph.add_edge(u, v, **attrs)
+                # MultiDiGraph supports add_edge(u,v,key=...,**attrs)
+                try:
+                    if k is not None:
+                        self.graph.add_edge(u, v, key=str(k), **attrs)
+                    else:
+                        self.graph.add_edge(u, v, **attrs)
+                except Exception:
+                    self.graph.add_edge(u, v, **attrs)
 
     # --- API Graph ---
     def upsert_node(self, node_id: str, **attrs) -> None:
@@ -79,9 +88,6 @@ class KnowledgeGraphStore:
         return dict(self.graph.nodes[node_id]) if self.graph.has_node(node_id) else {}
 
     def neighbors_subgraph(self, seed_nodes: List[str], hops: int = 1) -> nx.MultiDiGraph:
-        """
-        Retourne un sous-graphe autour de seed_nodes.
-        """
         if not seed_nodes:
             return nx.MultiDiGraph()
 
@@ -102,7 +108,6 @@ class KnowledgeGraphStore:
         return self.graph.subgraph(visited).copy()
 
 
-# singleton simple
 _kg_singleton: Optional[KnowledgeGraphStore] = None
 
 

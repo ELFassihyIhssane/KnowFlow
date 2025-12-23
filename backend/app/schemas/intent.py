@@ -2,7 +2,7 @@ from typing import List, Literal
 from pydantic import BaseModel, Field
 
 
-IntentType = Literal[
+IntentType = Literal[ #Literal : Limite les valeurs possible de Intent
     "summary",
     "comparison",
     "concepts",

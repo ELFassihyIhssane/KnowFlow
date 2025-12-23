@@ -1,4 +1,5 @@
-from typing import List, Optional
+from typing import List, Optional, Dict, Any
+
 from app.orchestrator.state import OrchestratorState, Passage
 from app.agents.intent_agent import IntentAgent
 from app.agents.retriever_agent import RetrieverAgent
@@ -8,6 +9,11 @@ from app.agents.concept_graph_agent import ConceptGraphAgent
 from app.agents.evaluator_agent import EvaluatorAgent
 from app.schemas.evaluation import EvaluationResult
 
+from app.services.concept.concept_graph_service import normalize_label, canonicalize_concept
+from app.memory.knowledge_graph import get_knowledge_graph
+from app.services.concept.passage_gating_service import gate_passages
+
+
 # Agents instanciés une seule fois
 intent_agent = IntentAgent()
 _retriever_agent: Optional[RetrieverAgent] = None  # lazy
@@ -16,12 +22,15 @@ concept_agent = ConceptGraphAgent()
 insight_agent = InsightAgent()
 evaluator_agent = EvaluatorAgent()
 
+insight: Optional[Dict[str, Any]] = None
+
 
 def _get_retriever() -> RetrieverAgent:
     global _retriever_agent
     if _retriever_agent is None:
         _retriever_agent = RetrieverAgent()
     return _retriever_agent
+
 
 # ---------- INTENT NODE ----------
 def intent_node(state: OrchestratorState) -> OrchestratorState:
@@ -46,8 +55,10 @@ def retrieval_node(state: OrchestratorState) -> OrchestratorState:
     ]
     return state
 
+
 def post_summary_selector(state: OrchestratorState) -> str:
-    return "insight" if state.intent == "comparison" else "evaluator"
+    return "evaluator"
+
 
 # ---------- SUMMARIZER NODE ----------
 def summarizer_node(state: OrchestratorState) -> OrchestratorState:
@@ -65,28 +76,107 @@ def summarizer_node(state: OrchestratorState) -> OrchestratorState:
 
 # ---------- CONCEPT GRAPH NODE ----------
 def concepts_node(state: OrchestratorState) -> OrchestratorState:
-    ctx = "\n\n".join([p.text for p in state.retrieved_passages[:8] if p.text])
-    result = concept_agent.update_from_passages(ctx)
+    passages = [p for p in (state.retrieved_passages or []) if getattr(p, "text", None)]
+    passages = passages[:12]
 
-    concepts = result.extracted_concepts[:20]
-    edges = result.extracted_edges[:20]
+    if not passages:
+        state.concepts = []
+        state.final_answer = "No passages were retrieved, so no concepts could be extracted."
+        return state
 
-    state.concepts = [{"label": c} for c in concepts]
+    raw_parts = []
+    for p in passages:
+        txt = (p.text or "").strip()
+        if not txt:
+            continue
+        if len(txt) > 1500:
+            txt = txt[:1500].rstrip() + "..."
+        raw_parts.append(txt)
 
-    #réponse finale texte (pour /api/query)
+    question = (state.question or "").strip()
+
+    # ✅ gate passages (avoid mixed-doc context)
+    gated_parts, _scores = gate_passages(
+        question=question,
+        passages=raw_parts,
+        top_k=6,
+        min_overlap=1,
+    )
+
+    ctx_parts = gated_parts if gated_parts else raw_parts[:6]
+    ctx = "\n\n".join(ctx_parts).strip()
+
+    if not ctx:
+        state.concepts = []
+        state.final_answer = "Retrieved passages were empty after cleaning, so no concepts could be extracted."
+        return state
+
+    # Gemini-first happens inside the agent
+    result = concept_agent.update_from_passages(
+        passages_text=ctx,
+        question=question,
+        section_only=False,
+        core_only=False,
+    )
+
+    concepts_raw = (result.extracted_concepts or [])[:25]
+    edges = (result.extracted_edges or [])[:30]
+
+    kg = get_knowledge_graph()
+
+    structured = []
+    seen_ids = set()
+
+    for label in concepts_raw:
+        canon = canonicalize_concept(label)
+        cid = normalize_label(canon)
+        if not cid or cid in seen_ids:
+            continue
+
+        if not kg.has_node(cid):
+            kg.upsert_node(cid, label=canon, type="concept", aliases=[label, canon])
+
+        seen_ids.add(cid)
+        structured.append({"id": cid, "label": kg.get_node_attrs(cid).get("label", canon)})
+
+    state.concepts = structured
+
+    id_to_label = {}
+    for c in structured:
+        attrs = kg.get_node_attrs(c["id"])
+        id_to_label[c["id"]] = attrs.get("label", c["label"])
+
     lines = []
-    lines.append("Concepts extraits :")
-    for c in concepts[:12]:
-        lines.append(f"- {c}")
+    lines.append("## Extracted concepts")
+    for c in structured[:12]:
+        lines.append(f"- {c['label']}")
 
     if edges:
-        lines.append("\nRelations détectées :")
-        for e in edges[:12]:
-            lines.append(f"- {e.source} --{e.relation}--> {e.target}")
+        by_rel = {}
+        for e in edges:
+            by_rel.setdefault(e.relation, []).append(e)
 
+        lines.append("\n## Detected relations")
+        for rel, rel_edges in list(by_rel.items())[:5]:
+            lines.append(f"\n**{rel}**")
+            for e in rel_edges[:5]:
+                src_label = id_to_label.get(e.source) or kg.get_node_attrs(e.source).get("label", e.source)
+                tgt_label = id_to_label.get(e.target) or kg.get_node_attrs(e.target).get("label", e.target)
+
+                ev = ""
+                if getattr(e, "properties", None) and isinstance(e.properties, dict):
+                    ev = (e.properties.get("evidence") or "").strip()
+
+                if ev:
+                    if len(ev) > 180:
+                        ev = ev[:180].rstrip() + "..."
+                    lines.append(f"- {src_label} → {tgt_label}  \n  _evidence:_ {ev}")
+                else:
+                    lines.append(f"- {src_label} → {tgt_label}")
+
+    lines.append("\n_Note: Extracted from retrieved passages, normalized and aligned to your question._")
     state.final_answer = "\n".join(lines)
     return state
-
 
 
 
@@ -98,22 +188,40 @@ def insight_node(state: OrchestratorState) -> OrchestratorState:
         summary=state.summary,
         concepts=[c["label"] for c in state.concepts] if state.concepts else [],
         language_hint="en",
+        intent=state.intent,  # ✅ NEW
+        sub_tasks=state.sub_tasks,   # ✅ ADD THIS
     )
+
+    state.insight = res.model_dump() if hasattr(res, "model_dump") else res.dict()
     state.insights = res.analysis
     return state
 
 
-
 # ---------- EVALUATOR NODE ----------
 def evaluator_node(state: OrchestratorState) -> OrchestratorState:
-    # Ne pas écraser si déjà produit (concepts_node)
+    # Build final_answer once (do not overwrite if already set)
     if not state.final_answer:
-        if state.summary:
-            state.final_answer = state.summary
-        elif state.insights:
-            state.final_answer = state.insights
+        # ✅ If intent is insight-driven, prefer InsightAgent output
+        if state.intent in ("gap", "deep_analysis"):
+            if state.insight and isinstance(state.insight, dict) and state.insight.get("analysis"):
+                state.final_answer = state.insight["analysis"]
+            elif state.insights:
+                state.final_answer = state.insights
+            elif state.summary:
+                state.final_answer = state.summary
+            else:
+                state.final_answer = ""
         else:
-            state.final_answer = ""
+            # ✅ Normal mode: prefer summary
+            if state.summary:
+                state.final_answer = state.summary
+            elif state.insights:
+                state.final_answer = state.insights
+            elif state.insight and isinstance(state.insight, dict) and state.insight.get("analysis"):
+                # fallback safety
+                state.final_answer = state.insight["analysis"]
+            else:
+                state.final_answer = ""
 
     passages_text = [p.text for p in state.retrieved_passages]
 
@@ -121,6 +229,7 @@ def evaluator_node(state: OrchestratorState) -> OrchestratorState:
         question=state.question,
         answer=state.final_answer,
         passages=passages_text,
+        sub_tasks=state.sub_tasks,   # ✅ NEW
     )
 
     state.evaluation = EvaluationResult(

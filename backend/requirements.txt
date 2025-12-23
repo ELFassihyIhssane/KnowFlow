@@ -17,3 +17,13 @@ rapidfuzz
 numpy
 scipy
 scikit-learn
+
+# Observability
+structlog>=24.1.0
+prometheus-client>=0.20.0
+
+# Optional (recommandé si tu veux du vrai tracing LLM)
+langfuse>=2.0.0
+
+# Optional (tracking d’expériences / runs)
+mlflow>=2.14.0

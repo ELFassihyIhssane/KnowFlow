@@ -1,51 +1,17 @@
-[00:00:04.317] Server  LOG     
-[00:00:04.321] Server  LOG        We detected TypeScript in your project and reconfigured your tsconfig.json file for you.
-[00:00:04.376] Server  LOG        The following suggested values were added to your tsconfig.json. These values can be changed to fit your project's needs:
-
-[00:00:04.407] Server  LOG        	- incremental was set to true
-[00:00:04.428] Server  LOG        	- include was updated to add '.next/types/**/*.ts'
-[00:00:04.437] Server  LOG        	- include was updated to add '.next/dev/types/**/*.ts'
-[00:00:04.440] Server  LOG        	- plugins was updated to add { name: 'next' }
-[00:00:04.444] Server  LOG     
-[00:00:04.549] Server  LOG        The following mandatory changes were made to your tsconfig.json:
-
-[00:00:04.564] Server  LOG        	- esModuleInterop was set to true (requirement for SWC / babel)
-[00:00:04.577] Server  LOG        	- jsx was set to react-jsx (next.js uses the React automatic runtime)
-[00:00:04.579] Server  LOG     
-[00:00:05.887] Server  LOG      ✓ Ready in 4.6s
-[00:05:01.652] Server  LOG      ○ Compiling /graph ...
-[00:05:27.567] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:10:51.062] Server  LOG      ✓ Compiled in 1211ms
-[00:25:11.297] Browser ERROR   uncaughtError: TypeError: Cannot read properties of null (reading 'notify')
-[00:26:55.038] Browser ERROR   uncaughtError: TypeError: Cannot read properties of null (reading 'notify')
-[00:48:53.271] Browser ERROR   uncaughtError: TypeError: Cannot read properties of null (reading 'notify')
-[00:51:45.274] Server  LOG      ✓ Compiled in 1642ms
-[00:51:59.962] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:52:01.686] Browser ERROR   uncaughtError: TypeError: Cannot read properties of null (reading 'notify')
-[00:57:03.062] Server  LOG      ✓ Compiled in 1504ms
-[00:57:31.346] Server  LOG      ✓ Compiled in 259ms
-[00:58:01.980] Server  LOG      ✓ Compiled in 223ms
-[01:03:50.484] Server  LOG      ✓ Compiled in 1192ms
-[01:03:50.974] Browser WARN    The selector `edge:hover`is invalid
-[01:03:50.974] Browser WARN    The selector `node:hover`is invalid
-[01:05:21.460] Server  LOG      ✓ Compiled in 901ms
-[01:05:21.766] Browser WARN    The selector `edge:hover`is invalid
-[01:05:21.766] Browser WARN    The selector `node:hover`is invalid
-[01:05:30.873] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:05:32.951] Browser WARN    The selector `edge:hover`is invalid
-[01:05:32.951] Browser WARN    The selector `node:hover`is invalid
-[01:05:32.951] Browser WARN    The selector `edge:hover`is invalid
-[01:05:32.951] Browser WARN    The selector `node:hover`is invalid
-[01:07:06.640] Browser WARN    The selector `edge:hover`is invalid
-[01:07:06.640] Browser WARN    The selector `node:hover`is invalid
-[01:07:06.640] Browser WARN    The selector `edge:hover`is invalid
-[01:07:06.640] Browser WARN    The selector `node:hover`is invalid
-[01:12:49.059] Browser WARN    The selector `edge:hover`is invalid
-[01:12:49.059] Browser WARN    The selector `node:hover`is invalid
-[01:12:49.059] Browser WARN    The selector `edge:hover`is invalid
-[01:12:49.059] Browser WARN    The selector `node:hover`is invalid
-[01:14:09.114] Browser WARN    The selector `edge:hover`is invalid
-[01:14:09.114] Browser WARN    The selector `node:hover`is invalid
-[01:14:09.114] Browser WARN    The selector `edge:hover`is invalid
-[01:14:09.114] Browser WARN    The selector `node:hover`is invalid
-[01:14:09.383] Browser ERROR   uncaughtError: TypeError: Cannot read properties of null (reading 'notify')
+[00:00:32.979] Server  LOG      ✓ Ready in 20.6s
+[00:00:36.634] Server  LOG      ○ Compiling / ...
+[00:01:03.044] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:52.839] Server  LOG      ○ Compiling /graph ...
+[00:04:18.388] Browser WARN    The selector `edge:hover`is invalid
+[00:04:18.389] Browser WARN    The selector `node:hover`is invalid
+[00:04:18.389] Browser WARN    The selector `edge:hover`is invalid
+[00:04:18.389] Browser WARN    The selector `node:hover`is invalid
+[00:04:18.533] Browser ERROR   uncaughtError: TypeError: Cannot read properties of null (reading 'notify')
+[00:05:06.963] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:10.719] Browser WARN    The selector `edge:hover`is invalid
+[00:05:10.719] Browser WARN    The selector `node:hover`is invalid
+[00:05:10.719] Browser WARN    The selector `edge:hover`is invalid
+[00:05:10.719] Browser WARN    The selector `node:hover`is invalid
+[00:05:10.891] Browser ERROR   uncaughtError: TypeError: Cannot read properties of null (reading 'notify')
+[00:05:40.806] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:41:45.881] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
