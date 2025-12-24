@@ -1,372 +1,185 @@
-# KnowFlow – Adaptive Knowledge-Driven Multi-Agent Orchestrator
+# KnowFlow — Orchestrateur multi-agents adaptatif guidé par la connaissance
 
-KnowFlow est une plateforme intelligente qui **analyse automatiquement des connaissances scientifiques** à l’aide d’un **orchestrateur multi-agents** et d’une **mémoire hybride** (Vector Store + Knowledge Graph).
+## Présentation générale
 
-L’objectif principal :
+KnowFlow est un système de question-réponse scientifique fondé sur une orchestration multi-agents, conçu pour produire des réponses traçables, évaluées et contrôlables par l’utilisateur.  
+Contrairement aux systèmes RAG classiques, KnowFlow rend explicites le raisonnement suivi, les agents activés, les passages documentaires utilisés et les métriques de qualité associées à chaque réponse.
 
-- comparer des approches scientifiques  
-- résumer des articles  
-- expliquer des concepts  
-- extraire des relations et “gaps” de recherche  
-
-…tout en restant **traçable, contrôlé, transparent et explicable**.
+Le projet vise à répondre aux limites des modèles de langage appliqués à l’analyse scientifique, notamment le manque de transparence, l’absence d’évaluation structurée et l’impossibilité de contrôler ou d’adapter le pipeline de génération.
 
 ---
 
-## ✨ Vue d’ensemble de l’architecture
+## Architecture globale
 
-KnowFlow est composé de plusieurs briques principales :
+KnowFlow repose sur une architecture modulaire orchestrée autour d’un état partagé.  
+Chaque requête utilisateur est traitée par un pipeline structuré composé d’agents spécialisés, coordonnés par un orchestrateur basé sur un graphe d’exécution.
 
-- 🧠 **Orchestrateur central**  
-  Qui choisit et combine dynamiquement les agents nécessaires à une requête.
+Pipeline principal :
+- Analyse de l’intention et décomposition en sous-tâches
+- Récupération documentaire sémantique
+- Génération de réponse (résumé, comparaison ou analyse)
+- Extraction de concepts et relations
+- Analyse critique approfondie
+- Évaluation de la qualité
+- Proposition d’adaptation contrôlée
 
-- 🤖 **Agents spécialisés**  
-  - Intent & Decomposition  
-  - External API Data Collector  
-  - Retriever  
-  - Summarizer  
-  - Concept & Graph  
-  - Insight  
-  - Evaluator  
-
-- 🧬 **Mémoire hybride AI**  
-  - **Vector Store** pour la recherche sémantique  
-  - **Knowledge Graph** pour les concepts et relations
-
-- 🎯 **Couche d’adaptation**  
-  Règles + ML léger pour adapter la pipeline (quel agent activer, contexte, modèle, etc.).
-
-- 💻 **Interface Web**  
-  Affiche la réponse, les sources, les extraits utilisés, le graphe de connaissances et la timeline des agents.
+L’orchestration est implémentée avec LangGraph et repose sur un état typé et traçable.
 
 ---
 
-## 🎯 Objectifs du projet
+## Orchestrateur et état partagé
 
-- Automatiser l’analyse de littérature scientifique
-- Offrir des résumés ciblés et comparatifs
-- Extraire les concepts clés et leurs relations
-- Détecter contradictions, limites et pistes futures
-- Assurer la traçabilité : *“quelle réponse vient de quels documents et de quels agents ?”*
+Le cœur du système est l’orchestrateur multi-agents, qui manipule un état global (`OrchestratorState`).  
+Cet état contient notamment :
+- la question utilisateur
+- l’intention détectée et les sous-tâches
+- les passages récupérés
+- les résultats intermédiaires (résumé, concepts, analyses)
+- les métriques d’évaluation
+- les paramètres de configuration du pipeline
+- les actions d’adaptation proposées
 
----
-
-## 🧩 Composants & Technologies
-
-### 🔵 A. Interface Web (User Interaction Layer)
-
-**Technos :**
-
-- Next.js (React) – framework moderne côté front
-- React – interface dynamique
-- Tailwind CSS – design rapide et propre
-- Cytoscape.js – affichage interactif du Knowledge Graph
-- Axios / Fetch – communication avec l’API FastAPI
-
-**Rôle :**
-
-- L’utilisateur pose des questions
-- L’UI envoie la requête au backend (`/query`)
-- L’UI affiche :
-  - la réponse textuelle
-  - les sources + extraits utilisés
-  - la liste des agents activés
-  - le Knowledge Graph associé à la réponse
+L’orchestrateur définit explicitement les transitions entre agents, ainsi que les conditions de routage selon l’intention et les résultats intermédiaires.
 
 ---
 
-### 🔵 B. Orchestrateur (FastAPI + LangGraph/CrewAI)
+## Agents spécialisés
 
-**Technos :**
+Chaque agent est implémenté comme un module indépendant, contribuant à l’état global.
 
-- FastAPI – API backend
-- LangGraph ou CrewAI – orchestrateur multi-agents
-- Python – logique métier et orchestration
-- Pydantic – validation des schémas d’entrée/sortie
+- **Intent Agent**  
+  Identifie l’intention principale de la requête (`summary`, `comparison`, `gap`, `deep_analysis`, etc.) et génère une liste de sous-tâches atomiques.
 
-**Rôle :**
+- **Retriever Agent**  
+  Effectue une recherche sémantique à partir d’embeddings et récupère les passages les plus pertinents depuis la base vectorielle Qdrant.
 
-- Comprendre la requête de l’utilisateur
-- Appeler l’**Intent & Decomposition Agent**
-- Choisir dynamiquement quels agents activer
-- Construire le contexte pour chaque agent (passages, concepts…)
-- Combiner les sorties des agents
-- Produire et renvoyer la réponse finale à l’UI
+- **Summarizer Agent**  
+  Génère une réponse structurée et fondée sur les passages récupérés.  
+  En l’absence de passages, un mode de repli explicite est utilisé, signalant l’absence de citations.
 
----
+- **Concept Graph Agent**  
+  Extrait les concepts et relations à partir des passages via une approche hybride combinant LLM et heuristiques NLP.  
+  Les concepts sont normalisés, dédupliqués et stockés dans un graphe de connaissances.
 
-## 🤖 Agents spécialisés
+- **Insight Agent**  
+  Produit des analyses critiques basées sur :
+  - des heuristiques de détection de lacunes
+  - des statistiques descriptives
+  - le raisonnement sur le graphe de connaissances
+  - une synthèse finale par LLM strictement ancrée dans les passages
 
-### 🟣 1. Intent & Decomposition Agent
-
-**Technos :**
-
-- LLM local via Ollama (Llama 3, Mistral 7B…)
-- HuggingFace Transformers
-- (Optionnel) scikit-learn pour classifier les intentions
-
-**Rôle :**
-
-- Identifier le type de tâche :
-  - résumé
-  - comparaison
-  - explication
-  - gap analysis
-  - analyse conceptuelle
-- Décomposer la question en sous-tâches pour l’orchestrateur
+- **Evaluator Agent**  
+  Évalue la qualité de la réponse via plusieurs métriques :
+  - fidélité aux passages
+  - couverture de la question et des sous-tâches
+  - cohérence du raisonnement
+  - profondeur analytique  
+  Une critique optionnelle par LLM peut être activée pour formuler des recommandations.
 
 ---
 
-### 🟡 2. External API Data Collector Agent
+## Mémoire hybride et récupération d’information
 
-**Technos :**
+KnowFlow repose sur une mémoire hybride combinant trois composantes :
 
-- Requests / httpx
-- API arXiv, Semantic Scholar, etc.
-- PyPDF2 / pdfminer pour l’extraction de texte
-- Tâches asynchrones FastAPI
+### Stockage documentaire
 
-**Rôle :**
+Les documents scientifiques sont stockés dans une base PostgreSQL via SQLAlchemy.  
+Chaque document contient les métadonnées, le texte brut extrait des PDF et une version nettoyée destinée à la vectorisation.
 
-- Télécharger de nouveaux articles
-- Extraire le texte et stocker dans le **Document Store**
-- Générer les embeddings → **Vector Store**
-- (Optionnel) Envoyer des passages au Concept & Graph Agent
+L’extraction PDF est réalisée avec pdfminer, suivie d’une phase de nettoyage du texte.
 
-> C’est un agent **d’ingestion de données**, pas un agent de raisonnement.
+### Recherche vectorielle
 
----
+Les documents sont découpés en passages et vectorisés avec Sentence-Transformers (`all-MiniLM-L6-v2`).  
+Les embeddings sont indexés dans Qdrant, exécuté via Docker, et interrogés pour la recherche sémantique.
 
-### 🟠 3. Retriever Agent
+Chaque document génère plusieurs vecteurs (titre, résumé, corps) afin d’améliorer la couverture.
 
-**Technos :**
+### Graphe de connaissances
 
-- Sentence-Transformers – génération d’embeddings
-- Qdrant **ou** ChromaDB – Vector Store
-- (Optionnel) FAISS – alternative locale
-
-**Rôle :**
-
-- Exécuter la recherche sémantique
-- Retourner les passages les plus pertinents
-- Alimenter :
-  - Summarizer Agent
-  - Concept & Graph Agent
-  - Insight Agent
+Les concepts et relations extraits sont stockés dans un graphe de connaissances implémenté avec NetworkX.  
+Le graphe est persisté localement au format JSON et exploité pour l’analyse conceptuelle et critique.
 
 ---
 
-### 🟢 4. Summarizer Agent
+## Couche d’adaptation contrôlée
 
-**Technos :**
+Après l’évaluation, une couche d’adaptation basée sur des règles interprétables propose des ajustements du pipeline, par exemple :
+- augmentation du nombre de passages récupérés
+- réduction de la température du modèle
+- activation ou désactivation de la critique LLM
 
-- LLM (Ollama, modèles instruct)
-- Transformers (T5, Llama-3 instruct…)
-- Prompt engineering
-
-**Rôle :**
-
-- Produire :
-  - résumés ciblés
-  - résumés comparatifs
-  - résumés explicatifs
-- Nettoyer le texte en entrée du Concept & Graph Agent si nécessaire
+Ces ajustements ne sont jamais appliqués automatiquement.  
+Ils sont exposés à l’utilisateur, qui décide explicitement de relancer le pipeline avec les nouveaux paramètres.
 
 ---
 
-### 🟩 5. Concept & Graph Agent
+## API Backend
 
-**Technos :**
+Le backend est implémenté avec FastAPI et expose notamment :
+- un endpoint `/query` pour l’exécution standard
+- un endpoint `/query/retry` pour la relance manuelle avec adaptation
 
-- spaCy + Transformers – NER et extraction de relations
-- NetworkX – gestion locale du graphe
-- (Optionnel) Neo4j – base graphe plus avancée
-- LLM pour structurer les relations
-
-**Rôle :**
-
-- Extraire des concepts à partir :
-  - des passages du Retriever
-  - des résumés du Summarizer
-  - des nouveaux papiers collectés par API
-- Identifier des relations :
-  - `utilise`, `améliore`, `dépend de`, `surpasse`, …
-- Mettre à jour le Knowledge Graph
-- Gérer les doublons (fusion de concepts synonymes)
+Les réponses de l’API incluent :
+- la réponse finale
+- les passages utilisés
+- les métriques d’évaluation
+- les analyses critiques
+- les actions d’adaptation proposées
+- l’état des paramètres du pipeline
 
 ---
 
-### 🔵 6. Insight Agent
+## Observabilité et traçabilité
 
-**Technos :**
+KnowFlow intègre une couche complète d’observabilité :
+- journalisation structurée avec structlog
+- métriques de performance avec Prometheus
+- suivi expérimental optionnel avec MLflow
+- traçage LLM optionnel avec Langfuse
 
-- LLM local
-- Raisonnement sur graphe
-- Pattern mining (analyse de motifs)
-
-**Rôle :**
-
-- Trouver :
-  - forces / faiblesses
-  - limitations des approches
-  - contradictions entre travaux
-  - “gaps” de recherche
-- Proposer des pistes futures
+Chaque requête, appel d’agent et décision d’adaptation est traçable.
 
 ---
 
-### 🟤 7. Evaluator Agent
+## Interface Web
 
-**Technos :**
-
-- LLM critique
-- Règles heuristiques
-- (Optionnel) scikit-learn pour un modèle de scoring
-- Métriques maison
-
-**Rôle :**
-
-- Vérifier que la réponse :
-  - est cohérente
-  - reste fidèle aux sources
-  - couvre la question
-- Renvoyer un **score de qualité**
-- Informer l’orchestrateur si besoin de :
-  - relancer Retriever
-  - relancer Summarizer
-  - changer de modèle ou de stratégie
+L’interface utilisateur est développée avec Next.js, React et Tailwind CSS.  
+Elle permet de :
+- poser des questions scientifiques
+- visualiser les réponses et leurs sources
+- inspecter les agents activés
+- analyser les métriques de qualité
+- explorer le graphe de connaissances
+- déclencher manuellement une relance adaptée
 
 ---
 
-## 🧠 Memory Layer – Hybrid Knowledge & Memory
+## Collecte automatisée des données
 
-### 📁 Document Store
-
-- Stockage des PDF + texte pré-extrait + métadonnées
-
-**Technos :**
-
-- Système de fichiers / MinIO / MongoDB GridFS
-- pdfminer, PyPDF2
+La collecte documentaire est automatisée via n8n, notamment depuis arXiv.  
+Les métadonnées et documents sont stockés automatiquement dans la base PostgreSQL, puis traités, nettoyés et indexés sans intervention manuelle.
 
 ---
 
-### 💠 Vector Store
+## Technologies utilisées
 
-- Stockage des embeddings
-- Recherche sémantique des passages pertinents
-
-**Technos :**
-
-- Qdrant (recommandé) ou ChromaDB
+- Python, FastAPI, Pydantic
+- LangGraph (orchestration multi-agents)
+- PostgreSQL, SQLAlchemy
 - Sentence-Transformers
+- Qdrant (Docker)
+- NetworkX
+- Prometheus, structlog
+- MLflow (optionnel)
+- Langfuse (optionnel)
+- Next.js, React, Tailwind CSS
+- n8n, Docker
 
 ---
 
-### 🧠 Knowledge Graph
+## Objectif du projet
 
-- **Nodes** = concepts
-- **Edges** = relations entre concepts
-
-**Technos :**
-
-- NetworkX (local)
-- (Optionnel) Neo4j Community Edition
-- spaCy / LLM pour l’extraction
-
----
-
-## 🎛 Adaptation Layer
-
-**Technos :**
-
-- Règles Python
-- scikit-learn (routing simple)
-- Noeuds conditionnels LangGraph
-
-**Rôle :**
-
-- Ajuster automatiquement :
-  - choix des agents
-  - taille du contexte
-  - choix du modèle (petit / moyen / grand)
-- Déclencher des itérations (ex : relancer Retriever si le score qualité est bas)
-- Améliorer la qualité finale de la réponse
-
----
-
-## 📊 Observability & Evaluation
-
-**Technos :**
-
-- MLflow – suivi d’expériences
-- LangFuse – traces LLM
-- Logging Python structuré
-- (Optionnel) Grafana / Prometheus
-
-**Rôle :**
-
-- Tracer les appels d’agents
-- Mesurer coûts, temps de réponse, qualité
-- Comparer :
-  - LLM seul vs orchestration multi-agents
-
----
-
-## 🔁 Workflow global
-
-### Étape 1 – Ingestion & Indexation
-
-1. External API Agent télécharge les papiers (arXiv, Semantic Scholar…)
-2. Extraction de texte (PDF → texte brut)
-3. Embeddings → stockage dans le **Vector Store**
-4. Documents bruts + métadonnées → **Document Store**
-
-### Étape 2 – Inference (Analyse d’une requête)
-
-1. L’utilisateur pose une question via l’UI
-2. L’UI appelle le backend FastAPI (`/query`)
-3. L’orchestrateur consulte l’**Intent Agent**
-4. En fonction de l’intent, il choisit une pipeline :
-   - Résumé simple → Retriever + Summarizer
-   - Comparaison → Retriever + Summarizer + Insight
-   - Gap analysis → Retriever + Concept & Graph + Insight
-   - Extraction conceptuelle → Retriever + Concept & Graph
-5. Retriever renvoie les passages pertinents
-6. Les agents (Summarizer, Concept & Graph, Insight…) travaillent dessus
-7. Evaluator estime la qualité
-8. Adaptation Layer ajuste si nécessaire (nouvelle recherche, autre modèle…)
-9. L’orchestrateur compose la réponse finale
-10. L’UI affiche réponse + graphe + sources + timeline des agents
-
----
-
-## 🗂 Structure du projet (simplifiée)
-
-```bash
-knowflow/
-├── frontend/                # Interface Web (Next.js + React + Tailwind + Cytoscape)
-│   ├── app/                 # Pages (dashboard, query, graph, etc.)
-│   ├── components/          # Layout, UI, query, sources, agents, graph
-│   ├── lib/                 # client API, types, helpers
-│   ├── styles/              # Tailwind + styles globaux
-│   └── public/              # Assets (logos, icônes…)
-├── backend/                 # API + Orchestrateur + Agents
-│   ├── app/
-│   │   ├── main.py          # Entrée FastAPI
-│   │   ├── api/             # Routes (query, graph, health…)
-│   │   ├── core/            # Config, logging, sécurité
-│   │   ├── schemas/         # Pydantic models
-│   │   ├── orchestrator/    # Graph LangGraph/CrewAI, pipelines, routing
-│   │   ├── agents/          # Tous les agents spécialisés
-│   │   ├── services/        # Logique métier (retrieval, summary, KG…)
-│   │   ├── memory/          # Document store, vector store, knowledge graph
-│   │   ├── external/        # Clients arXiv, Semantic Scholar, PDF extractor
-│   │   ├── adaptation/      # Règles + modèles de routing
-│   │   ├── observability/   # Traces, métriques, expériences
-│   │   └── tests/           # Tests unitaires
-│   └── requirements.txt
-├── notebooks/               # Expériences (embeddings, KG, évaluation…)
-├── infra/                   # Docker / déploiement
-├── docs/                    # Documentation détaillée (architecture, agents, API…)
-└── README.md
+KnowFlow constitue un MVP robuste et extensible pour l’assistance à l’analyse scientifique, orienté transparence, contrôle humain et inspection du raisonnement.  
+Il pose les bases d’un système fiable, interprétable et évolutif pour la recherche scientifique assistée par intelligence artificielle.
