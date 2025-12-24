@@ -11,6 +11,27 @@ export type EvaluationResult = {
   recommendations?: string[];
 };
 
+export type AdaptationAction = {
+  name: string;
+  reason?: string;
+  patch?: Record<string, any>;
+};
+
+export type Tuning = {
+  top_k: number;
+  min_overlap: number;
+  temperature: number;
+  enable_llm_critique: boolean;
+  enable_graph_update: boolean;
+};
+
+export type Insight = {
+  analysis?: string;
+  gaps?: string[];
+  contradictions?: string[];
+  future_directions?: string[];
+};
+
 export type QueryResponse = {
   question: string;
   intent: string;
@@ -18,7 +39,16 @@ export type QueryResponse = {
   answer: string;
   passages: Passage[];
   evaluation?: EvaluationResult;
-  // futur: graph / traces
+
+  // ✅ insight
+  insight?: Insight | null;
+
+  // ✅ adaptation + manual retry
+  can_retry?: boolean;
+  retry_count?: number;
+  adaptation_actions?: AdaptationAction[];
+  tuning?: Tuning;
+
   graph?: { nodes: any[]; edges: any[] };
   agents_used?: string[];
 };

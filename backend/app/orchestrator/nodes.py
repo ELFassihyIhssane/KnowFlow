@@ -13,6 +13,8 @@ from app.services.concept.concept_graph_service import normalize_label, canonica
 from app.memory.knowledge_graph import get_knowledge_graph
 from app.services.concept.passage_gating_service import gate_passages
 
+from app.observability.logging import get_logger
+log = get_logger("knowflow.retrieval")
 
 # Agents instanciés une seule fois
 intent_agent = IntentAgent()
@@ -42,8 +44,9 @@ def intent_node(state: OrchestratorState) -> OrchestratorState:
 
 # ---------- RETRIEVAL NODE ----------
 def retrieval_node(state: OrchestratorState) -> OrchestratorState:
+    log.info("retrieval_params", top_k=state.top_k, retry_count=state.retry_count, temperature=state.temperature, enable_llm_critique=state.enable_llm_critique,)
     retriever = _get_retriever()  # Qdrant appelé seulement ici
-    hits = retriever.retrieve(query=state.question, top_k=8)
+    hits = retriever.retrieve(query=state.question, top_k=state.top_k)
 
     state.retrieved_passages = [
         Passage(
@@ -99,8 +102,8 @@ def concepts_node(state: OrchestratorState) -> OrchestratorState:
     gated_parts, _scores = gate_passages(
         question=question,
         passages=raw_parts,
-        top_k=6,
-        min_overlap=1,
+        top_k=min(12, max(4, state.top_k)),  # cohérent avec retrieval
+        min_overlap=state.min_overlap,
     )
 
     ctx_parts = gated_parts if gated_parts else raw_parts[:6]
@@ -147,18 +150,20 @@ def concepts_node(state: OrchestratorState) -> OrchestratorState:
         id_to_label[c["id"]] = attrs.get("label", c["label"])
 
     lines = []
-    lines.append("## Extracted concepts")
+    lines.append("Extracted concepts:")
     for c in structured[:12]:
-        lines.append(f"- {c['label']}")
+        lines.append(f"• {c['label']}")
 
     if edges:
         by_rel = {}
         for e in edges:
             by_rel.setdefault(e.relation, []).append(e)
-
-        lines.append("\n## Detected relations")
+        
+        lines.append("")
+        lines.append("Detected relations:")
+        lines.append("")
         for rel, rel_edges in list(by_rel.items())[:5]:
-            lines.append(f"\n**{rel}**")
+            lines.append(f"{rel}:")
             for e in rel_edges[:5]:
                 src_label = id_to_label.get(e.source) or kg.get_node_attrs(e.source).get("label", e.source)
                 tgt_label = id_to_label.get(e.target) or kg.get_node_attrs(e.target).get("label", e.target)
@@ -170,11 +175,11 @@ def concepts_node(state: OrchestratorState) -> OrchestratorState:
                 if ev:
                     if len(ev) > 180:
                         ev = ev[:180].rstrip() + "..."
-                    lines.append(f"- {src_label} → {tgt_label}  \n  _evidence:_ {ev}")
+                    lines.append(f"• {src_label} → {tgt_label}  \n  evidence:{ev}")
                 else:
-                    lines.append(f"- {src_label} → {tgt_label}")
+                    lines.append(f"• {src_label} → {tgt_label}")
 
-    lines.append("\n_Note: Extracted from retrieved passages, normalized and aligned to your question._")
+    lines.append("\nNote: Extracted from retrieved passages, normalized and aligned to your question.")
     state.final_answer = "\n".join(lines)
     return state
 

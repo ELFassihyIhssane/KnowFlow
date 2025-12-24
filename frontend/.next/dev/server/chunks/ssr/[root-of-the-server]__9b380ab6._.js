@@ -77,6 +77,8 @@ module.exports = mod;
 __turbopack_context__.s([
     "fetchGraph",
     ()=>fetchGraph,
+    "retryQuery",
+    ()=>retryQuery,
     "runQuery",
     ()=>runQuery
 ]);
@@ -86,6 +88,14 @@ const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:7000"
 async function runQuery(question) {
     const { data } = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].post(`${API_BASE}/api/query`, {
         question
+    });
+    return data;
+}
+async function retryQuery(question, retry_count, adaptation_actions) {
+    const { data } = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].post(`${API_BASE}/api/query/retry`, {
+        question,
+        retry_count,
+        adaptation_actions
     });
     return data;
 }
@@ -117,15 +127,31 @@ function GraphView({ graph }) {
             columnNumber: 7
         }, this);
     }
+    const nodes = Array.isArray(graph.nodes) ? graph.nodes : [];
+    const edges = Array.isArray(graph.edges) ? graph.edges : [];
+    // ✅ Build a set of valid node ids
+    const nodeIds = new Set(nodes.map((n)=>String(n?.id)));
+    // ✅ Filter out invalid edges (null endpoints or endpoints not in nodes)
+    const safeEdges = edges.filter((e)=>{
+        const s = e?.source;
+        const t = e?.target;
+        if (s == null || t == null) return false;
+        const ss = String(s);
+        const tt = String(t);
+        // reject "null"/"undefined" strings too
+        if (ss === "null" || ss === "undefined" || tt === "null" || tt === "undefined") return false;
+        return nodeIds.has(ss) && nodeIds.has(tt);
+    });
+    const droppedEdges = edges.length - safeEdges.length;
     const elements = [
-        ...(graph.nodes || []).map((n)=>({
+        ...nodes.map((n)=>({
                 data: {
                     id: String(n.id),
                     label: String(n.label ?? n.id),
                     type: String(n.type ?? "Concept")
                 }
             })),
-        ...(graph.edges || []).map((e, i)=>({
+        ...safeEdges.map((e, i)=>({
                 data: {
                     id: String(e.id ?? `e-${i}`),
                     source: String(e.source),
@@ -138,7 +164,7 @@ function GraphView({ graph }) {
         className: "rounded-2xl border border-white/10 bg-slate-950/40 p-4",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "mb-3 flex items-center justify-between",
+                className: "mb-3 flex items-center justify-between gap-4",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -146,7 +172,7 @@ function GraphView({ graph }) {
                             children: "Knowledge Graph"
                         }, void 0, false, {
                             fileName: "[project]/components/graph/GraphView.tsx",
-                            lineNumber: 41,
+                            lineNumber: 62,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -154,18 +180,32 @@ function GraphView({ graph }) {
                             children: "Tip: zoom with trackpad / wheel • drag nodes • hover edges to see relation"
                         }, void 0, false, {
                             fileName: "[project]/components/graph/GraphView.tsx",
-                            lineNumber: 42,
+                            lineNumber: 63,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "mt-1 text-[11px] text-slate-500",
+                            children: [
+                                nodes.length,
+                                " nodes • ",
+                                safeEdges.length,
+                                " edges",
+                                droppedEdges > 0 ? ` • ${droppedEdges} invalid edges removed` : ""
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/components/graph/GraphView.tsx",
+                            lineNumber: 66,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/graph/GraphView.tsx",
-                    lineNumber: 40,
+                    lineNumber: 61,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/graph/GraphView.tsx",
-                lineNumber: 39,
+                lineNumber: 60,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -177,7 +217,6 @@ function GraphView({ graph }) {
                         height: "100%"
                     },
                     layout: {
-                        // Layout “stable” et lisible (force-directed)
                         name: "cose",
                         animate: true,
                         randomize: false,
@@ -189,9 +228,6 @@ function GraphView({ graph }) {
                         gravity: 0.25
                     },
                     stylesheet: [
-                        // =========================
-                        // Base Node Style (lisible)
-                        // =========================
                         {
                             selector: "node",
                             style: {
@@ -206,19 +242,14 @@ function GraphView({ graph }) {
                                 "font-weight": 600,
                                 "text-valign": "center",
                                 "text-halign": "center",
-                                // ✅ évite les énormes phrases
                                 "text-wrap": "wrap",
                                 "text-max-width": 140,
-                                // ✅ lisibilité (halo autour du texte)
                                 "text-background-color": "#213448",
                                 "text-background-opacity": 0.7,
                                 "text-background-padding": 3,
                                 "text-background-shape": "round-rectangle"
                             }
                         },
-                        // =========================
-                        // Node Types (palette)
-                        // =========================
                         {
                             selector: 'node[type = "Paper"]',
                             style: {
@@ -257,9 +288,6 @@ function GraphView({ graph }) {
                                 shape: "round-triangle"
                             }
                         },
-                        // =========================
-                        // Edge Style (moins de bruit)
-                        // =========================
                         {
                             selector: "edge",
                             style: {
@@ -268,13 +296,11 @@ function GraphView({ graph }) {
                                 "curve-style": "bezier",
                                 "target-arrow-shape": "triangle",
                                 "target-arrow-color": "rgba(234,224,207,0.45)",
-                                // 🚫 pas de label par défaut (sinon illisible)
                                 label: "",
                                 "font-size": 10,
                                 color: "#EAE0CF"
                             }
                         },
-                        // ✅ relation visible uniquement au hover
                         {
                             selector: "edge:hover",
                             style: {
@@ -288,9 +314,6 @@ function GraphView({ graph }) {
                                 "text-background-shape": "round-rectangle"
                             }
                         },
-                        // =========================
-                        // Hover Node (feedback)
-                        // =========================
                         {
                             selector: "node:hover",
                             style: {
@@ -298,9 +321,6 @@ function GraphView({ graph }) {
                                 "border-color": "#94B4C1"
                             }
                         },
-                        // =========================
-                        // Selected Node (debug)
-                        // =========================
                         {
                             selector: "node:selected",
                             style: {
@@ -310,11 +330,12 @@ function GraphView({ graph }) {
                         }
                     ],
                     cy: (cy)=>{
-                        // interactions smooth + defaults
                         cy.minZoom(0.35);
                         cy.maxZoom(2.5);
-                        // double click = fit
-                        cy.on("dbltap", ()=>{
+                        // ✅ Avoid duplicate handlers in dev / strict mode
+                        cy.removeAllListeners();
+                        // Prefer dblclick (always available). Keep dbltap if present.
+                        const fitAll = ()=>{
                             cy.animate({
                                 fit: {
                                     eles: cy.elements(),
@@ -323,22 +344,35 @@ function GraphView({ graph }) {
                             }, {
                                 duration: 250
                             });
-                        });
+                        };
+                        // @ts-ignore
+                        const hasDblTap = typeof cy.on === "function";
+                        if (hasDblTap) {
+                            // some builds support dbltap
+                            try {
+                                // @ts-ignore
+                                cy.on("dbltap", fitAll);
+                            } catch  {
+                                cy.on("dblclick", fitAll);
+                            }
+                        } else {
+                            cy.on("dblclick", fitAll);
+                        }
                     }
                 }, void 0, false, {
                     fileName: "[project]/components/graph/GraphView.tsx",
-                    lineNumber: 49,
+                    lineNumber: 74,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/graph/GraphView.tsx",
-                lineNumber: 48,
+                lineNumber: 73,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/graph/GraphView.tsx",
-        lineNumber: 38,
+        lineNumber: 59,
         columnNumber: 5
     }, this);
 }
@@ -363,6 +397,9 @@ function GraphPage() {
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [graph, setGraph] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
     const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
+    // 🔼 Scroll button state
+    const [showScrollTop, setShowScrollTop] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [scrollProgress, setScrollProgress] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(0);
     async function load() {
         setLoading(true);
         setError(null);
@@ -375,23 +412,54 @@ function GraphPage() {
             setLoading(false);
         }
     }
+    // 👇 Detect scroll + progress
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        function onScroll() {
+            const y = window.scrollY || 0;
+            const doc = document.documentElement;
+            const max = Math.max(1, doc.scrollHeight - doc.clientHeight);
+            const p = Math.min(1, Math.max(0, y / max));
+            setScrollProgress(p);
+            setShowScrollTop(y > 300);
+        }
+        onScroll();
+        window.addEventListener("scroll", onScroll, {
+            passive: true
+        });
+        return ()=>window.removeEventListener("scroll", onScroll);
+    }, []);
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+    // Progress ring math
+    const ring = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMemo"])(()=>{
+        const size = 48;
+        const stroke = 3;
+        const r = (size - stroke) / 2;
+        const c = 2 * Math.PI * r;
+        const dash = c * (1 - scrollProgress);
+        return {
+            size,
+            stroke,
+            r,
+            c,
+            dash
+        };
+    }, [
+        scrollProgress
+    ]);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
-        className: "mx-auto max-w-6xl p-6",
+        className: "relative mx-auto max-w-6xl p-6",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                 className: "text-2xl font-semibold",
                 children: "Knowledge Graph"
             }, void 0, false, {
                 fileName: "[project]/app/graph/page.tsx",
-                lineNumber: 27,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                className: "mt-1 text-zinc-300",
-                children: "Cytoscape view of the KG (requires backend /api/graph)."
-            }, void 0, false, {
-                fileName: "[project]/app/graph/page.tsx",
-                lineNumber: 28,
+                lineNumber: 62,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -404,7 +472,7 @@ function GraphPage() {
                         children: loading ? "Loading..." : "Load graph"
                     }, void 0, false, {
                         fileName: "[project]/app/graph/page.tsx",
-                        lineNumber: 33,
+                        lineNumber: 65,
                         columnNumber: 9
                     }, this),
                     error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -412,13 +480,13 @@ function GraphPage() {
                         children: error
                     }, void 0, false, {
                         fileName: "[project]/app/graph/page.tsx",
-                        lineNumber: 40,
+                        lineNumber: 72,
                         columnNumber: 19
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/graph/page.tsx",
-                lineNumber: 32,
+                lineNumber: 64,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -427,18 +495,122 @@ function GraphPage() {
                     graph: graph
                 }, void 0, false, {
                     fileName: "[project]/app/graph/page.tsx",
-                    lineNumber: 44,
+                    lineNumber: 76,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/graph/page.tsx",
-                lineNumber: 43,
+                lineNumber: 75,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: [
+                    "fixed bottom-6 right-6 z-50",
+                    "transition-all duration-300",
+                    showScrollTop ? "opacity-100 translate-y-0" : "pointer-events-none opacity-0 translate-y-3"
+                ].join(" "),
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                    onClick: scrollToTop,
+                    "aria-label": "Scroll to top",
+                    className: [
+                        "group relative grid h-12 w-12 place-items-center rounded-full",
+                        "border border-white/15 bg-white/10 backdrop-blur-xl",
+                        "shadow-[0_10px_30px_-12px_rgba(0,0,0,0.6)]",
+                        "transition-transform duration-300 hover:scale-110 active:scale-95",
+                        "focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-beige/70 focus-visible:ring-offset-2 focus-visible:ring-offset-black/40"
+                    ].join(" "),
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                            className: [
+                                "absolute -inset-2 rounded-full opacity-0 blur-xl transition-opacity duration-300",
+                                "bg-brand-beige/30",
+                                "group-hover:opacity-100"
+                            ].join(" ")
+                        }, void 0, false, {
+                            fileName: "[project]/app/graph/page.tsx",
+                            lineNumber: 101,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                            width: ring.size,
+                            height: ring.size,
+                            viewBox: `0 0 ${ring.size} ${ring.size}`,
+                            className: "absolute inset-0",
+                            "aria-hidden": "true",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
+                                    cx: ring.size / 2,
+                                    cy: ring.size / 2,
+                                    r: ring.r,
+                                    fill: "none",
+                                    stroke: "rgba(255,255,255,0.14)",
+                                    strokeWidth: ring.stroke
+                                }, void 0, false, {
+                                    fileName: "[project]/app/graph/page.tsx",
+                                    lineNumber: 117,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
+                                    cx: ring.size / 2,
+                                    cy: ring.size / 2,
+                                    r: ring.r,
+                                    fill: "none",
+                                    stroke: "currentColor",
+                                    className: "text-brand-beige",
+                                    strokeWidth: ring.stroke,
+                                    strokeLinecap: "round",
+                                    strokeDasharray: ring.c,
+                                    strokeDashoffset: ring.dash,
+                                    transform: `rotate(-90 ${ring.size / 2} ${ring.size / 2})`
+                                }, void 0, false, {
+                                    fileName: "[project]/app/graph/page.tsx",
+                                    lineNumber: 125,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/app/graph/page.tsx",
+                            lineNumber: 110,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                            width: "20",
+                            height: "20",
+                            viewBox: "0 0 24 24",
+                            fill: "none",
+                            className: "relative text-brand-beige transition-transform duration-300 group-hover:-translate-y-0.5",
+                            "aria-hidden": "true",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                d: "M12 5l-7 7m7-7l7 7M12 5v14",
+                                stroke: "currentColor",
+                                strokeWidth: "2",
+                                strokeLinecap: "round",
+                                strokeLinejoin: "round"
+                            }, void 0, false, {
+                                fileName: "[project]/app/graph/page.tsx",
+                                lineNumber: 149,
+                                columnNumber: 13
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/app/graph/page.tsx",
+                            lineNumber: 141,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/app/graph/page.tsx",
+                    lineNumber: 89,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/app/graph/page.tsx",
+                lineNumber: 80,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/graph/page.tsx",
-        lineNumber: 26,
+        lineNumber: 61,
         columnNumber: 5
     }, this);
 }

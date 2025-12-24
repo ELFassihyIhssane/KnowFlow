@@ -1,0 +1,142 @@
+{
+  "nodes": [
+    {
+      "id": "nvrc-neural-video-representation-compression",
+      "label": "NVRC: Neural Video Representation Compression",
+      "type": "concept",
+      "aliases": [
+        "NVRC: Neural Video Representation Compression"
+      ]
+    },
+    {
+      "id": "implicit-neural-representation",
+      "label": "implicit neural representation",
+      "type": "concept",
+      "aliases": [
+        "implicit neural representation"
+      ]
+    },
+    {
+      "id": "video-compression",
+      "label": "video compression",
+      "type": "concept",
+      "aliases": [
+        "video compression"
+      ]
+    },
+    {
+      "id": "neural-network",
+      "label": "neural network",
+      "type": "model",
+      "aliases": [
+        "neural network"
+      ]
+    },
+    {
+      "id": "entropy",
+      "label": "entropy",
+      "type": "concept",
+      "aliases": [
+        "entropy"
+      ]
+    },
+    {
+      "id": "quantization",
+      "label": "quantization",
+      "type": "concept",
+      "aliases": [
+        "quantization"
+      ]
+    },
+    {
+      "id": "model-compression",
+      "label": "model compression",
+      "type": "model",
+      "aliases": [
+        "model compression"
+      ]
+    },
+    {
+      "id": "rate-distortion-objective",
+      "label": "rate-distortion objective",
+      "type": "concept",
+      "aliases": [
+        "rate-distortion objective"
+      ]
+    },
+    {
+      "id": "coding-efficiency",
+      "label": "coding efficiency",
+      "type": "concept",
+      "aliases": [
+        "coding efficiency"
+      ]
+    },
+    {
+      "id": "vvc-vtm",
+      "label": "VVC VTM",
+      "type": "concept",
+      "aliases": [
+        "VVC VTM"
+      ]
+    },
+    {
+      "id": "parameter-coding",
+      "label": "parameter coding",
+      "type": "concept",
+      "aliases": [
+        "parameter coding"
+      ]
+    },
+    {
+      "id": "hierarchical-structure",
+      "label": "hierarchical structure",
+      "type": "concept",
+      "aliases": [
+        "hierarchical structure"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "nvrc-neural-video-representation-compression",
+      "target": "implicit-neural-representation",
+      "key": "0",
+      "relation": "based_on",
+      "weight": 0.85,
+      "evidence": "The proposed NVRC is the first fully end-to-end optimized INR-based framework for video compression."
+    },
+    {
+      "source": "nvrc-neural-video-representation-compression",
+      "target": "rate-distortion-objective",
+      "key": "0",
+      "relation": "objective_is",
+      "weight": 0.85,
+      "evidence": "In NVRC, neural representations, as well as quantization and entropy models, are optimized simultaneously based on a rate-distortion objective."
+    },
+    {
+      "source": "nvrc-neural-video-representation-compression",
+      "target": "quantization",
+      "key": "0",
+      "relation": "uses",
+      "weight": 0.85,
+      "evidence": "Enhanced quantization and entropy models have been applied to encode neural representation parameters, where the context and side information have been utilized to achieve higher coding efficiency."
+    },
+    {
+      "source": "nvrc-neural-video-representation-compression",
+      "target": "entropy",
+      "key": "0",
+      "relation": "uses",
+      "weight": 0.85,
+      "evidence": "Enhanced quantization and entropy models have been applied to encode neural representation parameters, where the context and side information have been utilized to achieve higher coding efficiency."
+    },
+    {
+      "source": "nvrc-neural-video-representation-compression",
+      "target": "vvc-vtm",
+      "key": "0",
+      "relation": "outperforms",
+      "weight": 0.85,
+      "evidence": "NVRC is the first INR-based video codec outperforming VVC VTM with such significant coding gains."
+    }
+  ]
+}

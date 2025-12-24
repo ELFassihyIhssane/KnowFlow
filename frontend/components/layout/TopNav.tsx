@@ -1,34 +1,34 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export function TopNav() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-brand-navy/70 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-brand-sea to-brand-blue shadow-soft" />
-          <div className="leading-tight">
-            <div className="text-sm font-semibold text-brand-beige">KnowFlow</div>
-            <div className="text-[11px] text-white/70">Adaptive Multi-Agent Orchestrator</div>
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
+        <Link href="/" className="relative flex items-center">
+          {/* container small in flow */}
+          <div className="relative h-10 w-10" />
+
+          {/* logo floats bigger without changing navbar height */}
+          <div className="absolute left-0 top-1/2 h-40 w-52 -translate-y-1/2">
+            <Image
+              src="/KnowFlow.png"
+              alt="KnowFlow"
+              fill
+              className="object-contain"
+              priority
+            />
           </div>
         </Link>
 
         <nav className="flex items-center gap-2 text-sm">
-          <Link
-            href="/"
-            className="rounded-lg px-3 py-2 text-white/80 hover:bg-white/10 hover:text-white"
-          >
+          <Link href="/" className="rounded-lg px-3 py-2 text-white/80 hover:bg-white/10 hover:text-white">
             Home
           </Link>
-          <Link
-            href="/query"
-            className="rounded-lg px-3 py-2 text-white/80 hover:bg-white/10 hover:text-white"
-          >
+          <Link href="/query" className="rounded-lg px-3 py-2 text-white/80 hover:bg-white/10 hover:text-white">
             Query
           </Link>
-          <Link
-            href="/graph"
-            className="rounded-lg px-3 py-2 text-white/80 hover:bg-white/10 hover:text-white"
-          >
+          <Link href="/graph" className="rounded-lg px-3 py-2 text-white/80 hover:bg-white/10 hover:text-white">
             Graph
           </Link>
         </nav>

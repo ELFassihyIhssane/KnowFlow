@@ -1,3 +1,4 @@
+# backend/app/adaptation/types.py
 from __future__ import annotations
 
 from dataclasses import dataclass, field
@@ -8,7 +9,7 @@ from typing import Any, Dict, List, Optional
 class PipelineTuning:
     # retrieval
     top_k: int = 6
-    min_overlap: int = 1  # si tu gates les passages
+    min_overlap: int = 1  # if you gate passages
     rerank: bool = False
 
     # llm/model routing

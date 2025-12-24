@@ -19,4 +19,16 @@ def query_endpoint(body: QueryRequest):
         "passages": final_state.retrieved_passages,
         "evaluation": final_state.evaluation,
         "insight": final_state.insight,
+
+        # ✅ add these for manual retry UI
+        "can_retry": final_state.can_retry,
+        "adaptation_actions": final_state.adaptation_actions,
+        "retry_count": final_state.retry_count,
+        "tuning": {
+            "top_k": final_state.top_k,
+            "min_overlap": final_state.min_overlap,
+            "temperature": final_state.temperature,
+            "enable_llm_critique": final_state.enable_llm_critique,
+            "enable_graph_update": final_state.enable_graph_update,
+        },
     }

@@ -1,8 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./app/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     extend: {
+      /* 🎨 Brand colors */
       colors: {
         brand: {
           navy: "#213448",
@@ -11,8 +15,15 @@ module.exports = {
           beige: "#EAE0CF",
         },
       },
+
+      /* ✨ Soft shadow */
       boxShadow: {
         soft: "0 10px 30px rgba(0,0,0,0.25)",
+      },
+
+      /* 🔤 Global font */
+      fontFamily: {
+         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
       },
     },
   },

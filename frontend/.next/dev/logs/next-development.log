@@ -1,17 +1,1332 @@
-[00:00:32.979] Server  LOG      ✓ Ready in 20.6s
-[00:00:36.634] Server  LOG      ○ Compiling / ...
-[00:01:03.044] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:03:52.839] Server  LOG      ○ Compiling /graph ...
-[00:04:18.388] Browser WARN    The selector `edge:hover`is invalid
-[00:04:18.389] Browser WARN    The selector `node:hover`is invalid
-[00:04:18.389] Browser WARN    The selector `edge:hover`is invalid
-[00:04:18.389] Browser WARN    The selector `node:hover`is invalid
-[00:04:18.533] Browser ERROR   uncaughtError: TypeError: Cannot read properties of null (reading 'notify')
-[00:05:06.963] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:05:10.719] Browser WARN    The selector `edge:hover`is invalid
-[00:05:10.719] Browser WARN    The selector `node:hover`is invalid
-[00:05:10.719] Browser WARN    The selector `edge:hover`is invalid
-[00:05:10.719] Browser WARN    The selector `node:hover`is invalid
-[00:05:10.891] Browser ERROR   uncaughtError: TypeError: Cannot read properties of null (reading 'notify')
-[00:05:40.806] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:41:45.881] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:36.830] Server  LOG      ✓ Ready in 20.1s
+[00:00:39.881] Server  LOG      ○ Compiling / ...
+[00:00:45.311] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:45.395] Server  LOG      ✓ Compiled in 756ms
+[00:09:13.588] Server  LOG      ✓ Compiled in 523ms
+[00:09:20.084] Browser WARN    The selector `edge:hover`is invalid
+[00:09:20.084] Browser WARN    The selector `node:hover`is invalid
+[00:09:20.084] Browser WARN    The selector `edge:hover`is invalid
+[00:09:20.084] Browser WARN    The selector `node:hover`is invalid
+[00:09:20.249] Browser ERROR   uncaughtError: TypeError: Cannot read properties of null (reading 'notify')
+[00:09:24.760] Browser WARN    The selector `edge:hover`is invalid
+[00:09:24.760] Browser WARN    The selector `node:hover`is invalid
+[00:09:24.760] Browser WARN    The selector `edge:hover`is invalid
+[00:09:24.760] Browser WARN    The selector `node:hover`is invalid
+[00:09:24.760] Browser WARN    The selector `edge:hover`is invalid
+[00:09:24.760] Browser WARN    The selector `node:hover`is invalid
+[00:09:24.760] Browser WARN    The selector `edge:hover`is invalid
+[00:09:24.760] Browser WARN    The selector `node:hover`is invalid
+[00:09:24.760] Browser WARN    The selector `edge:hover`is invalid
+[00:09:24.760] Browser WARN    The selector `node:hover`is invalid
+[00:09:24.760] Browser WARN    The selector `edge:hover`is invalid
+[00:09:24.760] Browser WARN    The selector `node:hover`is invalid
+[00:09:24.760] Browser WARN    The selector `edge:hover`is invalid
+[00:09:24.760] Browser WARN    The selector `node:hover`is invalid
+[00:09:24.760] Browser WARN    The selector `edge:hover`is invalid
+[00:09:24.760] Browser WARN    The selector `node:hover`is invalid
+[00:09:24.760] Browser WARN    The selector `edge:hover`is invalid
+[00:09:24.760] Browser WARN    The selector `node:hover`is invalid
+[00:09:24.760] Browser WARN    The selector `edge:hover`is invalid
+[00:09:24.760] Browser WARN    The selector `node:hover`is invalid
+[00:09:24.760] Browser WARN    The selector `edge:hover`is invalid
+[00:09:24.760] Browser WARN    The selector `node:hover`is invalid
+[00:09:24.760] Browser WARN    The selector `edge:hover`is invalid
+[00:09:24.760] Browser WARN    The selector `node:hover`is invalid
+[00:09:24.760] Browser WARN    The selector `edge:hover`is invalid
+[00:09:24.760] Browser WARN    The selector `node:hover`is invalid
+[00:09:24.760] Browser WARN    The selector `edge:hover`is invalid
+[00:09:24.760] Browser WARN    The selector `node:hover`is invalid
+[00:09:24.760] Browser WARN    The selector `edge:hover`is invalid
+[00:09:24.760] Browser WARN    The selector `node:hover`is invalid
+[00:09:24.760] Browser WARN    The selector `edge:hover`is invalid
+[00:09:24.760] Browser WARN    The selector `node:hover`is invalid
+[00:09:46.888] Browser WARN    The selector `edge:hover`is invalid
+[00:09:46.888] Browser WARN    The selector `node:hover`is invalid
+[00:09:46.888] Browser WARN    The selector `edge:hover`is invalid
+[00:09:46.888] Browser WARN    The selector `node:hover`is invalid
+[00:09:46.888] Browser WARN    The selector `edge:hover`is invalid
+[00:09:46.888] Browser WARN    The selector `node:hover`is invalid
+[00:09:46.888] Browser WARN    The selector `edge:hover`is invalid
+[00:09:46.888] Browser WARN    The selector `node:hover`is invalid
+[00:09:46.888] Browser WARN    The selector `edge:hover`is invalid
+[00:09:46.888] Browser WARN    The selector `node:hover`is invalid
+[00:09:46.888] Browser WARN    The selector `edge:hover`is invalid
+[00:09:46.888] Browser WARN    The selector `node:hover`is invalid
+[00:09:46.888] Browser WARN    The selector `edge:hover`is invalid
+[00:09:46.888] Browser WARN    The selector `node:hover`is invalid
+[00:09:46.888] Browser WARN    The selector `edge:hover`is invalid
+[00:09:46.888] Browser WARN    The selector `node:hover`is invalid
+[00:09:46.888] Browser WARN    The selector `edge:hover`is invalid
+[00:09:46.888] Browser WARN    The selector `node:hover`is invalid
+[00:09:46.888] Browser WARN    The selector `edge:hover`is invalid
+[00:09:46.888] Browser WARN    The selector `node:hover`is invalid
+[00:09:46.888] Browser WARN    The selector `edge:hover`is invalid
+[00:09:46.888] Browser WARN    The selector `node:hover`is invalid
+[00:09:50.859] Browser WARN    The selector `edge:hover`is invalid
+[00:09:50.859] Browser WARN    The selector `node:hover`is invalid
+[00:09:50.859] Browser WARN    The selector `edge:hover`is invalid
+[00:09:50.859] Browser WARN    The selector `node:hover`is invalid
+[00:09:50.859] Browser WARN    The selector `edge:hover`is invalid
+[00:09:50.859] Browser WARN    The selector `node:hover`is invalid
+[00:09:50.859] Browser WARN    The selector `edge:hover`is invalid
+[00:09:50.859] Browser WARN    The selector `node:hover`is invalid
+[00:09:50.859] Browser WARN    The selector `edge:hover`is invalid
+[00:09:50.859] Browser WARN    The selector `node:hover`is invalid
+[00:09:50.859] Browser WARN    The selector `edge:hover`is invalid
+[00:09:50.859] Browser WARN    The selector `node:hover`is invalid
+[00:09:50.859] Browser WARN    The selector `edge:hover`is invalid
+[00:09:50.859] Browser WARN    The selector `node:hover`is invalid
+[00:09:50.859] Browser WARN    The selector `edge:hover`is invalid
+[00:09:50.859] Browser WARN    The selector `node:hover`is invalid
+[00:09:50.859] Browser WARN    The selector `edge:hover`is invalid
+[00:09:50.859] Browser WARN    The selector `node:hover`is invalid
+[00:09:50.860] Browser WARN    The selector `edge:hover`is invalid
+[00:09:50.860] Browser WARN    The selector `node:hover`is invalid
+[00:09:50.860] Browser WARN    The selector `edge:hover`is invalid
+[00:09:50.860] Browser WARN    The selector `node:hover`is invalid
+[00:09:50.860] Browser WARN    The selector `edge:hover`is invalid
+[00:09:50.860] Browser WARN    The selector `node:hover`is invalid
+[00:10:09.813] Browser WARN    The selector `edge:hover`is invalid
+[00:10:09.813] Browser WARN    The selector `node:hover`is invalid
+[00:10:09.813] Browser WARN    The selector `edge:hover`is invalid
+[00:10:09.813] Browser WARN    The selector `node:hover`is invalid
+[00:10:10.014] Browser ERROR   uncaughtError: TypeError: Cannot read properties of null (reading 'notify')
+[00:10:10.479] Browser WARN    The selector `edge:hover`is invalid
+[00:10:10.479] Browser WARN    The selector `node:hover`is invalid
+[00:10:10.479] Browser WARN    The selector `edge:hover`is invalid
+[00:10:10.479] Browser WARN    The selector `node:hover`is invalid
+[00:10:10.479] Browser WARN    The selector `edge:hover`is invalid
+[00:10:10.479] Browser WARN    The selector `node:hover`is invalid
+[00:10:10.479] Browser WARN    The selector `edge:hover`is invalid
+[00:10:10.479] Browser WARN    The selector `node:hover`is invalid
+[00:10:10.479] Browser WARN    The selector `edge:hover`is invalid
+[00:10:10.479] Browser WARN    The selector `node:hover`is invalid
+[00:10:10.479] Browser WARN    The selector `edge:hover`is invalid
+[00:10:10.479] Browser WARN    The selector `node:hover`is invalid
+[00:10:10.479] Browser WARN    The selector `edge:hover`is invalid
+[00:10:10.479] Browser WARN    The selector `node:hover`is invalid
+[00:10:10.479] Browser WARN    The selector `edge:hover`is invalid
+[00:10:10.479] Browser WARN    The selector `node:hover`is invalid
+[00:10:10.479] Browser WARN    The selector `edge:hover`is invalid
+[00:10:10.479] Browser WARN    The selector `node:hover`is invalid
+[00:10:10.479] Browser WARN    The selector `edge:hover`is invalid
+[00:10:10.479] Browser WARN    The selector `node:hover`is invalid
+[00:10:10.479] Browser WARN    The selector `edge:hover`is invalid
+[00:10:10.479] Browser WARN    The selector `node:hover`is invalid
+[00:10:10.479] Browser WARN    The selector `edge:hover`is invalid
+[00:10:10.479] Browser WARN    The selector `node:hover`is invalid
+[00:10:10.480] Browser WARN    The selector `edge:hover`is invalid
+[00:10:10.480] Browser WARN    The selector `node:hover`is invalid
+[00:10:10.480] Browser WARN    The selector `edge:hover`is invalid
+[00:10:10.480] Browser WARN    The selector `node:hover`is invalid
+[00:10:11.364] Browser WARN    The selector `edge:hover`is invalid
+[00:10:11.364] Browser WARN    The selector `node:hover`is invalid
+[00:10:11.364] Browser WARN    The selector `edge:hover`is invalid
+[00:10:11.364] Browser WARN    The selector `node:hover`is invalid
+[00:10:11.364] Browser WARN    The selector `edge:hover`is invalid
+[00:10:11.365] Browser WARN    The selector `node:hover`is invalid
+[00:10:11.365] Browser WARN    The selector `edge:hover`is invalid
+[00:10:11.365] Browser WARN    The selector `node:hover`is invalid
+[00:10:11.365] Browser WARN    The selector `edge:hover`is invalid
+[00:10:11.365] Browser WARN    The selector `node:hover`is invalid
+[00:10:11.365] Browser WARN    The selector `edge:hover`is invalid
+[00:10:11.365] Browser WARN    The selector `node:hover`is invalid
+[00:10:11.365] Browser WARN    The selector `edge:hover`is invalid
+[00:10:11.365] Browser WARN    The selector `node:hover`is invalid
+[00:10:11.365] Browser WARN    The selector `edge:hover`is invalid
+[00:10:11.365] Browser WARN    The selector `node:hover`is invalid
+[00:10:11.365] Browser WARN    The selector `edge:hover`is invalid
+[00:10:11.365] Browser WARN    The selector `node:hover`is invalid
+[00:10:11.365] Browser WARN    The selector `edge:hover`is invalid
+[00:10:11.365] Browser WARN    The selector `node:hover`is invalid
+[00:10:11.365] Browser WARN    The selector `edge:hover`is invalid
+[00:10:11.365] Browser WARN    The selector `node:hover`is invalid
+[00:10:11.365] Browser WARN    The selector `edge:hover`is invalid
+[00:10:11.365] Browser WARN    The selector `node:hover`is invalid
+[00:10:11.365] Browser WARN    The selector `edge:hover`is invalid
+[00:10:11.365] Browser WARN    The selector `node:hover`is invalid
+[00:10:11.365] Browser WARN    The selector `edge:hover`is invalid
+[00:10:11.365] Browser WARN    The selector `node:hover`is invalid
+[00:10:11.882] Browser WARN    The selector `edge:hover`is invalid
+[00:10:11.882] Browser WARN    The selector `node:hover`is invalid
+[00:10:11.882] Browser WARN    The selector `edge:hover`is invalid
+[00:10:11.882] Browser WARN    The selector `node:hover`is invalid
+[00:10:11.882] Browser WARN    The selector `edge:hover`is invalid
+[00:10:11.882] Browser WARN    The selector `node:hover`is invalid
+[00:10:11.882] Browser WARN    The selector `edge:hover`is invalid
+[00:10:11.882] Browser WARN    The selector `node:hover`is invalid
+[00:10:11.882] Browser WARN    The selector `edge:hover`is invalid
+[00:10:11.882] Browser WARN    The selector `node:hover`is invalid
+[00:10:11.882] Browser WARN    The selector `edge:hover`is invalid
+[00:10:11.882] Browser WARN    The selector `node:hover`is invalid
+[00:10:11.882] Browser WARN    The selector `edge:hover`is invalid
+[00:10:11.882] Browser WARN    The selector `node:hover`is invalid
+[00:10:11.882] Browser WARN    The selector `edge:hover`is invalid
+[00:10:11.882] Browser WARN    The selector `node:hover`is invalid
+[00:10:11.882] Browser WARN    The selector `edge:hover`is invalid
+[00:10:11.882] Browser WARN    The selector `node:hover`is invalid
+[00:10:11.882] Browser WARN    The selector `edge:hover`is invalid
+[00:10:11.882] Browser WARN    The selector `node:hover`is invalid
+[00:10:11.882] Browser WARN    The selector `edge:hover`is invalid
+[00:10:11.882] Browser WARN    The selector `node:hover`is invalid
+[00:10:11.882] Browser WARN    The selector `edge:hover`is invalid
+[00:10:11.882] Browser WARN    The selector `node:hover`is invalid
+[00:10:11.882] Browser WARN    The selector `edge:hover`is invalid
+[00:10:11.882] Browser WARN    The selector `node:hover`is invalid
+[00:10:11.882] Browser WARN    The selector `edge:hover`is invalid
+[00:10:11.882] Browser WARN    The selector `node:hover`is invalid
+[00:10:11.882] Browser WARN    The selector `edge:hover`is invalid
+[00:10:11.882] Browser WARN    The selector `node:hover`is invalid
+[00:10:11.883] Browser WARN    The selector `edge:hover`is invalid
+[00:10:11.883] Browser WARN    The selector `node:hover`is invalid
+[00:10:11.883] Browser WARN    The selector `edge:hover`is invalid
+[00:10:11.883] Browser WARN    The selector `node:hover`is invalid
+[00:10:11.883] Browser WARN    The selector `edge:hover`is invalid
+[00:10:11.883] Browser WARN    The selector `node:hover`is invalid
+[00:10:11.883] Browser WARN    The selector `edge:hover`is invalid
+[00:10:11.883] Browser WARN    The selector `node:hover`is invalid
+[00:10:11.883] Browser WARN    The selector `edge:hover`is invalid
+[00:10:11.883] Browser WARN    The selector `node:hover`is invalid
+[00:10:12.393] Browser WARN    The selector `edge:hover`is invalid
+[00:10:12.393] Browser WARN    The selector `node:hover`is invalid
+[00:10:12.393] Browser WARN    The selector `edge:hover`is invalid
+[00:10:12.393] Browser WARN    The selector `node:hover`is invalid
+[00:10:12.393] Browser WARN    The selector `edge:hover`is invalid
+[00:10:12.393] Browser WARN    The selector `node:hover`is invalid
+[00:10:12.393] Browser WARN    The selector `edge:hover`is invalid
+[00:10:12.393] Browser WARN    The selector `node:hover`is invalid
+[00:10:12.393] Browser WARN    The selector `edge:hover`is invalid
+[00:10:12.393] Browser WARN    The selector `node:hover`is invalid
+[00:10:12.393] Browser WARN    The selector `edge:hover`is invalid
+[00:10:12.393] Browser WARN    The selector `node:hover`is invalid
+[00:10:12.393] Browser WARN    The selector `edge:hover`is invalid
+[00:10:12.393] Browser WARN    The selector `node:hover`is invalid
+[00:10:12.393] Browser WARN    The selector `edge:hover`is invalid
+[00:10:12.393] Browser WARN    The selector `node:hover`is invalid
+[00:10:12.393] Browser WARN    The selector `edge:hover`is invalid
+[00:10:12.393] Browser WARN    The selector `node:hover`is invalid
+[00:10:12.393] Browser WARN    The selector `edge:hover`is invalid
+[00:10:12.393] Browser WARN    The selector `node:hover`is invalid
+[00:10:12.393] Browser WARN    The selector `edge:hover`is invalid
+[00:10:12.393] Browser WARN    The selector `node:hover`is invalid
+[00:10:12.393] Browser WARN    The selector `edge:hover`is invalid
+[00:10:12.393] Browser WARN    The selector `node:hover`is invalid
+[00:18:43.226] Server  LOG      ✓ Compiled in 1059ms
+[00:19:42.377] Server  LOG      ✓ Compiled in 2.8s
+[00:19:42.962] Server  ERROR   C:\Users\USER\Desktop\GROW\Projects\KnowFlow_Project_d'expertise\KnowFlow\frontend\.next\dev\server\chunks\ssr\node_modules_80ea289a._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:19:42.983] Server  ERROR   TypeError: Invalid URL
+[00:19:43.037] Server  ERROR   C:\Users\USER\Desktop\GROW\Projects\KnowFlow_Project_d'expertise\KnowFlow\frontend\.next\dev\server\chunks\ssr\node_modules_80ea289a._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:19:43.041] Server  ERROR    ⨯ Error: Failed to parse src "public/KnowFlow.png" on `next/image`, if using relative image it must start with a leading slash "/" or be an absolute URL (http:// or https://)
+[00:19:43.339] Server  ERROR   C:\Users\USER\Desktop\GROW\Projects\KnowFlow_Project_d'expertise\KnowFlow\frontend\.next\dev\server\chunks\ssr\node_modules_80ea289a._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:19:43.342] Server  ERROR   TypeError: Invalid URL
+[00:19:43.358] Server  ERROR   C:\Users\USER\Desktop\GROW\Projects\KnowFlow_Project_d'expertise\KnowFlow\frontend\.next\dev\server\chunks\ssr\node_modules_80ea289a._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:19:43.361] Server  ERROR    ⨯ Error: Failed to parse src "public/KnowFlow.png" on `next/image`, if using relative image it must start with a leading slash "/" or be an absolute URL (http:// or https://)
+[00:19:44.216] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:19:45.648] Browser ERROR   {"message":"Failed to construct 'URL': Invalid URL"}
+[00:19:45.649] Browser ERROR   {"message":"Failed to construct 'URL': Invalid URL"}
+[00:19:45.649] Browser ERROR   uncaughtError: Error: Failed to parse src "public/KnowFlow.png" on `next/image`, if using relative image it must start with a leading slash "/" or be an absolute URL (http:// or https://)
+[00:20:07.700] Server  LOG      ✓ Compiled in 261ms
+[00:20:09.522] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:20:14.444] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/logo.png" "received" null
+[00:20:40.689] Server  LOG      ✓ Compiled in 231ms
+[00:20:41.885] Browser WARN    Image with src "/KnowFlow.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:24:54.989] Server  LOG      ✓ Compiled in 919ms
+[00:24:56.149] Browser WARN    Image with src "/KnowFlow.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:27:36.220] Server  LOG      ✓ Compiled in 398ms
+[00:28:42.243] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:28:42.506] Browser WARN    Image with src "/KnowFlow.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:30:11.649] Browser WARN    The selector `edge:hover`is invalid
+[00:30:11.649] Browser WARN    The selector `node:hover`is invalid
+[00:30:11.649] Browser WARN    The selector `edge:hover`is invalid
+[00:30:11.649] Browser WARN    The selector `node:hover`is invalid
+[00:30:11.830] Browser ERROR   uncaughtError: TypeError: Cannot read properties of null (reading 'notify')
+[00:30:13.242] Browser WARN    The selector `edge:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `node:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `edge:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `node:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `edge:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `node:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `edge:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `node:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `edge:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `node:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `edge:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `node:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `edge:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `node:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `edge:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `node:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `edge:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `node:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `edge:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `node:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `edge:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `node:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `edge:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `node:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `edge:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `node:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `edge:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `node:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `edge:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `node:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `edge:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `node:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `edge:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `node:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `edge:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `node:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `edge:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `node:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `edge:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `node:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `edge:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `node:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `edge:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `node:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `edge:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `node:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `edge:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `node:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `edge:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `node:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `edge:hover`is invalid
+[00:30:13.242] Browser WARN    The selector `node:hover`is invalid
+[00:30:14.723] Browser WARN    The selector `edge:hover`is invalid
+[00:30:14.724] Browser WARN    The selector `node:hover`is invalid
+[00:30:14.724] Browser WARN    The selector `edge:hover`is invalid
+[00:30:14.724] Browser WARN    The selector `node:hover`is invalid
+[00:30:14.724] Browser WARN    The selector `edge:hover`is invalid
+[00:30:14.724] Browser WARN    The selector `node:hover`is invalid
+[00:30:14.724] Browser WARN    The selector `edge:hover`is invalid
+[00:30:14.724] Browser WARN    The selector `node:hover`is invalid
+[00:30:14.724] Browser WARN    The selector `edge:hover`is invalid
+[00:30:14.724] Browser WARN    The selector `node:hover`is invalid
+[00:30:14.724] Browser WARN    The selector `edge:hover`is invalid
+[00:30:14.724] Browser WARN    The selector `node:hover`is invalid
+[00:30:14.724] Browser WARN    The selector `edge:hover`is invalid
+[00:30:14.724] Browser WARN    The selector `node:hover`is invalid
+[00:30:14.724] Browser WARN    The selector `edge:hover`is invalid
+[00:30:14.724] Browser WARN    The selector `node:hover`is invalid
+[00:30:14.724] Browser WARN    The selector `edge:hover`is invalid
+[00:30:14.724] Browser WARN    The selector `node:hover`is invalid
+[00:30:14.724] Browser WARN    The selector `edge:hover`is invalid
+[00:30:14.724] Browser WARN    The selector `node:hover`is invalid
+[00:30:14.724] Browser WARN    The selector `edge:hover`is invalid
+[00:30:14.724] Browser WARN    The selector `node:hover`is invalid
+[00:30:14.724] Browser WARN    The selector `edge:hover`is invalid
+[00:30:14.724] Browser WARN    The selector `node:hover`is invalid
+[00:30:14.724] Browser WARN    The selector `edge:hover`is invalid
+[00:30:14.724] Browser WARN    The selector `node:hover`is invalid
+[00:30:14.724] Browser WARN    The selector `edge:hover`is invalid
+[00:30:14.724] Browser WARN    The selector `node:hover`is invalid
+[00:30:20.117] Browser WARN    The selector `edge:hover`is invalid
+[00:30:20.117] Browser WARN    The selector `node:hover`is invalid
+[00:30:20.117] Browser WARN    The selector `edge:hover`is invalid
+[00:30:20.117] Browser WARN    The selector `node:hover`is invalid
+[00:30:20.117] Browser WARN    The selector `edge:hover`is invalid
+[00:30:20.117] Browser WARN    The selector `node:hover`is invalid
+[00:30:20.117] Browser WARN    The selector `edge:hover`is invalid
+[00:30:20.117] Browser WARN    The selector `node:hover`is invalid
+[00:30:20.117] Browser WARN    The selector `edge:hover`is invalid
+[00:30:20.117] Browser WARN    The selector `node:hover`is invalid
+[00:30:20.117] Browser WARN    The selector `edge:hover`is invalid
+[00:30:20.117] Browser WARN    The selector `node:hover`is invalid
+[00:30:20.117] Browser WARN    The selector `edge:hover`is invalid
+[00:30:20.117] Browser WARN    The selector `node:hover`is invalid
+[00:30:20.117] Browser WARN    The selector `edge:hover`is invalid
+[00:30:20.117] Browser WARN    The selector `node:hover`is invalid
+[00:30:20.117] Browser WARN    The selector `edge:hover`is invalid
+[00:30:20.117] Browser WARN    The selector `node:hover`is invalid
+[00:30:20.117] Browser WARN    The selector `edge:hover`is invalid
+[00:30:20.117] Browser WARN    The selector `node:hover`is invalid
+[00:30:20.117] Browser WARN    The selector `edge:hover`is invalid
+[00:30:20.117] Browser WARN    The selector `node:hover`is invalid
+[00:30:20.117] Browser WARN    The selector `edge:hover`is invalid
+[00:30:20.117] Browser WARN    The selector `node:hover`is invalid
+[00:30:20.117] Browser WARN    The selector `edge:hover`is invalid
+[00:30:20.117] Browser WARN    The selector `node:hover`is invalid
+[00:30:20.117] Browser WARN    The selector `edge:hover`is invalid
+[00:30:20.117] Browser WARN    The selector `node:hover`is invalid
+[00:30:20.117] Browser WARN    The selector `edge:hover`is invalid
+[00:30:20.117] Browser WARN    The selector `node:hover`is invalid
+[00:30:20.117] Browser WARN    The selector `edge:hover`is invalid
+[00:30:20.117] Browser WARN    The selector `node:hover`is invalid
+[00:30:29.630] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:30:29.893] Browser WARN    Image with src "/KnowFlow.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:34:23.391] Server  ERROR    ⨯ ./app/favicon.ico
+Processing image failed
+unable to decode image data
+
+Caused by:
+- failed to fill whole buffer
+
+
+[00:34:23.418] Server  LOG      ✓ Compiled in 2.5s
+[00:34:23.653] Browser ERROR   ./app/favicon.ico
+Processing image failed
+unable to decode image data
+
+Caused by:
+- failed to fill whole buffer
+[00:34:26.427] Server  LOG      ○ Compiling /_error ...
+[00:34:26.647] Browser ERROR   ./app/favicon.ico
+Processing image failed
+unable to decode image data
+
+Caused by:
+- failed to fill whole buffer
+[00:34:30.109] Browser ERROR   ./app/favicon.ico
+Processing image failed
+unable to decode image data
+
+Caused by:
+- failed to fill whole buffer
+[00:34:30.130] Server  ERROR    ⨯ ./app/favicon.ico
+Processing image failed
+unable to decode image data
+
+Caused by:
+- failed to fill whole buffer
+
+
+[00:34:30.171] Server  ERROR    ⨯ ./app/favicon.ico
+Processing image failed
+unable to decode image data
+
+Caused by:
+- failed to fill whole buffer
+
+
+[00:34:30.225] Server  ERROR    ⨯ ./app/favicon.ico
+Processing image failed
+unable to decode image data
+
+Caused by:
+- failed to fill whole buffer
+
+
+[00:34:30.274] Server  ERROR    ⨯ ./app/favicon.ico
+Processing image failed
+unable to decode image data
+
+Caused by:
+- failed to fill whole buffer
+
+
+[00:34:30.338] Server  ERROR    ⨯ ./app/favicon.ico
+Processing image failed
+unable to decode image data
+
+Caused by:
+- failed to fill whole buffer
+
+
+[00:34:30.401] Server  ERROR    ⨯ ./app/favicon.ico
+Processing image failed
+unable to decode image data
+
+Caused by:
+- failed to fill whole buffer
+
+
+[00:34:30.467] Server  ERROR    ⨯ ./app/favicon.ico
+Processing image failed
+unable to decode image data
+
+Caused by:
+- failed to fill whole buffer
+
+
+[00:34:30.525] Server  ERROR    ⨯ ./app/favicon.ico
+Processing image failed
+unable to decode image data
+
+Caused by:
+- failed to fill whole buffer
+
+
+[00:34:30.591] Server  ERROR    ⨯ ./app/favicon.ico
+Processing image failed
+unable to decode image data
+
+Caused by:
+- failed to fill whole buffer
+
+
+[00:34:30.652] Browser ERROR   ./app/favicon.ico
+Processing image failed
+unable to decode image data
+
+Caused by:
+- failed to fill whole buffer
+[00:34:30.652] Browser ERROR   ./app/favicon.ico
+Processing image failed
+unable to decode image data
+
+Caused by:
+- failed to fill whole buffer
+[00:34:30.652] Browser ERROR   ./app/favicon.ico
+Processing image failed
+unable to decode image data
+
+Caused by:
+- failed to fill whole buffer
+[00:34:30.652] Browser ERROR   ./app/favicon.ico
+Processing image failed
+unable to decode image data
+
+Caused by:
+- failed to fill whole buffer
+[00:34:30.652] Browser ERROR   ./app/favicon.ico
+Processing image failed
+unable to decode image data
+
+Caused by:
+- failed to fill whole buffer
+[00:34:30.652] Browser ERROR   ./app/favicon.ico
+Processing image failed
+unable to decode image data
+
+Caused by:
+- failed to fill whole buffer
+[00:34:30.652] Browser ERROR   ./app/favicon.ico
+Processing image failed
+unable to decode image data
+
+Caused by:
+- failed to fill whole buffer
+[00:34:30.652] Browser ERROR   ./app/favicon.ico
+Processing image failed
+unable to decode image data
+
+Caused by:
+- failed to fill whole buffer
+[00:34:30.652] Browser ERROR   ./app/favicon.ico
+Processing image failed
+unable to decode image data
+
+Caused by:
+- failed to fill whole buffer
+[00:34:30.652] Browser ERROR   ./app/favicon.ico
+Processing image failed
+unable to decode image data
+
+Caused by:
+- failed to fill whole buffer
+[00:34:30.679] Server  ERROR    ⨯ ./app/favicon.ico
+Processing image failed
+unable to decode image data
+
+Caused by:
+- failed to fill whole buffer
+
+
+[00:34:31.085] Browser ERROR   uncaughtError: Error: ./app/favicon.ico
+Processing image failed
+unable to decode image data
+
+Caused by:
+- failed to fill whole buffer
+
+
+[00:34:31.634] Browser ERROR   ./app/favicon.ico
+Processing image failed
+unable to decode image data
+
+Caused by:
+- failed to fill whole buffer
+[00:34:31.634] Browser ERROR   ./app/favicon.ico
+Processing image failed
+unable to decode image data
+
+Caused by:
+- failed to fill whole buffer
+[00:34:31.634] Browser ERROR   ./app/favicon.ico
+Processing image failed
+unable to decode image data
+
+Caused by:
+- failed to fill whole buffer
+[00:34:31.634] Browser ERROR   ./app/favicon.ico
+Processing image failed
+unable to decode image data
+
+Caused by:
+- failed to fill whole buffer
+[00:34:31.634] Browser ERROR   ./app/favicon.ico
+Processing image failed
+unable to decode image data
+
+Caused by:
+- failed to fill whole buffer
+[00:34:50.161] Server  LOG      ✓ Compiled in 1207ms
+[00:34:50.216] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./node_modules/next/dist/shared/lib/router/router.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:34:52.181] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:34:52.649] Browser WARN    Image with src "/KnowFlow.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:34:57.274] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./node_modules/next/dist/client/image-component.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:34:58.113] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:34:58.641] Browser WARN    Image with src "/KnowFlow.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:38:29.582] Server  LOG      ✓ Compiled in 1452ms
+[00:38:30.159] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./node_modules/next/dist/client/image-component.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:38:30.888] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:38:31.648] Browser WARN    Image with src "/KnowFlow.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:38:38.511] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./node_modules/next/dist/client/image-component.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:38:38.516] Server  LOG      ✓ Compiled in 819ms
+[00:38:39.267] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:38:39.648] Browser WARN    Image with src "/KnowFlow.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:42:29.197] Server  LOG      ✓ Compiled in 4.9s
+[00:44:03.085] Server  LOG      ✓ Compiled in 1659ms
+[00:44:04.622] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:44:05.638] Browser WARN    Image with src "/KnowFlow.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:49:11.465] Server  LOG      ✓ Compiled in 2.5s
+[00:49:13.892] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:49:14.643] Browser WARN    Image with src "/KnowFlow.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:51:27.903] Browser WARN    The selector `edge:hover`is invalid
+[00:51:27.903] Browser WARN    The selector `node:hover`is invalid
+[00:51:27.903] Browser WARN    The selector `edge:hover`is invalid
+[00:51:27.903] Browser WARN    The selector `node:hover`is invalid
+[00:51:28.087] Browser ERROR   uncaughtError: TypeError: Cannot read properties of null (reading 'notify')
+[00:51:29.508] Browser WARN    The selector `edge:hover`is invalid
+[00:51:29.508] Browser WARN    The selector `node:hover`is invalid
+[00:51:29.508] Browser WARN    The selector `edge:hover`is invalid
+[00:51:29.508] Browser WARN    The selector `node:hover`is invalid
+[00:51:29.508] Browser WARN    The selector `edge:hover`is invalid
+[00:51:29.508] Browser WARN    The selector `node:hover`is invalid
+[00:51:29.508] Browser WARN    The selector `edge:hover`is invalid
+[00:51:29.508] Browser WARN    The selector `node:hover`is invalid
+[00:51:29.508] Browser WARN    The selector `edge:hover`is invalid
+[00:51:29.508] Browser WARN    The selector `node:hover`is invalid
+[00:51:29.508] Browser WARN    The selector `edge:hover`is invalid
+[00:51:29.508] Browser WARN    The selector `node:hover`is invalid
+[00:51:29.508] Browser WARN    The selector `edge:hover`is invalid
+[00:51:29.508] Browser WARN    The selector `node:hover`is invalid
+[00:51:29.508] Browser WARN    The selector `edge:hover`is invalid
+[00:51:29.508] Browser WARN    The selector `node:hover`is invalid
+[00:51:29.508] Browser WARN    The selector `edge:hover`is invalid
+[00:51:29.508] Browser WARN    The selector `node:hover`is invalid
+[00:51:29.508] Browser WARN    The selector `edge:hover`is invalid
+[00:51:29.508] Browser WARN    The selector `node:hover`is invalid
+[00:51:29.508] Browser WARN    The selector `edge:hover`is invalid
+[00:51:29.508] Browser WARN    The selector `node:hover`is invalid
+[00:51:29.508] Browser WARN    The selector `edge:hover`is invalid
+[00:51:29.508] Browser WARN    The selector `node:hover`is invalid
+[00:51:29.508] Browser WARN    The selector `edge:hover`is invalid
+[00:51:29.508] Browser WARN    The selector `node:hover`is invalid
+[00:51:29.508] Browser WARN    The selector `edge:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `node:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `edge:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `node:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `edge:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `node:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `edge:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `node:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `edge:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `node:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `edge:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `node:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `edge:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `node:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `edge:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `node:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `edge:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `node:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `edge:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `node:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `edge:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `node:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `edge:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `node:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `edge:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `node:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `edge:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `node:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `edge:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `node:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `edge:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `node:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `edge:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `node:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `edge:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `node:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `edge:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `node:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `edge:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `node:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `edge:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `node:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `edge:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `node:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `edge:hover`is invalid
+[00:51:29.509] Browser WARN    The selector `node:hover`is invalid
+[00:51:39.714] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:51:40.049] Browser WARN    Image with src "/KnowFlow.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:54:26.353] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:54:26.690] Browser WARN    Image with src "/KnowFlow.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:57:10.854] Browser WARN    The selector `edge:hover`is invalid
+[00:57:10.854] Browser WARN    The selector `node:hover`is invalid
+[00:57:10.854] Browser WARN    The selector `edge:hover`is invalid
+[00:57:10.854] Browser WARN    The selector `node:hover`is invalid
+[00:57:11.030] Browser ERROR   uncaughtError: TypeError: Cannot read properties of null (reading 'notify')
+[00:57:12.923] Browser WARN    The selector `edge:hover`is invalid
+[00:57:12.923] Browser WARN    The selector `node:hover`is invalid
+[00:57:12.923] Browser WARN    The selector `edge:hover`is invalid
+[00:57:12.923] Browser WARN    The selector `node:hover`is invalid
+[00:57:12.923] Browser WARN    The selector `edge:hover`is invalid
+[00:57:12.923] Browser WARN    The selector `node:hover`is invalid
+[00:57:12.923] Browser WARN    The selector `edge:hover`is invalid
+[00:57:12.923] Browser WARN    The selector `node:hover`is invalid
+[00:57:12.923] Browser WARN    The selector `edge:hover`is invalid
+[00:57:12.923] Browser WARN    The selector `node:hover`is invalid
+[00:57:12.923] Browser WARN    The selector `edge:hover`is invalid
+[00:57:12.923] Browser WARN    The selector `node:hover`is invalid
+[00:57:12.923] Browser WARN    The selector `edge:hover`is invalid
+[00:57:12.923] Browser WARN    The selector `node:hover`is invalid
+[00:57:12.923] Browser WARN    The selector `edge:hover`is invalid
+[00:57:12.923] Browser WARN    The selector `node:hover`is invalid
+[00:57:12.923] Browser WARN    The selector `edge:hover`is invalid
+[00:57:12.923] Browser WARN    The selector `node:hover`is invalid
+[00:57:12.923] Browser WARN    The selector `edge:hover`is invalid
+[00:57:12.923] Browser WARN    The selector `node:hover`is invalid
+[00:57:12.923] Browser WARN    The selector `edge:hover`is invalid
+[00:57:12.923] Browser WARN    The selector `node:hover`is invalid
+[00:57:12.923] Browser WARN    The selector `edge:hover`is invalid
+[00:57:12.923] Browser WARN    The selector `node:hover`is invalid
+[00:57:12.923] Browser WARN    The selector `edge:hover`is invalid
+[00:57:12.923] Browser WARN    The selector `node:hover`is invalid
+[00:57:12.923] Browser WARN    The selector `edge:hover`is invalid
+[00:57:12.923] Browser WARN    The selector `node:hover`is invalid
+[00:57:12.923] Browser WARN    The selector `edge:hover`is invalid
+[00:57:12.923] Browser WARN    The selector `node:hover`is invalid
+[00:57:12.923] Browser WARN    The selector `edge:hover`is invalid
+[00:57:12.923] Browser WARN    The selector `node:hover`is invalid
+[00:57:41.670] Browser WARN    The selector `edge:hover`is invalid
+[00:57:41.670] Browser WARN    The selector `node:hover`is invalid
+[00:57:41.670] Browser WARN    The selector `edge:hover`is invalid
+[00:57:41.670] Browser WARN    The selector `node:hover`is invalid
+[00:57:41.670] Browser WARN    The selector `edge:hover`is invalid
+[00:57:41.670] Browser WARN    The selector `node:hover`is invalid
+[00:57:41.670] Browser WARN    The selector `edge:hover`is invalid
+[00:57:41.670] Browser WARN    The selector `node:hover`is invalid
+[01:00:35.100] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:00:35.365] Browser WARN    Image with src "/KnowFlow.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[01:04:51.181] Browser WARN    The selector `edge:hover`is invalid
+[01:04:51.181] Browser WARN    The selector `node:hover`is invalid
+[01:04:51.181] Browser WARN    The selector `edge:hover`is invalid
+[01:04:51.181] Browser WARN    The selector `node:hover`is invalid
+[01:04:51.383] Browser ERROR   uncaughtError: TypeError: Cannot read properties of null (reading 'notify')
+[01:04:52.092] Browser WARN    The selector `edge:hover`is invalid
+[01:04:52.092] Browser WARN    The selector `node:hover`is invalid
+[01:04:52.092] Browser WARN    The selector `edge:hover`is invalid
+[01:04:52.092] Browser WARN    The selector `node:hover`is invalid
+[01:04:52.092] Browser WARN    The selector `edge:hover`is invalid
+[01:04:52.092] Browser WARN    The selector `node:hover`is invalid
+[01:04:52.092] Browser WARN    The selector `edge:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `node:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `edge:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `node:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `edge:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `node:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `edge:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `node:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `edge:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `node:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `edge:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `node:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `edge:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `node:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `edge:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `node:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `edge:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `node:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `edge:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `node:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `edge:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `node:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `edge:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `node:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `edge:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `node:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `edge:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `node:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `edge:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `node:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `edge:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `node:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `edge:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `node:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `edge:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `node:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `edge:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `node:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `edge:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `node:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `edge:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `node:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `edge:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `node:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `edge:hover`is invalid
+[01:04:52.093] Browser WARN    The selector `node:hover`is invalid
+[01:04:54.811] Browser WARN    The selector `edge:hover`is invalid
+[01:04:54.811] Browser WARN    The selector `node:hover`is invalid
+[01:04:54.811] Browser WARN    The selector `edge:hover`is invalid
+[01:04:54.811] Browser WARN    The selector `node:hover`is invalid
+[01:04:54.811] Browser WARN    The selector `edge:hover`is invalid
+[01:04:54.811] Browser WARN    The selector `node:hover`is invalid
+[01:04:54.811] Browser WARN    The selector `edge:hover`is invalid
+[01:04:54.811] Browser WARN    The selector `node:hover`is invalid
+[01:04:54.812] Browser WARN    The selector `edge:hover`is invalid
+[01:04:54.812] Browser WARN    The selector `node:hover`is invalid
+[01:04:54.812] Browser WARN    The selector `edge:hover`is invalid
+[01:04:54.812] Browser WARN    The selector `node:hover`is invalid
+[01:04:54.812] Browser WARN    The selector `edge:hover`is invalid
+[01:04:54.812] Browser WARN    The selector `node:hover`is invalid
+[01:04:54.812] Browser WARN    The selector `edge:hover`is invalid
+[01:04:54.812] Browser WARN    The selector `node:hover`is invalid
+[01:04:54.812] Browser WARN    The selector `edge:hover`is invalid
+[01:04:54.812] Browser WARN    The selector `node:hover`is invalid
+[01:04:54.812] Browser WARN    The selector `edge:hover`is invalid
+[01:04:54.812] Browser WARN    The selector `node:hover`is invalid
+[01:04:54.812] Browser WARN    The selector `edge:hover`is invalid
+[01:04:54.812] Browser WARN    The selector `node:hover`is invalid
+[01:04:54.812] Browser WARN    The selector `edge:hover`is invalid
+[01:04:54.812] Browser WARN    The selector `node:hover`is invalid
+[01:04:54.812] Browser WARN    The selector `edge:hover`is invalid
+[01:04:54.812] Browser WARN    The selector `node:hover`is invalid
+[01:04:54.812] Browser WARN    The selector `edge:hover`is invalid
+[01:04:54.812] Browser WARN    The selector `node:hover`is invalid
+[01:04:54.812] Browser WARN    The selector `edge:hover`is invalid
+[01:04:54.812] Browser WARN    The selector `node:hover`is invalid
+[01:04:54.812] Browser WARN    The selector `edge:hover`is invalid
+[01:04:54.812] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.711] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.711] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.711] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.711] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.711] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.711] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.711] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.711] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.711] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.711] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.711] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.711] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.711] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.711] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.711] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.711] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.711] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.711] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.711] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.711] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.712] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.712] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.712] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.712] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.712] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.712] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.712] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.712] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.712] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.712] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.712] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.712] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.712] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.712] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.712] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.712] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.712] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.729] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.729] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.729] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.729] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.729] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `node:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `edge:hover`is invalid
+[01:05:05.730] Browser WARN    The selector `node:hover`is invalid
+[01:05:07.556] Browser WARN    The selector `edge:hover`is invalid
+[01:05:07.556] Browser WARN    The selector `node:hover`is invalid
+[01:05:07.556] Browser WARN    The selector `edge:hover`is invalid
+[01:05:07.556] Browser WARN    The selector `node:hover`is invalid
+[01:05:07.556] Browser WARN    The selector `edge:hover`is invalid
+[01:05:07.556] Browser WARN    The selector `node:hover`is invalid
+[01:05:07.556] Browser WARN    The selector `edge:hover`is invalid
+[01:05:07.556] Browser WARN    The selector `node:hover`is invalid
+[01:05:07.556] Browser WARN    The selector `edge:hover`is invalid
+[01:05:07.557] Browser WARN    The selector `node:hover`is invalid
+[01:05:07.557] Browser WARN    The selector `edge:hover`is invalid
+[01:05:07.557] Browser WARN    The selector `node:hover`is invalid
+[01:05:07.557] Browser WARN    The selector `edge:hover`is invalid
+[01:05:07.557] Browser WARN    The selector `node:hover`is invalid
+[01:05:07.557] Browser WARN    The selector `edge:hover`is invalid
+[01:05:07.557] Browser WARN    The selector `node:hover`is invalid
+[01:05:07.557] Browser WARN    The selector `edge:hover`is invalid
+[01:05:07.557] Browser WARN    The selector `node:hover`is invalid
+[01:05:07.558] Browser WARN    The selector `edge:hover`is invalid
+[01:05:07.558] Browser WARN    The selector `node:hover`is invalid
+[01:05:07.558] Browser WARN    The selector `edge:hover`is invalid
+[01:05:07.558] Browser WARN    The selector `node:hover`is invalid
+[01:05:07.558] Browser WARN    The selector `edge:hover`is invalid
+[01:05:07.558] Browser WARN    The selector `node:hover`is invalid
+[01:05:09.293] Browser WARN    The selector `edge:hover`is invalid
+[01:05:09.293] Browser WARN    The selector `node:hover`is invalid
+[01:05:09.293] Browser WARN    The selector `edge:hover`is invalid
+[01:05:09.293] Browser WARN    The selector `node:hover`is invalid
+[01:05:09.293] Browser WARN    The selector `edge:hover`is invalid
+[01:05:09.294] Browser WARN    The selector `node:hover`is invalid
+[01:05:09.294] Browser WARN    The selector `edge:hover`is invalid
+[01:05:09.294] Browser WARN    The selector `node:hover`is invalid
+[01:05:09.294] Browser WARN    The selector `edge:hover`is invalid
+[01:05:09.294] Browser WARN    The selector `node:hover`is invalid
+[01:05:09.294] Browser WARN    The selector `edge:hover`is invalid
+[01:05:09.294] Browser WARN    The selector `node:hover`is invalid
+[01:05:09.294] Browser WARN    The selector `edge:hover`is invalid
+[01:05:09.294] Browser WARN    The selector `node:hover`is invalid
+[01:05:09.294] Browser WARN    The selector `edge:hover`is invalid
+[01:05:09.294] Browser WARN    The selector `node:hover`is invalid
+[01:05:09.294] Browser WARN    The selector `edge:hover`is invalid
+[01:05:09.294] Browser WARN    The selector `node:hover`is invalid
+[01:05:09.294] Browser WARN    The selector `edge:hover`is invalid
+[01:05:09.294] Browser WARN    The selector `node:hover`is invalid
+[01:05:09.294] Browser WARN    The selector `edge:hover`is invalid
+[01:05:09.294] Browser WARN    The selector `node:hover`is invalid
+[01:05:09.294] Browser WARN    The selector `edge:hover`is invalid
+[01:05:09.294] Browser WARN    The selector `node:hover`is invalid
+[01:05:09.294] Browser WARN    The selector `edge:hover`is invalid
+[01:05:09.294] Browser WARN    The selector `node:hover`is invalid
+[01:05:09.294] Browser WARN    The selector `edge:hover`is invalid
+[01:05:09.294] Browser WARN    The selector `node:hover`is invalid
+[01:05:09.294] Browser WARN    The selector `edge:hover`is invalid
+[01:05:09.294] Browser WARN    The selector `node:hover`is invalid
+[01:05:09.294] Browser WARN    The selector `edge:hover`is invalid
+[01:05:09.294] Browser WARN    The selector `node:hover`is invalid
+[01:05:09.294] Browser WARN    The selector `edge:hover`is invalid
+[01:05:09.294] Browser WARN    The selector `node:hover`is invalid
+[01:05:09.295] Browser WARN    The selector `edge:hover`is invalid
+[01:05:09.295] Browser WARN    The selector `node:hover`is invalid
+[01:05:09.295] Browser WARN    The selector `edge:hover`is invalid
+[01:05:09.295] Browser WARN    The selector `node:hover`is invalid
+[01:05:09.295] Browser WARN    The selector `edge:hover`is invalid
+[01:05:09.295] Browser WARN    The selector `node:hover`is invalid
+[01:05:09.295] Browser WARN    The selector `edge:hover`is invalid
+[01:05:09.295] Browser WARN    The selector `node:hover`is invalid
+[01:05:09.295] Browser WARN    The selector `edge:hover`is invalid
+[01:05:09.295] Browser WARN    The selector `node:hover`is invalid
+[01:05:16.571] Browser WARN    The selector `edge:hover`is invalid
+[01:05:16.571] Browser WARN    The selector `node:hover`is invalid
+[01:05:16.571] Browser WARN    The selector `edge:hover`is invalid
+[01:05:16.571] Browser WARN    The selector `node:hover`is invalid
+[01:05:16.571] Browser WARN    The selector `edge:hover`is invalid
+[01:05:16.571] Browser WARN    The selector `node:hover`is invalid
+[01:05:16.571] Browser WARN    The selector `edge:hover`is invalid
+[01:05:16.572] Browser WARN    The selector `node:hover`is invalid
+[01:05:16.572] Browser WARN    The selector `edge:hover`is invalid
+[01:05:16.572] Browser WARN    The selector `node:hover`is invalid
+[01:05:16.572] Browser WARN    The selector `edge:hover`is invalid
+[01:05:16.572] Browser WARN    The selector `node:hover`is invalid
+[01:05:16.572] Browser WARN    The selector `edge:hover`is invalid
+[01:05:16.572] Browser WARN    The selector `node:hover`is invalid
+[01:05:16.572] Browser WARN    The selector `edge:hover`is invalid
+[01:05:16.572] Browser WARN    The selector `node:hover`is invalid
+[01:05:16.572] Browser WARN    The selector `edge:hover`is invalid
+[01:05:16.572] Browser WARN    The selector `node:hover`is invalid
+[01:05:16.572] Browser WARN    The selector `edge:hover`is invalid
+[01:05:16.572] Browser WARN    The selector `node:hover`is invalid
+[01:05:16.572] Browser WARN    The selector `edge:hover`is invalid
+[01:05:16.572] Browser WARN    The selector `node:hover`is invalid
+[01:05:16.572] Browser WARN    The selector `edge:hover`is invalid
+[01:05:16.572] Browser WARN    The selector `node:hover`is invalid
+[01:05:16.572] Browser WARN    The selector `edge:hover`is invalid
+[01:05:16.572] Browser WARN    The selector `node:hover`is invalid
+[01:05:16.572] Browser WARN    The selector `edge:hover`is invalid
+[01:05:16.572] Browser WARN    The selector `node:hover`is invalid
+[01:05:16.572] Browser WARN    The selector `edge:hover`is invalid
+[01:05:16.572] Browser WARN    The selector `node:hover`is invalid
+[01:05:16.572] Browser WARN    The selector `edge:hover`is invalid
+[01:05:16.572] Browser WARN    The selector `node:hover`is invalid
+[01:05:18.157] Browser WARN    The selector `edge:hover`is invalid
+[01:05:18.157] Browser WARN    The selector `node:hover`is invalid
+[01:05:18.157] Browser WARN    The selector `edge:hover`is invalid
+[01:05:18.157] Browser WARN    The selector `node:hover`is invalid
+[01:05:18.157] Browser WARN    The selector `edge:hover`is invalid
+[01:05:18.157] Browser WARN    The selector `node:hover`is invalid
+[01:05:18.157] Browser WARN    The selector `edge:hover`is invalid
+[01:05:18.157] Browser WARN    The selector `node:hover`is invalid
+[01:05:18.157] Browser WARN    The selector `edge:hover`is invalid
+[01:05:18.157] Browser WARN    The selector `node:hover`is invalid
+[01:05:18.162] Browser WARN    The selector `edge:hover`is invalid
+[01:05:18.162] Browser WARN    The selector `node:hover`is invalid
+[01:05:18.162] Browser WARN    The selector `edge:hover`is invalid
+[01:05:18.162] Browser WARN    The selector `node:hover`is invalid
+[01:05:18.162] Browser WARN    The selector `edge:hover`is invalid
+[01:05:18.162] Browser WARN    The selector `node:hover`is invalid
+[01:05:18.162] Browser WARN    The selector `edge:hover`is invalid
+[01:05:18.162] Browser WARN    The selector `node:hover`is invalid
+[01:05:18.162] Browser WARN    The selector `edge:hover`is invalid
+[01:05:18.162] Browser WARN    The selector `node:hover`is invalid
+[01:05:18.162] Browser WARN    The selector `edge:hover`is invalid
+[01:05:18.162] Browser WARN    The selector `node:hover`is invalid
+[01:05:18.162] Browser WARN    The selector `edge:hover`is invalid
+[01:05:18.162] Browser WARN    The selector `node:hover`is invalid
+[01:05:18.162] Browser WARN    The selector `edge:hover`is invalid
+[01:05:18.162] Browser WARN    The selector `node:hover`is invalid
+[01:05:18.162] Browser WARN    The selector `edge:hover`is invalid
+[01:05:18.162] Browser WARN    The selector `node:hover`is invalid
+[01:05:18.162] Browser WARN    The selector `edge:hover`is invalid
+[01:05:18.162] Browser WARN    The selector `node:hover`is invalid
+[01:05:18.162] Browser WARN    The selector `edge:hover`is invalid
+[01:05:18.162] Browser WARN    The selector `node:hover`is invalid
+[01:05:18.162] Browser WARN    The selector `edge:hover`is invalid
+[01:05:18.162] Browser WARN    The selector `node:hover`is invalid
+[01:05:19.851] Browser WARN    The selector `edge:hover`is invalid
+[01:05:19.851] Browser WARN    The selector `node:hover`is invalid
+[01:05:19.851] Browser WARN    The selector `edge:hover`is invalid
+[01:05:19.851] Browser WARN    The selector `node:hover`is invalid
+[01:05:19.851] Browser WARN    The selector `edge:hover`is invalid
+[01:05:19.851] Browser WARN    The selector `node:hover`is invalid
+[01:05:19.851] Browser WARN    The selector `edge:hover`is invalid
+[01:05:19.851] Browser WARN    The selector `node:hover`is invalid
+[01:05:19.851] Browser WARN    The selector `edge:hover`is invalid
+[01:05:19.851] Browser WARN    The selector `node:hover`is invalid
+[01:05:19.851] Browser WARN    The selector `edge:hover`is invalid
+[01:05:19.851] Browser WARN    The selector `node:hover`is invalid
+[01:05:19.851] Browser WARN    The selector `edge:hover`is invalid
+[01:05:19.851] Browser WARN    The selector `node:hover`is invalid
+[01:05:19.851] Browser WARN    The selector `edge:hover`is invalid
+[01:05:19.851] Browser WARN    The selector `node:hover`is invalid
+[01:05:19.851] Browser WARN    The selector `edge:hover`is invalid
+[01:05:19.851] Browser WARN    The selector `node:hover`is invalid
+[01:05:19.851] Browser WARN    The selector `edge:hover`is invalid
+[01:05:19.851] Browser WARN    The selector `node:hover`is invalid
+[01:05:19.851] Browser WARN    The selector `edge:hover`is invalid
+[01:05:19.851] Browser WARN    The selector `node:hover`is invalid
+[01:05:19.851] Browser WARN    The selector `edge:hover`is invalid
+[01:05:19.851] Browser WARN    The selector `node:hover`is invalid
+[01:05:19.851] Browser WARN    The selector `edge:hover`is invalid
+[01:05:19.851] Browser WARN    The selector `node:hover`is invalid
+[01:05:19.851] Browser WARN    The selector `edge:hover`is invalid
+[01:05:19.851] Browser WARN    The selector `node:hover`is invalid
+[01:05:19.851] Browser WARN    The selector `edge:hover`is invalid
+[01:05:19.851] Browser WARN    The selector `node:hover`is invalid
+[01:05:19.851] Browser WARN    The selector `edge:hover`is invalid
+[01:05:19.851] Browser WARN    The selector `node:hover`is invalid
+[01:05:19.851] Browser WARN    The selector `edge:hover`is invalid
+[01:05:19.851] Browser WARN    The selector `node:hover`is invalid
+[01:05:19.852] Browser WARN    The selector `edge:hover`is invalid
+[01:05:19.852] Browser WARN    The selector `node:hover`is invalid
+[01:05:19.852] Browser WARN    The selector `edge:hover`is invalid
+[01:05:19.852] Browser WARN    The selector `node:hover`is invalid
+[01:05:19.852] Browser WARN    The selector `edge:hover`is invalid
+[01:05:19.852] Browser WARN    The selector `node:hover`is invalid
+[01:05:19.852] Browser WARN    The selector `edge:hover`is invalid
+[01:05:19.852] Browser WARN    The selector `node:hover`is invalid
+[01:05:19.852] Browser WARN    The selector `edge:hover`is invalid
+[01:05:19.852] Browser WARN    The selector `node:hover`is invalid
+[01:05:19.852] Browser WARN    The selector `edge:hover`is invalid
+[01:05:19.852] Browser WARN    The selector `node:hover`is invalid
+[01:05:19.852] Browser WARN    The selector `edge:hover`is invalid
+[01:05:19.852] Browser WARN    The selector `node:hover`is invalid
+[01:05:19.852] Browser WARN    The selector `edge:hover`is invalid
+[01:05:19.852] Browser WARN    The selector `node:hover`is invalid
+[01:05:19.852] Browser WARN    The selector `edge:hover`is invalid
+[01:05:19.852] Browser WARN    The selector `node:hover`is invalid
+[01:05:19.852] Browser WARN    The selector `edge:hover`is invalid
+[01:05:19.852] Browser WARN    The selector `node:hover`is invalid
+[01:05:19.852] Browser WARN    The selector `edge:hover`is invalid
+[01:05:19.852] Browser WARN    The selector `node:hover`is invalid
+[01:05:20.610] Browser WARN    The selector `edge:hover`is invalid
+[01:05:20.610] Browser WARN    The selector `node:hover`is invalid
+[01:05:20.610] Browser WARN    The selector `edge:hover`is invalid
+[01:05:20.610] Browser WARN    The selector `node:hover`is invalid
+[01:05:20.610] Browser WARN    The selector `edge:hover`is invalid
+[01:05:20.610] Browser WARN    The selector `node:hover`is invalid
+[01:05:20.610] Browser WARN    The selector `edge:hover`is invalid
+[01:05:20.610] Browser WARN    The selector `node:hover`is invalid
+[01:05:20.610] Browser WARN    The selector `edge:hover`is invalid
+[01:05:20.610] Browser WARN    The selector `node:hover`is invalid
+[01:05:20.610] Browser WARN    The selector `edge:hover`is invalid
+[01:05:20.610] Browser WARN    The selector `node:hover`is invalid
+[01:05:20.610] Browser WARN    The selector `edge:hover`is invalid
+[01:05:20.610] Browser WARN    The selector `node:hover`is invalid
+[01:05:20.610] Browser WARN    The selector `edge:hover`is invalid
+[01:05:20.610] Browser WARN    The selector `node:hover`is invalid
+[01:05:20.610] Browser WARN    The selector `edge:hover`is invalid
+[01:05:20.610] Browser WARN    The selector `node:hover`is invalid
+[01:05:20.610] Browser WARN    The selector `edge:hover`is invalid
+[01:05:20.610] Browser WARN    The selector `node:hover`is invalid
+[01:05:20.610] Browser WARN    The selector `edge:hover`is invalid
+[01:05:20.610] Browser WARN    The selector `node:hover`is invalid
+[01:05:20.610] Browser WARN    The selector `edge:hover`is invalid
+[01:05:20.610] Browser WARN    The selector `node:hover`is invalid
+[01:05:20.610] Browser WARN    The selector `edge:hover`is invalid
+[01:05:20.610] Browser WARN    The selector `node:hover`is invalid
+[01:05:20.610] Browser WARN    The selector `edge:hover`is invalid
+[01:05:20.610] Browser WARN    The selector `node:hover`is invalid
+[01:05:20.610] Browser WARN    The selector `edge:hover`is invalid
+[01:05:20.610] Browser WARN    The selector `node:hover`is invalid
+[01:05:20.611] Browser WARN    The selector `edge:hover`is invalid
+[01:05:20.611] Browser WARN    The selector `node:hover`is invalid
+[01:05:20.611] Browser WARN    The selector `edge:hover`is invalid
+[01:05:20.611] Browser WARN    The selector `node:hover`is invalid
+[01:05:20.611] Browser WARN    The selector `edge:hover`is invalid
+[01:05:20.611] Browser WARN    The selector `node:hover`is invalid
+[01:05:20.611] Browser WARN    The selector `edge:hover`is invalid
+[01:05:20.611] Browser WARN    The selector `node:hover`is invalid
+[01:05:20.611] Browser WARN    The selector `edge:hover`is invalid
+[01:05:20.611] Browser WARN    The selector `node:hover`is invalid
+[01:05:20.611] Browser WARN    The selector `edge:hover`is invalid
+[01:05:20.612] Browser WARN    The selector `node:hover`is invalid
+[01:05:20.612] Browser WARN    The selector `edge:hover`is invalid
+[01:05:20.612] Browser WARN    The selector `node:hover`is invalid
+[01:05:20.612] Browser WARN    The selector `edge:hover`is invalid
+[01:05:20.612] Browser WARN    The selector `node:hover`is invalid
+[01:05:20.612] Browser WARN    The selector `edge:hover`is invalid
+[01:05:20.612] Browser WARN    The selector `node:hover`is invalid
+[01:05:20.612] Browser WARN    The selector `edge:hover`is invalid
+[01:05:20.612] Browser WARN    The selector `node:hover`is invalid
+[01:05:20.612] Browser WARN    The selector `edge:hover`is invalid
+[01:05:20.612] Browser WARN    The selector `node:hover`is invalid
+[01:05:20.612] Browser WARN    The selector `edge:hover`is invalid
+[01:05:20.612] Browser WARN    The selector `node:hover`is invalid
+[01:05:20.612] Browser WARN    The selector `edge:hover`is invalid
+[01:05:20.612] Browser WARN    The selector `node:hover`is invalid
+[01:05:20.612] Browser WARN    The selector `edge:hover`is invalid
+[01:05:20.612] Browser WARN    The selector `node:hover`is invalid
+[01:05:20.612] Browser WARN    The selector `edge:hover`is invalid
+[01:05:20.612] Browser WARN    The selector `node:hover`is invalid
+[01:05:20.612] Browser WARN    The selector `edge:hover`is invalid
+[01:05:20.612] Browser WARN    The selector `node:hover`is invalid
+[01:05:20.612] Browser WARN    The selector `edge:hover`is invalid
+[01:05:20.612] Browser WARN    The selector `node:hover`is invalid
+[01:05:21.755] Browser WARN    The selector `edge:hover`is invalid
+[01:05:21.757] Browser WARN    The selector `node:hover`is invalid
+[01:05:21.757] Browser WARN    The selector `edge:hover`is invalid
+[01:05:21.757] Browser WARN    The selector `node:hover`is invalid
+[01:05:21.757] Browser WARN    The selector `edge:hover`is invalid
+[01:05:21.757] Browser WARN    The selector `node:hover`is invalid
+[01:05:21.757] Browser WARN    The selector `edge:hover`is invalid
+[01:05:21.757] Browser WARN    The selector `node:hover`is invalid
+[01:05:21.757] Browser WARN    The selector `edge:hover`is invalid
+[01:05:21.757] Browser WARN    The selector `node:hover`is invalid
+[01:05:21.757] Browser WARN    The selector `edge:hover`is invalid
+[01:05:21.757] Browser WARN    The selector `node:hover`is invalid
+[01:05:21.757] Browser WARN    The selector `edge:hover`is invalid
+[01:05:21.757] Browser WARN    The selector `node:hover`is invalid
+[01:05:21.757] Browser WARN    The selector `edge:hover`is invalid
+[01:05:21.757] Browser WARN    The selector `node:hover`is invalid
+[01:05:21.757] Browser WARN    The selector `edge:hover`is invalid
+[01:05:21.757] Browser WARN    The selector `node:hover`is invalid
+[01:05:21.757] Browser WARN    The selector `edge:hover`is invalid
+[01:05:21.757] Browser WARN    The selector `node:hover`is invalid
+[01:05:21.757] Browser WARN    The selector `edge:hover`is invalid
+[01:05:21.757] Browser WARN    The selector `node:hover`is invalid
+[01:05:21.757] Browser WARN    The selector `edge:hover`is invalid
+[01:05:21.757] Browser WARN    The selector `node:hover`is invalid
+[01:05:21.757] Browser WARN    The selector `edge:hover`is invalid
+[01:05:21.757] Browser WARN    The selector `node:hover`is invalid
+[01:05:21.757] Browser WARN    The selector `edge:hover`is invalid
+[01:05:21.757] Browser WARN    The selector `node:hover`is invalid
+[01:05:21.757] Browser WARN    The selector `edge:hover`is invalid
+[01:05:21.757] Browser WARN    The selector `node:hover`is invalid
+[01:05:21.757] Browser WARN    The selector `edge:hover`is invalid
+[01:05:21.757] Browser WARN    The selector `node:hover`is invalid
+[01:05:21.757] Browser WARN    The selector `edge:hover`is invalid
+[01:05:21.757] Browser WARN    The selector `node:hover`is invalid
+[01:05:21.757] Browser WARN    The selector `edge:hover`is invalid
+[01:05:21.757] Browser WARN    The selector `node:hover`is invalid
+[01:05:21.757] Browser WARN    The selector `edge:hover`is invalid
+[01:05:21.757] Browser WARN    The selector `node:hover`is invalid
+[01:27:59.265] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:27:59.585] Browser WARN    Image with src "/KnowFlow.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[03:27:11.377] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:27:12.648] Browser WARN    Image with src "/KnowFlow.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[03:28:46.198] Browser WARN    The selector `edge:hover`is invalid
+[03:28:46.198] Browser WARN    The selector `node:hover`is invalid
+[03:28:46.198] Browser WARN    The selector `edge:hover`is invalid
+[03:28:46.198] Browser WARN    The selector `node:hover`is invalid
+[03:28:46.360] Browser ERROR   uncaughtError: TypeError: Cannot read properties of null (reading 'notify')
+[03:28:47.473] Browser WARN    The selector `edge:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `node:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `edge:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `node:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `edge:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `node:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `edge:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `node:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `edge:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `node:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `edge:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `node:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `edge:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `node:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `edge:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `node:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `edge:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `node:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `edge:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `node:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `edge:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `node:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `edge:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `node:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `edge:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `node:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `edge:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `node:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `edge:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `node:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `edge:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `node:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `edge:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `node:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `edge:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `node:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `edge:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `node:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `edge:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `node:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `edge:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `node:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `edge:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `node:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `edge:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `node:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `edge:hover`is invalid
+[03:28:47.473] Browser WARN    The selector `node:hover`is invalid
+[04:24:19.765] Browser WARN    The selector `edge:hover`is invalid
+[04:24:19.767] Browser WARN    The selector `node:hover`is invalid
+[04:24:19.767] Browser WARN    The selector `edge:hover`is invalid
+[04:24:19.767] Browser WARN    The selector `node:hover`is invalid
+[04:24:20.293] Browser WARN    The selector `edge:hover`is invalid
+[04:24:20.293] Browser WARN    The selector `node:hover`is invalid
+[04:24:20.293] Browser ERROR   uncaughtError: TypeError: Cannot read properties of null (reading 'notify')
+[04:24:20.293] Browser WARN    The selector `edge:hover`is invalid
+[04:24:20.293] Browser WARN    The selector `node:hover`is invalid
+[04:24:20.293] Browser WARN    The selector `edge:hover`is invalid
+[04:24:20.293] Browser WARN    The selector `node:hover`is invalid
+[04:24:20.293] Browser WARN    The selector `edge:hover`is invalid
+[04:24:20.293] Browser WARN    The selector `node:hover`is invalid
+[04:24:20.293] Browser WARN    The selector `edge:hover`is invalid
+[04:24:20.293] Browser WARN    The selector `node:hover`is invalid
+[04:24:20.293] Browser WARN    The selector `edge:hover`is invalid
+[04:24:20.293] Browser WARN    The selector `node:hover`is invalid
+[04:24:20.293] Browser WARN    The selector `edge:hover`is invalid
+[04:24:20.293] Browser WARN    The selector `node:hover`is invalid
+[04:24:20.293] Browser WARN    The selector `edge:hover`is invalid
+[04:24:20.293] Browser WARN    The selector `node:hover`is invalid
+[04:24:20.293] Browser WARN    The selector `edge:hover`is invalid
+[04:24:20.293] Browser WARN    The selector `node:hover`is invalid
+[04:24:20.293] Browser WARN    The selector `edge:hover`is invalid
+[04:24:20.293] Browser WARN    The selector `node:hover`is invalid
+[04:24:20.293] Browser WARN    The selector `edge:hover`is invalid
+[04:24:20.293] Browser WARN    The selector `node:hover`is invalid
+[04:24:20.293] Browser WARN    The selector `edge:hover`is invalid
+[04:24:20.293] Browser WARN    The selector `node:hover`is invalid
+[05:50:34.847] Browser WARN    The selector `edge:hover`is invalid
+[05:50:34.847] Browser WARN    The selector `node:hover`is invalid
+[05:50:34.848] Browser WARN    The selector `edge:hover`is invalid
+[05:50:34.848] Browser WARN    The selector `node:hover`is invalid
+[05:50:35.093] Browser ERROR   uncaughtError: TypeError: Cannot read properties of null (reading 'notify')
+[05:50:35.773] Browser WARN    The selector `edge:hover`is invalid
+[05:50:35.773] Browser WARN    The selector `node:hover`is invalid
+[05:50:35.773] Browser WARN    The selector `edge:hover`is invalid
+[05:50:35.773] Browser WARN    The selector `node:hover`is invalid
+[05:50:35.773] Browser WARN    The selector `edge:hover`is invalid
+[05:50:35.773] Browser WARN    The selector `node:hover`is invalid
+[05:50:35.773] Browser WARN    The selector `edge:hover`is invalid
+[05:50:35.773] Browser WARN    The selector `node:hover`is invalid
+[05:50:35.773] Browser WARN    The selector `edge:hover`is invalid
+[05:50:35.773] Browser WARN    The selector `node:hover`is invalid
+[05:50:35.773] Browser WARN    The selector `edge:hover`is invalid
+[05:50:35.773] Browser WARN    The selector `node:hover`is invalid
+[05:50:35.773] Browser WARN    The selector `edge:hover`is invalid
+[05:50:35.773] Browser WARN    The selector `node:hover`is invalid
+[05:50:35.773] Browser WARN    The selector `edge:hover`is invalid
+[05:50:35.773] Browser WARN    The selector `node:hover`is invalid
+[05:50:35.773] Browser WARN    The selector `edge:hover`is invalid
+[05:50:35.773] Browser WARN    The selector `node:hover`is invalid
+[05:50:35.773] Browser WARN    The selector `edge:hover`is invalid
+[05:50:35.773] Browser WARN    The selector `node:hover`is invalid
+[05:50:35.773] Browser WARN    The selector `edge:hover`is invalid
+[05:50:35.773] Browser WARN    The selector `node:hover`is invalid
+[05:50:35.773] Browser WARN    The selector `edge:hover`is invalid
+[05:50:35.773] Browser WARN    The selector `node:hover`is invalid
+[05:50:35.773] Browser WARN    The selector `edge:hover`is invalid
+[05:50:35.773] Browser WARN    The selector `node:hover`is invalid
+[05:50:35.773] Browser WARN    The selector `edge:hover`is invalid
+[05:50:35.773] Browser WARN    The selector `node:hover`is invalid
+[05:50:35.773] Browser WARN    The selector `edge:hover`is invalid
+[05:50:35.773] Browser WARN    The selector `node:hover`is invalid
+[05:50:35.773] Browser WARN    The selector `edge:hover`is invalid
+[05:50:35.773] Browser WARN    The selector `node:hover`is invalid
+[05:50:35.773] Browser WARN    The selector `edge:hover`is invalid
+[05:50:35.773] Browser WARN    The selector `node:hover`is invalid
+[05:50:35.773] Browser WARN    The selector `edge:hover`is invalid
+[05:50:35.773] Browser WARN    The selector `node:hover`is invalid
+[05:50:35.773] Browser WARN    The selector `edge:hover`is invalid
+[05:50:35.773] Browser WARN    The selector `node:hover`is invalid
+[05:50:36.658] Browser WARN    The selector `edge:hover`is invalid
+[05:50:36.658] Browser WARN    The selector `node:hover`is invalid
+[05:50:36.658] Browser WARN    The selector `edge:hover`is invalid
+[05:50:36.658] Browser WARN    The selector `node:hover`is invalid
+[05:50:36.658] Browser WARN    The selector `edge:hover`is invalid
+[05:50:36.658] Browser WARN    The selector `node:hover`is invalid
+[05:50:36.658] Browser WARN    The selector `edge:hover`is invalid
+[05:50:36.658] Browser WARN    The selector `node:hover`is invalid
+[05:50:36.658] Browser WARN    The selector `edge:hover`is invalid
+[05:50:36.658] Browser WARN    The selector `node:hover`is invalid
+[05:50:36.658] Browser WARN    The selector `edge:hover`is invalid
+[05:50:36.658] Browser WARN    The selector `node:hover`is invalid
+[05:50:36.658] Browser WARN    The selector `edge:hover`is invalid
+[05:50:36.673] Browser WARN    The selector `node:hover`is invalid
+[05:50:36.673] Browser WARN    The selector `edge:hover`is invalid
+[05:50:36.673] Browser WARN    The selector `node:hover`is invalid
+[05:50:36.673] Browser WARN    The selector `edge:hover`is invalid
+[05:50:36.673] Browser WARN    The selector `node:hover`is invalid
+[05:50:36.673] Browser WARN    The selector `edge:hover`is invalid
+[05:50:36.673] Browser WARN    The selector `node:hover`is invalid
+[05:50:37.304] Browser WARN    The selector `edge:hover`is invalid
+[05:50:37.304] Browser WARN    The selector `node:hover`is invalid
+[05:50:37.304] Browser WARN    The selector `edge:hover`is invalid
+[05:50:37.304] Browser WARN    The selector `node:hover`is invalid
+[05:50:37.304] Browser WARN    The selector `edge:hover`is invalid
+[05:50:37.304] Browser WARN    The selector `node:hover`is invalid
+[05:50:37.304] Browser WARN    The selector `edge:hover`is invalid
+[05:50:37.304] Browser WARN    The selector `node:hover`is invalid
+[05:50:37.304] Browser WARN    The selector `edge:hover`is invalid
+[05:50:37.304] Browser WARN    The selector `node:hover`is invalid

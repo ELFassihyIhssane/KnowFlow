@@ -1,6 +1,8 @@
 from langgraph.graph import StateGraph, END
+
 from app.orchestrator.state import OrchestratorState
 from app.orchestrator import nodes
+from app.orchestrator.adaptation_node import adaptation_decision_node
 
 
 def build_orchestrator_graph():
@@ -14,7 +16,10 @@ def build_orchestrator_graph():
     graph.add_node("insight", nodes.insight_node)
     graph.add_node("evaluator", nodes.evaluator_node)
 
-    # ✅ Nouveau node "vide" (pas de logique), juste pour brancher du routing
+    # Adaptation node (manual only)
+    graph.add_node("adaptation_decision", adaptation_decision_node)
+
+    # passthrough router
     graph.add_node("post_summary_router", lambda state: state)
 
     # ---------- Start ----------
@@ -32,7 +37,7 @@ def build_orchestrator_graph():
         },
     )
 
-    # ---------- Après summarizer : décider si on passe par Insight ----------
+    # ---------- Après summarizer ----------
     graph.add_edge("summarizer", "post_summary_router")
     graph.add_conditional_edges(
         "post_summary_router",
@@ -46,6 +51,8 @@ def build_orchestrator_graph():
     # ---------- Fin pipeline ----------
     graph.add_edge("concepts", "evaluator")
     graph.add_edge("insight", "evaluator")
-    graph.add_edge("evaluator", END)
+
+    graph.add_edge("evaluator", "adaptation_decision")
+    graph.add_edge("adaptation_decision", END)
 
     return graph.compile()

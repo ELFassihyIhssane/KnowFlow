@@ -10,6 +10,7 @@ from .api.routes import query as query_router
 from .api.routes.intent import router as intent_router
 from .api.routes.summarizer import router as summarizer_router
 from .api.routes.graph import router as graph_router
+from .api.routes.adaptation import router as adaptation_router
 
 from app.observability.logging import configure_logging
 from app.observability.middleware import ObservabilityMiddleware
@@ -47,3 +48,4 @@ app.include_router(query_router.router, prefix="/api")
 app.include_router(intent_router, prefix="/api")
 app.include_router(summarizer_router, prefix="/api")
 app.include_router(graph_router, prefix="/api")
+app.include_router(adaptation_router, prefix="/api")
