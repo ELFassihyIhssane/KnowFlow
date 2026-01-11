@@ -1,0 +1,142 @@
+{
+  "name": "arXiv_API",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "https://export.arxiv.org/api/query?search_query=( cat:cs.AI+ OR+cat:cs.CL+ OR+cat:cs.LG+ OR+cat:cs.CV+ OR+cat:cs.IR+ OR+cat:cs.NE+ OR+cat:stat.ML+ OR+cat:eess.IV+ OR+cat:eess.AS+ )+AND+( all:llm+ OR+all:transformer+ OR+all:\"large+language+model\"+ OR+all:\"retrieval+augmented+generation\"+ OR+all:\"knowledge+graph\"+ OR+all:\"multi-agent\"+ OR+all:\"self-supervised\"+ OR+all:\"representation+learning\"+ OR+all:\"reasoning\"+ OR+all:\"few-shot\"+ OR+all:\"prompt+learning\"+ )+&start=81&max_results=150&sortBy=lastUpdatedDate&sortOrder=descending",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        48,
+        -128
+      ],
+      "id": "99412b64-85c8-4432-9607-2b83a3de983f",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.xml",
+      "typeVersion": 1,
+      "position": [
+        384,
+        112
+      ],
+      "id": "759da385-582c-4fd3-92bf-3b57f4dd2e9d",
+      "name": "XML"
+    },
+    {
+      "parameters": {
+        "jsCode": "// The HTTP + XML node produced one item that contains { feed: {...} }\nconst feed = items[0].json.feed;\n\n// Extract the list of entries\nconst entries = feed.entry || [];\n\n// Return one item per entry\nreturn entries.map(entry => ({\n  json: entry\n}));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        592,
+        -128
+      ],
+      "id": "80a3f6f3-3fb3-4b2c-8c8f-f015854ab721",
+      "name": "Split Entries"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(item => {\n  const entry = item.json;\n\n  // Champs simples\n  const idRaw = entry.id;\n  const title = entry.title;\n  const abstract = entry.summary;\n\n  // Links -> url HTML + url PDF\n  const links = Array.isArray(entry.link) ? entry.link : (entry.link ? [entry.link] : []);\n  let url = null;\n  let pdf_url = null;\n\n  for (const l of links) {\n    if (l.rel === 'alternate' && l.type === 'text/html') {\n      url = l.href;\n    }\n    if (l.type === 'application/pdf') {\n      pdf_url = l.href;\n    }\n  }\n\n  // Auteurs\n  const authorsRaw = entry.author || [];\n  let authors = [];\n  if (Array.isArray(authorsRaw)) {\n    authors = authorsRaw.map(a => a.name).filter(Boolean);\n  } else if (authorsRaw.name) {\n    authors = [authorsRaw.name];\n  }\n\n  // Année depuis \"published\"\n  let year = null;\n  if (entry.published) {\n    year = new Date(entry.published).getFullYear();\n  }\n\n  // Objet au format de ta table Document\n  const doc = {\n    source: 'arxiv',\n    content_type: pdf_url ? 'pdf' : 'web_page',\n    title: title || null,\n    abstract: abstract || null,\n    url: url || idRaw || null,\n    pdf_url: pdf_url || null,\n    authors: authors.length ? authors : null,\n    year: year,\n    raw_text: null,\n    created_at: new Date().toISOString(),\n  };\n\n  return { json: doc };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        864,
+        96
+      ],
+      "id": "32a45bb8-9d8f-42b6-87ec-efdac0e12fde",
+      "name": "Map To Document"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:7000/api/collector/ingest",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{$json}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1056,
+        -144
+      ],
+      "id": "61490449-85ca-47d6-a3f2-d63aea03906f",
+      "name": "POST Document"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "XML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "XML": {
+      "main": [
+        [
+          {
+            "node": "Split Entries",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Entries": {
+      "main": [
+        [
+          {
+            "node": "Map To Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Map To Document": {
+      "main": [
+        [
+          {
+            "node": "POST Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "10a40a31-7aa0-45bf-bf46-cfe246ff45bb",
+  "meta": {
+    "instanceId": "de109b286b7f862f7d2ff6b632a94d0052c8fe4fb517d010b9b3e96a22757d98"
+  },
+  "id": "WubgLoSzWhMTLNvy",
+  "tags": []
+}
