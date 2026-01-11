@@ -49,23 +49,17 @@ def _tokenize(s: str) -> Set[str]:
     return {t for t in s.split() if len(t) > 2}
 
 
-# -------------------------
-# 1) Heuristic relations (fast, reliable)
-# -------------------------
+
 def _extract_relations_heuristic(concepts: List[str], context: str) -> List[Dict]:
-    """
-    Universel : quelques patterns simples, haute précision.
-    """
+
     edges: List[Dict] = []
     ctx = context
 
-    # build a quick lookup for concept presence
     lowered = {c.lower(): c for c in concepts}
 
     def add_edge(a: str, b: str, rel: str, ev: str):
         edges.append({"source": a, "target": b, "relation": rel, "evidence": ev[:200]})
 
-    # Pattern: "X is part of Y"
     for a in concepts:
         for b in concepts:
             if a == b:
@@ -77,7 +71,6 @@ def _extract_relations_heuristic(concepts: List[str], context: str) -> List[Dict
                 if len(edges) >= 6:
                     return edges
 
-    # Pattern: "X depends on Y" / "requires"
     for a in concepts:
         for b in concepts:
             if a == b:
@@ -92,9 +85,7 @@ def _extract_relations_heuristic(concepts: List[str], context: str) -> List[Dict
     return edges
 
 
-# -------------------------
-# 2) LLM completer (question-aware + evidence)
-# -------------------------
+
 REL_PROMPT = """
 You are a scientific relation extraction system.
 
@@ -143,7 +134,6 @@ def extract_relations(concepts: List[str], context: str, question: str = "") -> 
     if not concepts or not context:
         return []
 
-    # Canonicalize + filter concepts
     canonical_concepts: List[str] = []
     seen: Set[str] = set()
 
@@ -167,12 +157,11 @@ def extract_relations(concepts: List[str], context: str, question: str = "") -> 
 
     allowed_nodes = {c.lower() for c in canonical_concepts}
 
-    # --- Heuristic first (high precision)
+
     heuristic_edges = _extract_relations_heuristic(canonical_concepts, context)
 
-    # --- Question focus terms (generic)
     q_toks = _tokenize(question)
-    focus = sorted(list(q_toks))[:25]  # cap
+    focus = sorted(list(q_toks))[:25] 
 
     prompt = f"""{REL_PROMPT}
 
@@ -198,7 +187,7 @@ Context:
     if not isinstance(edges, list):
         edges = []
 
-    # --- Clean + validate
+
     cleaned: List[Dict] = []
     dedup = set()
 
@@ -218,15 +207,14 @@ Context:
         if _looks_like_noise_concept(s) or _looks_like_noise_concept(t):
             continue
 
-        # Must connect known canonical concepts
+
         if s.lower() not in allowed_nodes or t.lower() not in allowed_nodes:
             continue
 
-        # Evidence requirement (keeps KG meaningful)
+
         if len(ev.split()) < 3:
             continue
 
-        # Extra sanity: evidence should mention at least one endpoint
         ev_low = ev.lower()
         if s.lower() not in ev_low and t.lower() not in ev_low:
             continue

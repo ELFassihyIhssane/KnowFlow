@@ -10,7 +10,7 @@ class LLMError(Exception):
     pass
 
 
-_model = None  # cache pour éviter de recréer le modèle à chaque requête
+_model = None  
 
 
 def init_gemini():
@@ -30,11 +30,7 @@ def get_model():
 
 
 def call_llm(prompt: str, temperature: float = 0.1, timeout_s: int = 20) -> str:
-    """
-    Appel générique Gemini pour les agents KnowFlow.
-    - Timeout pour éviter les requêtes qui "tournent" longtemps
-    - Logs pour diagnostiquer les lenteurs
-    """
+
     model = get_model()
 
     start = time.time()
@@ -48,7 +44,7 @@ def call_llm(prompt: str, temperature: float = 0.1, timeout_s: int = 20) -> str:
                 "top_p": 0.9,
                 "max_output_tokens": 2048,
             },
-            # évite Postman "Sending request..." infiniment
+
             request_options={"timeout": timeout_s},
         )
 

@@ -3,10 +3,7 @@ from app.orchestrator.state import Passage
 
 
 def build_passages_block(passages: List[Passage], max_passages: int = 8, max_chars_each: int = 900) -> str:
-    """
-    Prépare un bloc de passages numérotés pour le LLM.
-    Numérotation = citations traçables.
-    """
+
     selected = passages[:max_passages]
     blocks = []
     for i, p in enumerate(selected):

@@ -40,10 +40,10 @@ export type QueryResponse = {
   passages: Passage[];
   evaluation?: EvaluationResult;
 
-  // ✅ insight
+
   insight?: Insight | null;
 
-  // ✅ adaptation + manual retry
+
   can_retry?: boolean;
   retry_count?: number;
   adaptation_actions?: AdaptationAction[];

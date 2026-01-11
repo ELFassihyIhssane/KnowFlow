@@ -6,8 +6,8 @@ from typing import Any, Dict, Optional
 
 try:
     from langfuse import Langfuse
-except Exception:  # pragma: no cover
-    Langfuse = None  # type: ignore
+except Exception:  
+    Langfuse = None  
 
 
 class Tracer:
@@ -40,8 +40,8 @@ class Tracer:
 
 
 class _NullSpan:
-    def __enter__(self):  # noqa
+    def __enter__(self):  
         return None
 
-    def __exit__(self, exc_type, exc, tb):  # noqa
+    def __exit__(self, exc_type, exc, tb):  
         return False

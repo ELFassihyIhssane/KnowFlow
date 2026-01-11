@@ -1,4 +1,3 @@
-# app/schemas/collect.py
 from pydantic import BaseModel, HttpUrl
 from typing import List, Optional
 from enum import Enum
@@ -12,12 +11,12 @@ class ContentType(str, Enum):
 
 class CollectItem(BaseModel):
     source: str
-    content_type: ContentType          # "pdf" ou "web_page"
+    content_type: ContentType          
     title: str
     abstract: Optional[str] = None
-    url: Optional[HttpUrl] = None      # URL principale
-    pdf_url: Optional[HttpUrl] = None  # URL du PDF si existe
-    authors: List[str] = []            # ou Field(default_factory=list)
-    year: Optional[int] = None         # ex: 2025
-    raw_text: Optional[str] = None     # texte déjà extrait (pour pages web)
+    url: Optional[HttpUrl] = None      
+    pdf_url: Optional[HttpUrl] = None  
+    authors: List[str] = []            
+    year: Optional[int] = None         
+    raw_text: Optional[str] = None     
     created_at: Optional[datetime] = None

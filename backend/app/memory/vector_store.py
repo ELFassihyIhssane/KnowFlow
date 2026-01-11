@@ -1,4 +1,3 @@
-# app/memory/vector_store.py
 from typing import List, Dict, Any, Optional
 from uuid import uuid4
 
@@ -29,10 +28,6 @@ class VectorStore:
         self._ensure_collection()
 
     def _ensure_collection(self):
-        """
-        Crée la collection si elle n'existe pas.
-        Ne supprime pas les données existantes.
-        """
         if not self.client.collection_exists(self.collection_name):
             self.client.create_collection(
                 collection_name=self.collection_name,
@@ -43,9 +38,6 @@ class VectorStore:
             )
 
     def reset_collection(self):
-        """
-        ⚠️ ADMIN ONLY : supprime et recrée la collection.
-        """
         self.client.recreate_collection(
             collection_name=self.collection_name,
             vectors_config=VectorParams(
@@ -60,9 +52,7 @@ class VectorStore:
         embeddings: List[List[float]],
         metadatas: Optional[List[Dict[str, Any]]] = None,
     ):
-        """
-        Indexe des passages dans Qdrant.
-        """
+
         if metadatas is None:
             metadatas = [{} for _ in texts]
 
@@ -92,10 +82,7 @@ class VectorStore:
         top_k: int = 5,
         filter_by: Optional[Dict[str, Any]] = None,
     ) -> List[Dict[str, Any]]:
-        """
-        Recherche sémantique dans Qdrant (client v1.16.x).
-        filter_by = {"doc_id": 12} par exemple.
-        """
+
         qdrant_filter = None
         if filter_by:
             conditions = []
@@ -108,7 +95,6 @@ class VectorStore:
                 )
             qdrant_filter = Filter(must=conditions)
 
-        # ⚠️ Nouveau nom de méthode dans qdrant-client 1.16.x
         response = self.client.query_points(
             collection_name=self.collection_name,
             query=query_embedding,
@@ -116,7 +102,7 @@ class VectorStore:
             limit=top_k,
         )
 
-        hits = response.points  # liste de ScoredPoint
+        hits = response.points  
 
         results: List[Dict[str, Any]] = []
         for h in hits:

@@ -8,7 +8,7 @@ from app.orchestrator.adaptation_node import adaptation_decision_node
 def build_orchestrator_graph():
     graph = StateGraph(OrchestratorState)
 
-    # ---------- Nodes ----------
+
     graph.add_node("intent", nodes.intent_node)
     graph.add_node("retrieval", nodes.retrieval_node)
     graph.add_node("summarizer", nodes.summarizer_node)
@@ -16,17 +16,17 @@ def build_orchestrator_graph():
     graph.add_node("insight", nodes.insight_node)
     graph.add_node("evaluator", nodes.evaluator_node)
 
-    # Adaptation node (manual only)
+
     graph.add_node("adaptation_decision", adaptation_decision_node)
 
-    # passthrough router
+
     graph.add_node("post_summary_router", lambda state: state)
 
-    # ---------- Start ----------
+
     graph.set_entry_point("intent")
     graph.add_edge("intent", "retrieval")
 
-    # ---------- Routing après retrieval ----------
+
     graph.add_conditional_edges(
         "retrieval",
         nodes.route_selector,
@@ -37,7 +37,7 @@ def build_orchestrator_graph():
         },
     )
 
-    # ---------- Après summarizer ----------
+
     graph.add_edge("summarizer", "post_summary_router")
     graph.add_conditional_edges(
         "post_summary_router",
@@ -48,7 +48,7 @@ def build_orchestrator_graph():
         },
     )
 
-    # ---------- Fin pipeline ----------
+
     graph.add_edge("concepts", "evaluator")
     graph.add_edge("insight", "evaluator")
 

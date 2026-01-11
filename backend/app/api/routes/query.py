@@ -19,8 +19,6 @@ def query_endpoint(body: QueryRequest):
         "passages": final_state.retrieved_passages,
         "evaluation": final_state.evaluation,
         "insight": final_state.insight,
-
-        # ✅ add these for manual retry UI
         "can_retry": final_state.can_retry,
         "adaptation_actions": final_state.adaptation_actions,
         "retry_count": final_state.retry_count,

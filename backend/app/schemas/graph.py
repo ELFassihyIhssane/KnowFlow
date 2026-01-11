@@ -1,4 +1,3 @@
-# app/schemas/graph.py
 from typing import Dict, List
 from pydantic import BaseModel, Field
 

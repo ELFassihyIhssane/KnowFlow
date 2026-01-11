@@ -5,10 +5,7 @@ from app.cleaning.text_cleaning import clean_raw_text
 
 
 def clean_all_documents():
-    """
-    Parcourt tous les documents avec raw_text non nul
-    et met à jour cleaned_text.
-    """
+
     db: Session = SessionLocal()
     try:
         docs = (

@@ -16,7 +16,6 @@ from app.services.concept.passage_gating_service import gate_passages
 from app.observability.logging import get_logger
 log = get_logger("knowflow.retrieval")
 
-# Agents instanciés une seule fois
 intent_agent = IntentAgent()
 _retriever_agent: Optional[RetrieverAgent] = None  # lazy
 summarizer_agent = SummarizerAgent()
@@ -34,18 +33,15 @@ def _get_retriever() -> RetrieverAgent:
     return _retriever_agent
 
 
-# ---------- INTENT NODE ----------
 def intent_node(state: OrchestratorState) -> OrchestratorState:
     result = intent_agent.analyze(state.question)
     state.intent = result.intent
     state.sub_tasks = result.sub_tasks
     return state
 
-
-# ---------- RETRIEVAL NODE ----------
 def retrieval_node(state: OrchestratorState) -> OrchestratorState:
     log.info("retrieval_params", top_k=state.top_k, retry_count=state.retry_count, temperature=state.temperature, enable_llm_critique=state.enable_llm_critique,)
-    retriever = _get_retriever()  # Qdrant appelé seulement ici
+    retriever = _get_retriever() 
     hits = retriever.retrieve(query=state.question, top_k=state.top_k)
 
     state.retrieved_passages = [
@@ -63,7 +59,6 @@ def post_summary_selector(state: OrchestratorState) -> str:
     return "evaluator"
 
 
-# ---------- SUMMARIZER NODE ----------
 def summarizer_node(state: OrchestratorState) -> OrchestratorState:
     result = summarizer_agent.summarize(
         question=state.question,
@@ -73,11 +68,9 @@ def summarizer_node(state: OrchestratorState) -> OrchestratorState:
         language_hint="en",
     )
     state.summary = result.answer
-    # Optionnel: stocker highlights/citations dans evaluation ou un champ dédié plus tard
     return state
 
 
-# ---------- CONCEPT GRAPH NODE ----------
 def concepts_node(state: OrchestratorState) -> OrchestratorState:
     passages = [p for p in (state.retrieved_passages or []) if getattr(p, "text", None)]
     passages = passages[:12]
@@ -98,11 +91,10 @@ def concepts_node(state: OrchestratorState) -> OrchestratorState:
 
     question = (state.question or "").strip()
 
-    # ✅ gate passages (avoid mixed-doc context)
     gated_parts, _scores = gate_passages(
         question=question,
         passages=raw_parts,
-        top_k=min(12, max(4, state.top_k)),  # cohérent avec retrieval
+        top_k=min(12, max(4, state.top_k)), 
         min_overlap=state.min_overlap,
     )
 
@@ -114,7 +106,6 @@ def concepts_node(state: OrchestratorState) -> OrchestratorState:
         state.final_answer = "Retrieved passages were empty after cleaning, so no concepts could be extracted."
         return state
 
-    # Gemini-first happens inside the agent
     result = concept_agent.update_from_passages(
         passages_text=ctx,
         question=question,
@@ -185,7 +176,6 @@ def concepts_node(state: OrchestratorState) -> OrchestratorState:
 
 
 
-# ---------- INSIGHT NODE ----------
 def insight_node(state: OrchestratorState) -> OrchestratorState:
     res = insight_agent.run(
         question=state.question,
@@ -193,8 +183,8 @@ def insight_node(state: OrchestratorState) -> OrchestratorState:
         summary=state.summary,
         concepts=[c["label"] for c in state.concepts] if state.concepts else [],
         language_hint="en",
-        intent=state.intent,  # ✅ NEW
-        sub_tasks=state.sub_tasks,   # ✅ ADD THIS
+        intent=state.intent, 
+        sub_tasks=state.sub_tasks,  
     )
 
     state.insight = res.model_dump() if hasattr(res, "model_dump") else res.dict()
@@ -202,11 +192,8 @@ def insight_node(state: OrchestratorState) -> OrchestratorState:
     return state
 
 
-# ---------- EVALUATOR NODE ----------
 def evaluator_node(state: OrchestratorState) -> OrchestratorState:
-    # Build final_answer once (do not overwrite if already set)
     if not state.final_answer:
-        # ✅ If intent is insight-driven, prefer InsightAgent output
         if state.intent in ("gap", "deep_analysis"):
             if state.insight and isinstance(state.insight, dict) and state.insight.get("analysis"):
                 state.final_answer = state.insight["analysis"]
@@ -217,13 +204,11 @@ def evaluator_node(state: OrchestratorState) -> OrchestratorState:
             else:
                 state.final_answer = ""
         else:
-            # ✅ Normal mode: prefer summary
             if state.summary:
                 state.final_answer = state.summary
             elif state.insights:
                 state.final_answer = state.insights
             elif state.insight and isinstance(state.insight, dict) and state.insight.get("analysis"):
-                # fallback safety
                 state.final_answer = state.insight["analysis"]
             else:
                 state.final_answer = ""
@@ -234,7 +219,7 @@ def evaluator_node(state: OrchestratorState) -> OrchestratorState:
         question=state.question,
         answer=state.final_answer,
         passages=passages_text,
-        sub_tasks=state.sub_tasks,   # ✅ NEW
+        sub_tasks=state.sub_tasks,  
     )
 
     state.evaluation = EvaluationResult(
@@ -245,12 +230,8 @@ def evaluator_node(state: OrchestratorState) -> OrchestratorState:
     )
     return state
 
-
-# ---------- ROUTE SELECTOR (PAS UN NODE) ----------
 def route_selector(state: OrchestratorState) -> str:
-    """
-    Décide quelle pipeline activer selon l'intent.
-    """
+
     intent = state.intent or "summary"
 
     if intent in ("summary", "comparison"):

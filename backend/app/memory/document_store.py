@@ -3,13 +3,11 @@ from .models import Document
 from ..schemas.collect import CollectItem
 
 def save_metadata(db: Session, item: CollectItem) -> int:
-    # 1) check if doc already exists by URL
     if item.url:
         existing = db.query(Document).filter(Document.url == str(item.url)).first()
         if existing:
             return existing.id
 
-    # 2) otherwise create a new one
     doc = Document(
         source=item.source,
         content_type=item.content_type.value,

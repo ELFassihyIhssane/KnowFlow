@@ -9,14 +9,12 @@ _PUNCT_RE = re.compile(r"[^a-z0-9\.\-\s_/]+", re.IGNORECASE)
 _SECTION_PREFIX_RE = re.compile(r"^\s*\d+(?:\.\d+){1,4}\s*", re.IGNORECASE)
 _CIT_RE = re.compile(r"\[\s*\d+(?:\s*,\s*\d+)*\s*\]")
 
-# tokens that are usually instructions, not topic
 _STOP_INSTRUCTION = {
     "extract", "please", "pleaze", "concept", "concepts", "relation", "relations",
     "knowledge", "graph", "meaningful", "clear", "idea", "put", "make", "give",
     "generate", "build", "need", "want", "related", "topic", "about",
 }
 
-# ✅ Domain-agnostic "technique / eval" terms that often signal rich passages
 _TECHNIQUE_HINTS = {
     "zero-shot", "few-shot", "one-shot",
     "chain-of-thought", "cot",
@@ -36,7 +34,6 @@ def _clean_passage(p: str) -> str:
     p = _CIT_RE.sub("", p)
     p = _SECTION_PREFIX_RE.sub("", p)
 
-    # Fix common PDF hyphenation splits: "post- training" -> "post-training"
     p = re.sub(r"(\w)-\s+(\w)", r"\1-\2", p)
 
     p = re.sub(r"\s+", " ", p).strip()
@@ -51,16 +48,12 @@ def _tokenize(s: str) -> Set[str]:
 
 
 def _expand_question(question: str) -> str:
-    """
-    Expand short queries so overlap-gating works even when passages use long forms.
-    This is not hallucination: only synonym hints to improve gating.
-    """
+
     q = (question or "").strip()
     low = q.lower()
 
     expansions: List[str] = []
 
-    # PEFT family
     if "lora" in low:
         expansions += [
             "low rank adaptation",
@@ -74,7 +67,6 @@ def _expand_question(question: str) -> str:
     if "gpt" in low:
         expansions += ["llm", "large language model", "transformer"]
 
-    # Argos/MMRL reward verifier
     if "argos" in low or "mmrl" in low:
         expansions += [
             "agentic verifier",
@@ -86,7 +78,6 @@ def _expand_question(question: str) -> str:
             "noisy reward signals",
         ]
 
-    # TBA (Trajectory Balance with Asynchrony)
     if "tba" in low or ("trajectory" in low and "balance" in low):
         expansions += [
             "trajectory balance with asynchrony",
@@ -108,7 +99,6 @@ def _expand_question(question: str) -> str:
             "gflow nets",
         ]
 
-    # Prompt-engineering family (helps your prompt-technique case)
     if "prompt" in low or "prompting" in low:
         expansions += [
             "zero-shot",
@@ -136,24 +126,20 @@ def _score_overlap(question: str, passage: str) -> float:
 
 
 def _technique_bonus(passage: str) -> float:
-    """
-    Small bonus to passages that look "technique dense".
-    Prevents losing passages listing actual strategies (persona, few-shot, etc.)
-    when the question is generic.
-    """
+
     toks = _tokenize(passage)
     if not toks:
         return 0.0
     hits = 0
     for t in _TECHNIQUE_HINTS:
-        # allow multiword hints
+
         if " " in t:
             if t in (passage or "").lower():
                 hits += 1
         else:
             if t in toks:
                 hits += 1
-    # soft cap
+
     return min(3.0, 0.35 * float(hits))
 
 
@@ -170,24 +156,17 @@ def _select_diverse_mmr(
     top_k: int,
     lambda_div: float = 0.65,
 ) -> List[Tuple[str, float]]:
-    """
-    MMR-like selection:
-    - pick highest score first
-    - then pick next maximizing: lambda*score - (1-lambda)*similarity_to_selected
-    Similarity computed as Jaccard over token sets.
-    """
+
     if not scored:
         return []
     if top_k <= 1:
         return scored[:1]
 
-    # Precompute token sets for passages
     tok_cache = {p: _tokenize(p) for p, _ in scored}
 
     selected: List[Tuple[str, float]] = []
     remaining = scored[:]
 
-    # start with best
     selected.append(remaining.pop(0))
 
     while remaining and len(selected) < top_k:
@@ -214,19 +193,11 @@ def _select_diverse_mmr(
 def gate_passages(
     question: str,
     passages: List[str],
-    top_k: int = 10,          # ✅ higher default for KG recall
+    top_k: int = 10,          
     min_overlap: int = 1,
-    diversify: bool = True,   # ✅ enable diversity selection by default
+    diversify: bool = True,   
 ) -> Tuple[List[str], List[float]]:
-    """
-    Better gating to avoid mixed-doc contexts BUT keep "rich" technique passages:
-    - Cleans passages (removes "3.1", [12], etc.)
-    - Expands question (topic synonyms)
-    - Base score = token overlap(question_tokens, passage_tokens)
-    - Bonus score = technique-dense hints (few-shot/persona/metrics/etc.)
-    - Select top_k with optional MMR-like diversity to avoid near-duplicates
-    - Keep passages with overlap >= min_overlap when possible; else fallback to top scored
-    """
+
     cleaned_passages = [_clean_passage(p) for p in (passages or [])]
     cleaned_passages = [p for p in cleaned_passages if p]
 

@@ -11,14 +11,12 @@ router = APIRouter(prefix="/retrieval", tags=["retrieval"])
 class SearchRequest(BaseModel):
     query: str
     top_k: int = 5
-    doc_id: Optional[int] = None  # pour filtrer par document si tu veux
+    doc_id: Optional[int] = None  
 
 
 @router.post("/search")
 def search_documents(body: SearchRequest):
-    """
-    Endpoint simple pour tester le RetrieverAgent.
-    """
+
     agent = RetrieverAgent()
 
     filter_by: Optional[Dict[str, str]] = None

@@ -2,7 +2,7 @@ from typing import List, Literal
 from pydantic import BaseModel, Field
 
 
-IntentType = Literal[ #Literal : Limite les valeurs possible de Intent
+IntentType = Literal[
     "summary",
     "comparison",
     "concepts",
@@ -13,10 +13,7 @@ IntentType = Literal[ #Literal : Limite les valeurs possible de Intent
 
 
 class IntentResult(BaseModel):
-    """
-    Résultat standardisé de l'Intent & Decomposition Agent
-    utilisé par l'Orchestrator.
-    """
+
     intent: IntentType = Field(
         ...,
         description="Type principal de la requête utilisateur"

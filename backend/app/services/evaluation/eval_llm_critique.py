@@ -4,7 +4,7 @@ from typing import List
 
 
 def build_critique_prompt(question: str, answer: str, passages: List[str]) -> str:
-    # keep passages short to reduce token cost
+
     max_passages = 6
     trimmed = []
     for i, p in enumerate((passages or [])[:max_passages]):

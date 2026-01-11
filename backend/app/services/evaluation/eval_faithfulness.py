@@ -6,29 +6,21 @@ from rapidfuzz import fuzz
 
 
 def _sentencize(text: str) -> List[str]:
-    # Simple sentence splitter (robust enough for MVP)
+
     if not text:
         return []
-    # split on ., !, ? and newlines
+
     parts = re.split(r"[.!?]\s+|\n+", text.strip())
     sents = []
     for p in parts:
         p = p.strip()
-        if len(p.split()) >= 8:  # ignore tiny fragments
+        if len(p.split()) >= 8:  
             sents.append(p)
     return sents
 
 
 def faithfulness_score(answer: str, passages: List[str]) -> float:
-    """
-    Robust faithfulness proxy:
-    - Split answer into sentences
-    - For each sentence, find best-matching passage
-    - Return mean(best_match_scores)
 
-    This is much less punishing for paraphrases and long answers,
-    and more aligned with "each claim should be supported by at least one passage".
-    """
     if not answer or not passages:
         return 0.0
 
@@ -42,7 +34,6 @@ def faithfulness_score(answer: str, passages: List[str]) -> float:
         for p in passages:
             if not p:
                 continue
-            # partial_ratio works well for paraphrase-ish overlaps; token_set_ratio adds robustness
             score = max(
                 fuzz.partial_ratio(s, p),
                 fuzz.token_set_ratio(s, p),
@@ -51,5 +42,4 @@ def faithfulness_score(answer: str, passages: List[str]) -> float:
                 best = score
         best_scores.append(best)
 
-    # Average support across sentences
     return min(1.0, sum(best_scores) / len(best_scores))

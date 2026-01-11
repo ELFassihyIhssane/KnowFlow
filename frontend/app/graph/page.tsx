@@ -9,7 +9,7 @@ export default function GraphPage() {
   const [graph, setGraph] = useState<{ nodes: any[]; edges: any[] } | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  // 🔼 Scroll button state
+
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
 
@@ -26,7 +26,7 @@ export default function GraphPage() {
     }
   }
 
-  // 👇 Detect scroll + progress
+
   useEffect(() => {
     function onScroll() {
       const y = window.scrollY || 0;
@@ -47,7 +47,7 @@ export default function GraphPage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  // Progress ring math
+
   const ring = useMemo(() => {
     const size = 48;
     const stroke = 3;
@@ -76,7 +76,7 @@ export default function GraphPage() {
         <GraphView graph={graph} />
       </div>
 
-      {/* 🔼 Beautiful Scroll-to-Top (same as Query page) */}
+      {/* */}
       <div
         className={[
           "fixed bottom-6 right-6 z-50",
@@ -97,7 +97,7 @@ export default function GraphPage() {
             "focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-beige/70 focus-visible:ring-offset-2 focus-visible:ring-offset-black/40",
           ].join(" ")}
         >
-          {/* Glow */}
+          {/*  */}
           <span
             className={[
               "absolute -inset-2 rounded-full opacity-0 blur-xl transition-opacity duration-300",
@@ -106,7 +106,7 @@ export default function GraphPage() {
             ].join(" ")}
           />
 
-          {/* Progress ring */}
+          {/* */}
           <svg
             width={ring.size}
             height={ring.size}
@@ -137,7 +137,7 @@ export default function GraphPage() {
             />
           </svg>
 
-          {/* Arrow icon */}
+          {/*  */}
           <svg
             width="20"
             height="20"

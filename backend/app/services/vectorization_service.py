@@ -1,4 +1,3 @@
-# app/services/vectorization_service.py
 from typing import List, Dict
 from sqlalchemy.orm import Session
 
@@ -12,10 +11,7 @@ def _chunk_text(
     max_chars: int = 800,
     overlap: int = 200,
 ) -> List[Dict]:
-    """
-    Découpe un texte en passages avec overlap.
-    Retourne une liste de dicts : {"chunk_id": int, "text": str}.
-    """
+
     chunks: List[Dict] = []
     start = 0
     idx = 0
@@ -39,7 +35,7 @@ def _chunk_text(
             )
             idx += 1
 
-        # Fenêtre glissante avec overlap
+
         start = end - overlap
         if start < 0:
             start = 0
@@ -51,16 +47,7 @@ def vectorize_all_documents(
     db: Session,
     limit: int | None = None,
 ) -> int:
-    """
-    Parcourt tous les documents
-    et envoie plusieurs vecteurs par document dans Qdrant.
 
-    Multi-Vector RAG light :
-      - 1 vecteur pour le titre (section="title")
-      - 1..N vecteurs pour l'abstract (section="abstract")
-      - 1..N vecteurs pour le corps nettoyé (section="body") si disponible
-    """
-    # 👉 On ne filtre plus sur clean_text.isnot(None)
     query = db.query(Document)
     if limit:
         query = query.limit(limit)
@@ -71,7 +58,7 @@ def vectorize_all_documents(
     total_chunks = 0
 
     for doc in docs:
-        # --- 1) Indexer le titre (si présent) -------------------------------
+
         if doc.title:
             title_texts = [doc.title.strip()]
             title_embeddings = embed_texts(title_texts)
@@ -90,7 +77,6 @@ def vectorize_all_documents(
             vs.upsert_passages(title_texts, title_embeddings, title_metadatas)
             total_chunks += 1
 
-        # --- 2) Indexer l'abstract (chunké si long) ------------------------
         if doc.abstract:
             abstract_chunks = _chunk_text(doc.abstract, max_chars=800, overlap=200)
             if abstract_chunks:
@@ -119,7 +105,6 @@ def vectorize_all_documents(
                 )
                 total_chunks += len(abstract_chunks)
 
-        # --- 3) Indexer le corps (clean_text chunké) -----------------------
         if doc.clean_text:
             body_chunks = _chunk_text(doc.clean_text, max_chars=800, overlap=200)
             if body_chunks:

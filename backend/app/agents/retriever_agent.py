@@ -6,10 +6,6 @@ from app.memory.vector_store import VectorStore
 
 
 class RetrieverAgent:
-    """
-    Agent chargé de faire la recherche sémantique
-    dans le vector store (Qdrant).
-    """
 
     def __init__(self, collection_name: str | None = None):
         self.vs = VectorStore(collection_name=collection_name) if collection_name else VectorStore()
@@ -20,10 +16,7 @@ class RetrieverAgent:
         top_k: int = 5,
         filter_by: Optional[Dict[str, str]] = None,
     ) -> List[Dict]:
-        """
-        1. Embedding de la requête
-        2. Recherche dans Qdrant
-        """
+        
         q_vec = embed_text(query)
         hits = self.vs.search(
             query_embedding=q_vec,

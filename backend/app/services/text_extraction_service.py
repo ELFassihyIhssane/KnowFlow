@@ -4,7 +4,7 @@ from ..external.pdf_extractor import extract_text_from_pdf_url
 
 
 def process_pdf_for_document(db: Session, doc: Document):
-    """Télécharge et extrait le texte d’un document PDF."""
+
     if not doc.pdf_url:
         return False
     
@@ -19,7 +19,7 @@ def process_pdf_for_document(db: Session, doc: Document):
 
 
 def process_all_documents(db: Session, limit: int = None):
-    """Traite tous les documents sans texte."""
+
     query = db.query(Document).filter(Document.raw_text == None)
 
     if limit:

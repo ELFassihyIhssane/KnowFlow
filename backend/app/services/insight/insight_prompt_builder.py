@@ -10,7 +10,7 @@ def build_insight_prompt(
     weak_concepts: List[str],
     stats: Dict[str, Any],
     passages_block: str,
-    sub_tasks: Optional[List[str]] = None,   # ✅ NEW
+    sub_tasks: Optional[List[str]] = None,  
     language: str = "en",
     intent: Optional[str] = None,
 ) -> str:

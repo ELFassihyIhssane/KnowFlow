@@ -6,10 +6,10 @@ export function TopNav() {
     <header className="sticky top-0 z-50 border-b border-white/10 bg-brand-navy/70 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
         <Link href="/" className="relative flex items-center">
-          {/* container small in flow */}
+          {/*  */}
           <div className="relative h-10 w-10" />
 
-          {/* logo floats bigger without changing navbar height */}
+          {/*  */}
           <div className="absolute left-0 top-1/2 h-40 w-52 -translate-y-1/2">
             <Image
               src="/KnowFlow.png"

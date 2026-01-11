@@ -23,13 +23,13 @@ export default function HomePage() {
 
   return (
     <main className="relative overflow-hidden">
-      {/* Background glows (subtle) */}
+      {/*  */}
       <div className="pointer-events-none absolute -top-36 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-brand-beige/12 blur-[120px]" />
       <div className="pointer-events-none absolute -bottom-40 right-[-120px] h-[520px] w-[520px] rounded-full bg-brand-blue/10 blur-[120px]" />
 
-      {/* ONE compact HERO section */}
+      {/*  */}
       <section className="relative rounded-3xl border border-white/10 bg-white/5 p-6 shadow-soft backdrop-blur-xl sm:p-7">
-        {/* subtle sheen */}
+        {/*  */}
         <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-b from-white/10 via-transparent to-transparent" />
 
         <div className="relative">
@@ -48,7 +48,7 @@ export default function HomePage() {
             evaluation signals — all in one flow.
           </p>
 
-          {/* CTAs */}
+          {/* */}
           <div className="mt-5 flex flex-wrap gap-3">
             <Link
               href="/query"
@@ -85,9 +85,9 @@ export default function HomePage() {
             </Link>
           </div>
 
-          {/* EVERYTHING INSIDE SAME "POPUP" */}
+          {/* */}
           <div className="mt-6 grid gap-4">
-            {/* feature cards INSIDE hero */}
+            {/* */}
             <div className="grid gap-3 md:grid-cols-3">
               {features.map(({ title, desc, Icon }) => (
                 <div
@@ -121,7 +121,7 @@ export default function HomePage() {
               ))}
             </div>
 
-            {/* optional: small divider footer inside hero */}
+            {/**/}
             <div className="pt-1 text-xs text-white/45">
               Tip: Start with a Query, then inspect evaluation and graph updates.
             </div>

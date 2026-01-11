@@ -11,11 +11,6 @@ from app.services.evaluation.eval_llm_critique import build_critique_prompt
 
 
 class EvaluatorAgent:
-    """
-    Hybrid Evaluator (robust MVP):
-    - deterministic proxies (faithfulness/coverage/coherence/insight)
-    - optional LLM critique grounded by evidence passages
-    """
 
     def evaluate(
         self,
@@ -33,7 +28,6 @@ class EvaluatorAgent:
             "insight_depth": insight_depth_score(answer),
         }
 
-        # Weighted global score (more sensible than uniform average)
         weights = {
             "faithfulness": 0.40,
             "coverage": 0.25,

@@ -9,12 +9,7 @@ def detect_weakly_connected_concepts(
     max_degree: int = 1,
     top_k: int = 10,
 ) -> List[str]:
-    """
-    Find concepts that exist in the global KG but are weakly connected (degree <= max_degree).
-    These can signal under-integrated concepts.
 
-    Returns a list of concept labels (deduplicated), capped to top_k.
-    """
     kg = get_knowledge_graph()
     if not concepts:
         return []
@@ -34,6 +29,5 @@ def detect_weakly_connected_concepts(
         if degree <= max_degree:
             weak.append((c, degree))
 
-    # Most weak first (degree ascending), stable output
     weak.sort(key=lambda x: x[1])
     return [c for c, _d in weak[:top_k]]

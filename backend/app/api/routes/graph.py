@@ -1,4 +1,3 @@
-# app/routes/graph.py
 from fastapi import APIRouter
 from typing import List
 from pydantic import BaseModel
@@ -44,7 +43,7 @@ def get_full_graph():
                 target=v,
                 relation=rel,
                 weight=w,
-                properties=props,  # includes evidence if present
+                properties=props,  
             )
         )
 

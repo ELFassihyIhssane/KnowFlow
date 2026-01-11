@@ -1,4 +1,3 @@
-# app/memory/knowledge_graph.py
 from __future__ import annotations
 
 import json
@@ -9,10 +8,6 @@ import networkx as nx
 
 
 class KnowledgeGraphStore:
-    """
-    Local Knowledge Graph store (NetworkX MultiDiGraph).
-    Simple JSON persistence.
-    """
 
     def __init__(self, path: str = "data/knowledge_graph.json"):
         self.path = path
@@ -58,11 +53,10 @@ class KnowledgeGraphStore:
         for e in data.get("edges", []):
             u = e.get("source")
             v = e.get("target")
-            k = e.get("key")  # may be None in older files
+            k = e.get("key")  
             attrs = {kk: vv for kk, vv in e.items() if kk not in ("source", "target", "key")}
 
             if u and v:
-                # MultiDiGraph supports add_edge(u,v,key=...,**attrs)
                 try:
                     if k is not None:
                         self.graph.add_edge(u, v, key=str(k), **attrs)
@@ -71,7 +65,7 @@ class KnowledgeGraphStore:
                 except Exception:
                     self.graph.add_edge(u, v, **attrs)
 
-    # --- API Graph ---
+
     def upsert_node(self, node_id: str, **attrs) -> None:
         if self.graph.has_node(node_id):
             self.graph.nodes[node_id].update(attrs)

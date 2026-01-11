@@ -20,7 +20,6 @@ def retry_query(payload: dict):
 
     final_state = run_query(state)
 
-    # ✅ Return EXACT same schema as /query
     return {
         "question": state.question,
         "intent": final_state.intent,

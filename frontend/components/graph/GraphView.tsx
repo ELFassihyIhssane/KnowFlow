@@ -17,10 +17,9 @@ export function GraphView({ graph }: { graph: GraphPayload }) {
   const nodes = Array.isArray(graph.nodes) ? graph.nodes : [];
   const edges = Array.isArray(graph.edges) ? graph.edges : [];
 
-  // ✅ Build a set of valid node ids
+
   const nodeIds = new Set(nodes.map((n: any) => String(n?.id)));
 
-  // ✅ Filter out invalid edges (null endpoints or endpoints not in nodes)
   const safeEdges = edges.filter((e: any) => {
     const s = e?.source;
     const t = e?.target;
@@ -29,7 +28,6 @@ export function GraphView({ graph }: { graph: GraphPayload }) {
     const ss = String(s);
     const tt = String(t);
 
-    // reject "null"/"undefined" strings too
     if (ss === "null" || ss === "undefined" || tt === "null" || tt === "undefined") return false;
 
     return nodeIds.has(ss) && nodeIds.has(tt);
@@ -162,20 +160,20 @@ export function GraphView({ graph }: { graph: GraphPayload }) {
             cy.minZoom(0.35);
             cy.maxZoom(2.5);
 
-            // ✅ Avoid duplicate handlers in dev / strict mode
+
             cy.removeAllListeners();
 
-            // Prefer dblclick (always available). Keep dbltap if present.
+
             const fitAll = () => {
               cy.animate({ fit: { eles: cy.elements(), padding: 60 } }, { duration: 250 });
             };
 
-            // @ts-ignore
+
             const hasDblTap = typeof (cy as any).on === "function";
             if (hasDblTap) {
-              // some builds support dbltap
+
               try {
-                // @ts-ignore
+
                 cy.on("dbltap", fitAll);
               } catch {
                 cy.on("dblclick", fitAll);

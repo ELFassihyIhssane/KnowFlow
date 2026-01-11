@@ -6,8 +6,8 @@ from typing import Any, Dict, Optional
 
 try:
     import mlflow
-except Exception:  # pragma: no cover
-    mlflow = None  # type: ignore
+except Exception:  
+    mlflow = None  
 
 
 class ExperimentTracker:

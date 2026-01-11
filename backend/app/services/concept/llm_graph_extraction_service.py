@@ -349,17 +349,12 @@ def _pick_topic_concept(question: str, concepts: List[Dict[str, Any]]) -> Option
 
 
 def _evidence_mentions_label(label: str, evidence: str) -> bool:
-    """
-    True if evidence likely contains the label (or its acronyms / key tokens).
-    This is a "safe" check: we only use it to decide whether to auto-add a missing endpoint.
-    """
     if not label or not evidence:
         return False
 
     ev_low = evidence.lower()
     lbl_low = label.strip().lower()
 
-    # exact/substring match helps with multiword phrases
     if len(lbl_low) >= 4 and lbl_low in ev_low:
         return True
 
@@ -371,7 +366,6 @@ def _evidence_mentions_label(label: str, evidence: str) -> bool:
     if not lbl_toks:
         return False
 
-    # require at least one token hit
     return len(lbl_toks & ev_toks) >= 1
 
 
@@ -443,7 +437,7 @@ def extract_graph_with_gemini(
     out_edges: List[Dict[str, str]] = []
     dedup = set()
 
-    # ✅ helper: add missing endpoints as concepts (MVP-safe)
+
     def _ensure_concept(label: str) -> str:
         lbl = (label or "").strip()
         if not lbl:
@@ -451,7 +445,7 @@ def extract_graph_with_gemini(
         low = lbl.lower()
         if any((c.get("label", "").strip().lower() == low) for c in out_concepts if isinstance(c, dict)):
             return next((c.get("label") for c in out_concepts if c.get("label", "").strip().lower() == low), lbl)
-        # add minimal node; do NOT block edges
+
         out_concepts.append({"label": lbl, "type": "concept", "aliases": []})
         return lbl
 
@@ -474,17 +468,14 @@ def extract_graph_with_gemini(
         if _is_title_like_evidence(ev):
             continue
 
-        # Try resolve against extracted concepts
         src = _resolve_endpoint(src_raw, out_concepts)
         tgt = _resolve_endpoint(tgt_raw, out_concepts)
 
-        # ✅ Fix: if resolution fails BUT evidence contains endpoint -> auto-add endpoint
         if not src and _evidence_mentions_label(src_raw, ev):
             src = _ensure_concept(src_raw)
         if not tgt and _evidence_mentions_label(tgt_raw, ev):
             tgt = _ensure_concept(tgt_raw)
 
-        # If still missing, drop (likely hallucination)
         if not src or not tgt:
             continue
 

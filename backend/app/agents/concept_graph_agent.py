@@ -58,14 +58,6 @@ def _tokenize(s: str) -> Set[str]:
 
 
 class ConceptGraphAgent:
-    """
-    Gemini-first KG extraction:
-      1) Gate passages (higher recall + diversity)
-      2) Gemini extracts {concepts, edges, evidence}
-      3) Quality check aligned to question
-         - OK => upsert KG and return
-         - else => return debug result (NO KG pollution)
-    """
 
     def update_from_passages(
         self,
@@ -85,11 +77,10 @@ class ConceptGraphAgent:
 
         raw_parts = [p.strip() for p in passages_text.split("\n\n") if p.strip()]
 
-        # ✅ Increase recall and add diversity to prevent losing technique-heavy passages
         gated_parts, scores = gate_passages(
             question=question,
             passages=raw_parts,
-            top_k=12,          # ✅ was 6
+            top_k=12,          
             min_overlap=1,
             diversify=True,
         )
@@ -137,9 +128,6 @@ class ConceptGraphAgent:
         if ok:
             return self._upsert_llm_graph(kg, gem_graph)
 
-        # ✅ IMPORTANT FIX:
-        # When quality fails and fallback is disabled, return BOTH concepts AND edges
-        # so you can inspect what the LLM extracted (instead of losing relations).
         if disable_fallback:
             extracted_concepts: List[str] = []
             for c in (gem_graph.get("concepts", []) or [])[:40]:
@@ -164,12 +152,11 @@ class ConceptGraphAgent:
                         source=normalize_label(src) or src,
                         target=normalize_label(tgt) or tgt,
                         relation=rel,
-                        weight=0.0,  # not inserted; inspection only
+                        weight=0.0,  
                         properties={"evidence": ev} if ev else {},
                     )
                 )
 
-            # Dedup concepts
             seen = set()
             dedup_concepts: List[str] = []
             for x in extracted_concepts:

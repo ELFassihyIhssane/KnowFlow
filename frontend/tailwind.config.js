@@ -6,7 +6,7 @@ module.exports = {
   ],
   theme: {
     extend: {
-      /* 🎨 Brand colors */
+
       colors: {
         brand: {
           navy: "#213448",
@@ -16,12 +16,12 @@ module.exports = {
         },
       },
 
-      /* ✨ Soft shadow */
+
       boxShadow: {
         soft: "0 10px 30px rgba(0,0,0,0.25)",
       },
 
-      /* 🔤 Global font */
+
       fontFamily: {
          sans: ["var(--font-sans)", "system-ui", "sans-serif"],
       },

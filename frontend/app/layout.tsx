@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Lexend } from "next/font/google";
 import { AppShell } from "@/components/layout/AppShell";
 
-/* ---------------- FONT ---------------- */
+
 const lexend = Lexend({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
@@ -11,7 +11,7 @@ const lexend = Lexend({
   display: "swap",
 });
 
-/* ---------------- METADATA ---------------- */
+
 export const metadata: Metadata = {
   title: "KnowFlow",
   description: "Adaptive Knowledge-Driven Multi-Agent Orchestrator",

@@ -23,28 +23,21 @@ def _tokenize(s: str) -> Set[str]:
 
 
 def _shape_bonus(s: str) -> float:
-    """
-    Bonus générique pour noms techniques (toutes disciplines).
-    """
+
     bonus = 0.0
 
-    # CamelCase: "PipeFusion", "StableDiffusion"
     if re.search(r"[a-z][A-Z]", s):
         bonus += 1.5
 
-    # Acronyms: "DiT", "GNN", "CRISPR"
     if re.fullmatch(r"[A-Z]{2,6}s?", s.strip()):
         bonus += 1.5
 
-    # Versioning / decimals: "1.5", "v2", "3B", "12B"
     if re.search(r"\b(v\d+|\d+\.\d+|\d+B)\b", s, flags=re.IGNORECASE):
         bonus += 1.2
 
-    # Hyphenated technical terms: "tensor-parallelism"
     if "-" in s and len(s) <= 40:
         bonus += 0.6
 
-    # Units / measures often matter in science: "ms", "GB", "FID", "BLEU"
     if re.search(r"\b(ms|s|sec|gb|mb|tf|gflops|fid|bleu|auc|f1)\b", s, flags=re.IGNORECASE):
         bonus += 1.0
 
@@ -126,8 +119,7 @@ def extract_concepts(text: str, question: str = "", max_concepts: int = 30) -> L
 
         return True
 
-    # ---- 1) Extract pool: keep track of source type (entity vs chunk)
-    pool: List[Tuple[str, str]] = []  # (text, source)
+    pool: List[Tuple[str, str]] = []  
     for ent in doc.ents:
         s = clean_phrase(ent.text)
         if is_good_concept(s):
@@ -138,7 +130,6 @@ def extract_concepts(text: str, question: str = "", max_concepts: int = 30) -> L
         if is_good_concept(s):
             pool.append((s, "chunk"))
 
-    # ---- 2) Dedup
     seen = set()
     deduped: List[Tuple[str, str]] = []
     for s, src in pool:
@@ -148,35 +139,28 @@ def extract_concepts(text: str, question: str = "", max_concepts: int = 30) -> L
         seen.add(k)
         deduped.append((s, src))
 
-    # ---- 3) Score
     def score_concept(s: str, src: str) -> float:
         toks = _tokenize(s)
         overlap = len(toks & q_toks) if q_has_signal else 0
 
-        # entity priority: entities tend to be model names, methods, datasets
         ent_bonus = 1.0 if src == "ent" else 0.0
 
-        # shape bonus: CamelCase, acronyms, versions, units...
         shape = _shape_bonus(s)
 
-        # penalize generic single tokens unless they overlap question strongly
         generic_penalty = 0.0
         if len(toks) == 1 and overlap == 0 and shape < 1.0:
             generic_penalty = 0.8
 
-        # mild length penalty
         length_penalty = 0.12 * max(0, len(s.split()) - 5)
 
         return (2.0 * overlap) + ent_bonus + shape - generic_penalty - length_penalty
 
     ranked = sorted(deduped, key=lambda x: score_concept(x[0], x[1]), reverse=True)
 
-    # ---- 4) Question-aware pruning (keeps concepts close to user intent)
     if q_has_signal:
         kept = []
         for s, src in ranked:
             sc = score_concept(s, src)
-            # keep if overlaps question OR has strong technical shape
             if sc >= 1.2 or _shape_bonus(s) >= 1.5:
                 kept.append(s)
         ranked_out = kept

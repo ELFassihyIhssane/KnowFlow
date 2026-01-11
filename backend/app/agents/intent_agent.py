@@ -47,10 +47,6 @@ JSON format:
 
 
 class IntentAgent:
-    """
-    Classifies the user intent and decomposes the query
-    into short atomic sub-tasks for KnowFlow orchestration.
-    """
 
     def analyze(self, question: str) -> IntentResult:
         prompt = f"""{SYSTEM_PROMPT}
@@ -147,11 +143,8 @@ User question:
         return IntentResult(**data)
 
 
-    # Helpers
     def _normalize_sub_tasks(self, tasks: List[str], intent: str) -> List[str]:
-        """
-        Cleans, truncates, limits sub-tasks, and lightly enforces verb-start.
-        """
+
         if not isinstance(tasks, list):
             tasks = []
 
@@ -212,9 +205,7 @@ User question:
         return ["Summarize the request"]
 
     def _parse_json_safe(self, text: str) -> dict:
-        """
-        Robust JSON parsing with fallback.
-        """
+
         cleaned = text.strip()
         cleaned = re.sub(r"^```(json)?", "", cleaned, flags=re.IGNORECASE).strip()
         cleaned = re.sub(r"```$", "", cleaned).strip()

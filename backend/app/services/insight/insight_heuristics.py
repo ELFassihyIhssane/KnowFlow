@@ -21,12 +21,7 @@ def detect_gaps(
     patterns: List[str] | None = None,
     max_hits: int = 12,
 ) -> List[str]:
-    """
-    Very lightweight heuristic signaler. It does NOT prove a gap;
-    it only flags phrases that often indicate limitations/future work.
 
-    Output strings are "signals", not facts. The LLM must verify against passages.
-    """
     pats = patterns or DEFAULT_GAP_PATTERNS
     joined = " ".join([t for t in texts if t]).lower()
 
@@ -35,5 +30,4 @@ def detect_gaps(
         if re.search(pat, joined):
             hits.append(f"heuristic_signal:{pat}")
 
-    # Keep output short and stable
     return hits[:max_hits]

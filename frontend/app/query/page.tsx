@@ -21,7 +21,7 @@ export default function QueryPage() {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0); // 0..1
 
-  // 🔽 NEW: toast (popup)
+
   const [toast, setToast] = useState<ToastState>({
     open: false,
     title: "",
@@ -29,7 +29,7 @@ export default function QueryPage() {
     kind: "info",
   });
 
-  // 🔽 NEW: ref to QueryResult section
+
   const resultRef = useRef<HTMLDivElement | null>(null);
 
   function showToast(next: Omit<ToastState, "open">, autoCloseMs = 2800) {
@@ -64,14 +64,12 @@ export default function QueryPage() {
       const data = await retryQuery(result.question, retryCount, actions);
       setResult(data);
 
-      // ✅ After DOM updates, scroll to QueryResult section
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
         });
       });
 
-      // ✅ Toast after successful retry
       const appliedCount = (actions?.length ?? 0);
       showToast(
         {
@@ -88,7 +86,6 @@ export default function QueryPage() {
       const msg = e?.message || "Retry failed";
       setError(msg);
 
-      // ❌ Toast on error
       showToast({ kind: "error", title: "Retry failed", message: msg }, 3600);
     } finally {
       setLoading(false);
@@ -115,7 +112,7 @@ export default function QueryPage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  // Progress ring math
+
   const ring = useMemo(() => {
     const size = 48;
     const stroke = 3;
@@ -134,7 +131,7 @@ export default function QueryPage() {
 
   return (
     <main className="relative space-y-6">
-      {/* ✅ Toast / Popup */}
+      {/*  */}
       <div
         className={[
           "fixed top-5 right-5 z-[60] w-[min(420px,calc(100vw-2.5rem))]",
@@ -151,7 +148,7 @@ export default function QueryPage() {
             toastTone,
           ].join(" ")}
         >
-          {/* subtle glow */}
+          {/* */}
           <span className="pointer-events-none absolute -inset-6 rounded-full bg-brand-beige/15 blur-2xl" />
           <div className="relative flex items-start gap-3">
             <div className="mt-0.5 h-2.5 w-2.5 rounded-full bg-brand-beige shadow-[0_0_0_4px_rgba(255,255,255,0.06)]" />
@@ -187,14 +184,14 @@ export default function QueryPage() {
         </div>
       )}
 
-      {/* ✅ Anchor section for auto-scroll after retry */}
+      {/*  */}
       {result && (
         <div ref={resultRef} className="scroll-mt-24">
           <QueryResult data={result} loading={loading} onRetry={onRetry} />
         </div>
       )}
 
-      {/* 🔼 Beautiful Scroll-to-Top */}
+      {/*  */}
       <div
         className={[
           "fixed bottom-6 right-6 z-50",

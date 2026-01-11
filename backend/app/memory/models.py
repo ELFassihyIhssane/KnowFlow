@@ -3,7 +3,7 @@ from datetime import datetime
 from sqlalchemy import Column, Integer, String, Text, DateTime, UniqueConstraint
 from sqlalchemy.dialects.postgresql import JSONB
 
-from app.core.db import Base   # ⬅ mets l'import absolu, plus propre
+from app.core.db import Base   
 
 
 class Document(Base):
@@ -22,7 +22,7 @@ class Document(Base):
     authors = Column(JSONB, nullable=True)
     year = Column(Integer, nullable=True)
 
-    raw_text = Column(Text, nullable=True)      # texte brut du PDF (sale)
-    clean_text = Column(Text, nullable=True)    # texte nettoyé pour la vectorisation
+    raw_text = Column(Text, nullable=True)      
+    clean_text = Column(Text, nullable=True)    
 
     created_at = Column(DateTime, default=datetime.utcnow)

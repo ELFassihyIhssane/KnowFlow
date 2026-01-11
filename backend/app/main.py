@@ -35,7 +35,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Prometheus metrics endpoint
+
 metrics_app = make_asgi_app()
 app.mount("/metrics", metrics_app)
 

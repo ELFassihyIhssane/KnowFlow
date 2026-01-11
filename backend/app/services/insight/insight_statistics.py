@@ -5,10 +5,7 @@ import numpy as np
 
 
 def compute_statistics(passages: List[str]) -> Dict[str, float]:
-    """
-    Compute simple descriptive statistics over passage lengths (word counts).
-    Useful to calibrate confidence / coverage.
-    """
+
     lengths = [len(p.split()) for p in passages if p and p.strip()]
     if not lengths:
         return {"num_passages": 0.0}

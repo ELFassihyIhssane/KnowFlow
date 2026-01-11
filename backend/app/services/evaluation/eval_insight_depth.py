@@ -10,11 +10,7 @@ KEY_TERMS = [
 
 
 def insight_depth_score(answer: str) -> float:
-    """
-    Insight depth proxy:
-    - counts presence of analytical terms
-    - also rewards diversity (not repeating same term)
-    """
+
     if not answer or not answer.strip():
         return 0.0
 
@@ -25,8 +21,7 @@ def insight_depth_score(answer: str) -> float:
             hits.append(k)
 
     unique_hits = len(set(hits))
-    # reward diversity; cap quickly
-    # 0 hits -> 0.2 if answer long enough, else 0
+
     if unique_hits == 0:
         return 0.2 if len(answer.split()) >= 80 else 0.0
 
