@@ -7,7 +7,7 @@ It focuses on **traceability**, **quality evaluation**, and **human control** (h
 - Detects the user **intent** (summary, comparison, gap, deep analysis, concepts)
 - Retrieves relevant scientific passages (Multi-Vector RAG)
 - Generates a structured answer **with sources**
-- Builds a **knowledge graph**
+- Builds a **knowledge graph** (Graph RAG)
 - Evaluates answer quality (faithfulness, coverage, coherence, depth) based on the retrieved ground-truth passages.
 - Suggests tuning actions and lets the user **manually retry** with new parameters
 
@@ -24,6 +24,3 @@ Python, FastAPI, Pydantic, LangGraph, PostgreSQL, SQLAlchemy,
 Sentence-Transformers (all-MiniLM-L6-v2), Qdrant, NetworkX, Docker,  
 Next.js, React, Tailwind, Prometheus, structlog, Langfuse, MLflow.
 
-## Repo structure (example)
-- `backend/` : FastAPI + orchestrator + agents
-- `frontend/` : Next.js web UI
